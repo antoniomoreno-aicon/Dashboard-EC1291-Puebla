@@ -1,0 +1,38 @@
+name: Refresh dashboard data
+
+on:
+  schedule:
+    - cron: "0 */7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Update data
+        run: npm run update-data
+        env:
+          DATA_SOURCE_URL: ${{ secrets.DATA_SOURCE_URL }}
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data.json
+          git commit -m "Refresh dashboard data" || echo "No changes to commit"
+          git push

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Base Cargas</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div>
+        <p class="eyebrow">Dashboard</p>
+        <h1>DASHBOARD BASE CARGAS</h1>
+        <p id="lastUpdated" class="muted">Cargando actualización...</p>
+      </div>
+    </header>
+
+    <section class="cards" id="cards"></section>
+
+    <section class="grid">
+      <article class="panel">
+        <div class="panel-header">
+          <h2>Evaluaciones por centro</h2>
+        </div>
+        <canvas id="centrosChart"></canvas>
+      </article>
+
+      <article class="panel">
+        <div class="panel-header">
+          <h2>Evaluaciones por evaluador</h2>
+        </div>
+        <canvas id="evaluadoresChart"></canvas>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Detalle por evaluador</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Evaluador</th>
+              <th>Conteo</th>
+            </tr>
+          </thead>
+          <tbody id="evaluadoresTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    async function loadDashboard() {
+      const response = await fetch("./data.json?cache=" + Date.now());
+      const data = await response.json();
+
+      document.getElementById("lastUpdated").textContent =
+        "Última actualización: " + new Date(data.lastUpdated).toLocaleString("es-MX");
+
+      renderCards(data.cards);
+      renderTable(data.evaluadores);
+      renderCharts(data);
+    }
+
+    function renderCards(cards) {
+      const container = document.getElementById("cards");
+      container.innerHTML = cards.map(card => `
+        <article class="card">
+          <p>${card.label}</p>
+          <strong>${card.value.toLocaleString("es-MX")}</strong>
+        </article>
+      `).join("");
+    }
+
+    function renderTable(rows) {
+      const tbody = document.getElementById("evaluadoresTable");
+      tbody.innerHTML = rows.map(row => `
+        <tr>
+          <td>${row.name}</td>
+          <td>${row.count.toLocaleString("es-MX")}</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderCharts(data) {
+      new Chart(document.getElementById("centrosChart"), {
+        type: "bar",
+        data: {
+          labels: data.centros.map(x => x.name),
+          datasets: [{
+            label: "Evaluaciones",
+            data: data.centros.map(x => x.count),
+            backgroundColor: ["#2563eb", "#16a34a", "#f97316"]
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+
+      new Chart(document.getElementById("evaluadoresChart"), {
+        type: "bar",
+        data: {
+          labels: data.evaluadores.slice(0, 10).map(x => x.name),
+          datasets: [{
+            label: "Evaluaciones",
+            data: data.evaluadores.slice(0, 10).map(x => x.count),
+            backgroundColor: "#0f766e"
+          }]
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: { x: { beginAtZero: true } }
+        }
+      });
+    }
+
+    loadDashboard();
+  </script>
+</body>
+</html>
