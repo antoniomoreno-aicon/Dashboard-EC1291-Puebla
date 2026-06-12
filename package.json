@@ -6,6 +6,6 @@
     "update-data": "node scripts/update-data.js"
   },
   "dependencies": {
-    "csv-parse": "^5.5.6"
+    "xlsx": "^0.18.5"
   }
 }
