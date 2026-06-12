@@ -1,37 +1,121 @@
 {
-  "lastUpdated": "2026-06-12T04:17:28.739Z",
+  "lastUpdated": "2026-06-12T06:04:04.530Z",
   "cards": [
-    { "label": "Evaluaciones totales", "value": 157 },
-    { "label": "Procesos en lotes", "value": 124 },
-    { "label": "Procesos cargados sin meter en lotes", "value": 10 },
-    { "label": "Procesos cargados sin meter en lotes 2", "value": 15 }
+    {
+      "label": "Evaluaciones totales",
+      "value": 157
+    },
+    {
+      "label": "Procesos en lotes",
+      "value": 149
+    },
+    {
+      "label": "Procesos cargados sin meter en lotes",
+      "value": 0
+    },
+    {
+      "label": "Procesos cargados sin meter en lotes 2",
+      "value": 8
+    }
   ],
   "centros": [
-    { "name": "CDI", "count": 46 },
-    { "name": "GLOBAL", "count": 53 },
-    { "name": "LAATTER", "count": 58 }
+    {
+      "name": "CDI",
+      "count": 46
+    },
+    {
+      "name": "GLOBAL",
+      "count": 53
+    },
+    {
+      "name": "LAATTER",
+      "count": 58
+    }
   ],
   "evaluadores": [
-    { "name": "JOSE DANIEL COLOMO MARTINEZ", "count": 23 },
-    { "name": "CRISTOPHER TORIJA MORALES", "count": 16 },
-    { "name": "FRANCISCO JAVIER TORRES ROSAS", "count": 12 },
-    { "name": "JOCELYN ANGELES IBARRA", "count": 11 },
-    { "name": "VICTOR ALEJANDRO SOTO CEBALLOS", "count": 11 },
-    { "name": "LAURA PICHARDO ROSAS", "count": 10 },
-    { "name": "JUAN CARLOS ZAMUDIO SANCHEZ", "count": 10 },
-    { "name": "MARIO JORGE ARRIAGA", "count": 9 },
-    { "name": "ADRIANA ANGELES GONZALEZ", "count": 9 },
-    { "name": "JAZER FEDERICO VEGA GONZALEZ", "count": 7 },
-    { "name": "JULIO DANIEL PINEDA HERNANDEZ", "count": 7 },
-    { "name": "ALBERTO FABIAN OLIVEROS ROBLES", "count": 6 },
-    { "name": "MARTIN EDUARDO LOPEZ RODRIGUEZ", "count": 5 },
-    { "name": "ALBERTO GARCIA VARELA", "count": 5 },
-    { "name": "EDGAR GARCIA VARELA", "count": 5 },
-    { "name": "OSCAR ALBERTO VARGAS DAMIAN", "count": 3 },
-    { "name": "MARIO ARRIAGA ROBLES", "count": 3 },
-    { "name": "ANDREA RUBÍ CARDENAS MORENO", "count": 2 },
-    { "name": "JUAN CARLOS ZAMUDIO", "count": 1 },
-    { "name": "MIRNA GARCIA", "count": 1 },
-    { "name": "MARITZELENA GUADALUPE CAMPA FLORES", "count": 1 }
+    {
+      "name": "JOSE DANIEL COLOMO MARTINEZ",
+      "count": 23
+    },
+    {
+      "name": "CRISTOPHER TORIJA MORALES",
+      "count": 16
+    },
+    {
+      "name": "FRANCISCO JAVIER TORRES ROSAS",
+      "count": 12
+    },
+    {
+      "name": "JOCELYN ANGELES IBARRA",
+      "count": 11
+    },
+    {
+      "name": "VICTOR ALEJANDRO SOTO CEBALLOS",
+      "count": 11
+    },
+    {
+      "name": "LAURA PICHARDO ROSAS",
+      "count": 10
+    },
+    {
+      "name": "JUAN CARLOS ZAMUDIO SANCHEZ",
+      "count": 10
+    },
+    {
+      "name": "MARIO JORGE ARRIAGA",
+      "count": 9
+    },
+    {
+      "name": "ADRIANA ANGELES GONZALEZ",
+      "count": 9
+    },
+    {
+      "name": "JAZER FEDERICO VEGA GONZALEZ",
+      "count": 7
+    },
+    {
+      "name": "JULIO DANIEL PINEDA HERNANDEZ",
+      "count": 7
+    },
+    {
+      "name": "ALBERTO FABIAN OLIVEROS ROBLES",
+      "count": 6
+    },
+    {
+      "name": "MARTIN EDUARDO LOPEZ RODRIGUEZ",
+      "count": 5
+    },
+    {
+      "name": "ALBERTO GARCIA VARELA",
+      "count": 5
+    },
+    {
+      "name": "EDGAR GARCIA VARELA",
+      "count": 5
+    },
+    {
+      "name": "OSCAR ALBERTO VARGAS DAMIAN",
+      "count": 3
+    },
+    {
+      "name": "MARIO ARRIAGA ROBLES",
+      "count": 3
+    },
+    {
+      "name": "ANDREA RUBÍ CARDENAS MORENO",
+      "count": 2
+    },
+    {
+      "name": "JUAN CARLOS ZAMUDIO",
+      "count": 1
+    },
+    {
+      "name": "MIRNA GARCIA",
+      "count": 1
+    },
+    {
+      "name": "MARITZELENA GUADALUPE CAMPA FLORES",
+      "count": 1
+    }
   ]
 }
