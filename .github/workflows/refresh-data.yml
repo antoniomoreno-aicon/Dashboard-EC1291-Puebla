@@ -1,8 +1,9 @@
 name: Refresh dashboard data
 
 on:
-  schedule:
-    - cron: "0 */7 * * *"
+  push:
+    paths:
+      - "input/dashboard.xlsx"
   workflow_dispatch:
 
 permissions:
@@ -24,15 +25,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Update data
+      - name: Update data from Excel
         run: npm run update-data
-        env:
-          DATA_SOURCE_URL: ${{ secrets.DATA_SOURCE_URL }}
 
-      - name: Commit changes
+      - name: Commit updated data.json
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add data.json
-          git commit -m "Refresh dashboard data" || echo "No changes to commit"
+          git commit -m "Update dashboard data from Excel" || echo "No changes to commit"
           git push
