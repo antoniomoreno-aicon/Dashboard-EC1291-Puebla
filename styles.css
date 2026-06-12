@@ -421,4 +421,11 @@ h1 {
   .brand-right {
     justify-content: center;
   }
+}.brand-icon,
+.brand-title,
+.brand-subtitle,
+.brand-small,
+.aicon-title,
+.aicon-wave {
+  display: none !important;
 }
