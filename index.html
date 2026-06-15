@@ -9,150 +9,146 @@
 </head>
 
 <body>
-  <main class="page">
-    <header class="hero">
-      <div>
-        <p class="eyebrow">EC1291 Puebla</p>
-        <h1 id="title">Dashboard Proyecto Puebla EC1291 2026</h1>
-        <p class="subtitle">Seguimiento de evaluaciones, lotes, certificados, centros y evaluadores.</p>
-      </div>
-      <div class="updated">
-        <span>Actualizado</span>
-        <strong id="updatedDate">—</strong>
-      </div>
+  <main class="container">
+    <header class="header">
+      <p class="eyebrow">EC1291 Puebla</p>
+      <h1>Dashboard Proyecto Puebla EC1291 2026</h1>
+      <p class="muted">Seguimiento de evaluaciones, lotes, centros y evaluadores.</p>
+      <p class="updated">Actualizado: <strong id="lastUpdated">—</strong></p>
     </header>
 
-    <section class="section">
-      <h2>Resumen General</h2>
-      <div id="summaryGeneral" class="cards"></div>
-    </section>
+    <section class="cards" id="cards"></section>
 
-    <section class="section">
-      <h2>Resumen de Candidatos en Lotes, Carga y Proceso</h2>
-      <div id="processSummary" class="cards"></div>
-    </section>
+    <section class="grid">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Evaluaciones por Centro</h2>
+        </div>
+        <div id="centrosTable"></div>
+      </div>
 
-    <section class="section">
-      <h2>Resumen de Certificados</h2>
-      <div id="certificates" class="cards"></div>
-    </section>
-
-    <section class="section">
-      <h2>Resumen por Centro Evaluador <span>Mayo + Junio</span></h2>
-      <div class="grid two">
-        <div id="centersTotalTable"></div>
-        <div class="chart"><canvas id="centersTotalPie"></canvas></div>
-        <div id="evaluatorsTotalTable"></div>
-        <div class="chart wide"><canvas id="evaluatorsTotalBar"></canvas></div>
+      <div class="panel chart-panel">
+        <canvas id="centrosChart"></canvas>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Junio</h2>
-      <div class="grid two">
-        <div id="centersJuneTable"></div>
-        <div class="chart"><canvas id="centersJunePie"></canvas></div>
-        <div id="evaluatorsJuneTable"></div>
-        <div class="chart wide"><canvas id="evaluatorsJuneBar"></canvas></div>
+    <section class="grid">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Evaluaciones por Evaluador</h2>
+        </div>
+        <div id="evaluadoresTable"></div>
       </div>
-    </section>
 
-    <section class="section">
-      <h2>Mayo</h2>
-      <div class="grid two">
-        <div id="centersMayTable"></div>
-        <div class="chart"><canvas id="centersMayPie"></canvas></div>
-        <div id="evaluatorsMayTable"></div>
-        <div class="chart wide"><canvas id="evaluatorsMayBar"></canvas></div>
+      <div class="panel chart-panel tall">
+        <canvas id="evaluadoresChart"></canvas>
       </div>
-    </section>
-
-    <section class="section">
-      <h2>Evaluaciones por Evaluador y Centro</h2>
-      <div id="matrixTable"></div>
-    </section>
-
-    <section class="section">
-      <h2>Detalle Agrupado</h2>
-      <div id="detailTable"></div>
     </section>
   </main>
 
   <script>
-    const colors = ['#5B9BD5', '#ED7D31', '#A5A5A5', '#70AD47', '#FFC000', '#4472C4'];
+    const COLORS = [
+      '#2563eb',
+      '#f97316',
+      '#16a34a',
+      '#9333ea',
+      '#dc2626',
+      '#0891b2',
+      '#ca8a04'
+    ];
 
-    async function loadData() {
+    async function getData() {
       const response = await fetch('data.json', { cache: 'no-store' });
+
       if (!response.ok) {
         throw new Error('No se pudo cargar data.json');
       }
+
       return response.json();
     }
 
-    function cleanRows(rows = []) {
-      return rows.filter(row => {
-        const name = String(row.name || row.evaluador || row.centro || '').trim();
-        const value = Number(row.value ?? row.evaluaciones ?? row.total ?? 0);
-        return name && name.toLowerCase() !== 'etiquetas de fila' && value !== 0;
+    function formatDate(value) {
+      if (!value) return '—';
+
+      const date = new Date(value);
+
+      if (Number.isNaN(date.getTime())) return value;
+
+      return date.toLocaleString('es-MX', {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
       });
     }
 
-    function cardClass(card) {
-      return `card ${card.variant || ''}`.trim();
+    function normalizeRows(rows = []) {
+      return rows
+        .map(row => ({
+          name: row.name || row.label || '',
+          value: Number(row.count ?? row.value ?? 0)
+        }))
+        .filter(row => row.name && row.value >= 0);
     }
 
-    function renderCards(id, arr = []) {
-      const el = document.getElementById(id);
-      el.innerHTML = arr.map(card => `
-        <article class="${cardClass(card)}">
-          <div class="label">${card.label || ''}</div>
-          <div class="value">${card.value ?? ''}</div>
+    function renderCards(cards = []) {
+      const container = document.getElementById('cards');
+
+      container.innerHTML = cards.map(card => `
+        <article class="card">
+          <p>${card.label}</p>
+          <strong>${card.value}</strong>
         </article>
       `).join('');
     }
 
-    function renderTable(id, rows = [], cols = []) {
-      const el = document.getElementById(id);
+    function renderTable(id, rows = [], firstCol = 'Nombre') {
+      const container = document.getElementById(id);
 
       if (!rows.length) {
-        el.innerHTML = '<p class="empty">Sin datos disponibles.</p>';
+        container.innerHTML = '<p class="empty">Sin datos disponibles.</p>';
         return;
       }
 
-      const head = `
-        <thead>
-          <tr>${cols.map(col => `<th>${col.label}</th>`).join('')}</tr>
-        </thead>
-      `;
+      const total = rows.reduce((sum, row) => sum + Number(row.value || 0), 0);
 
-      const body = `
-        <tbody>
-          ${rows.map(row => `
-            <tr>
-              ${cols.map(col => {
-                const value = row[col.key] ?? '';
-                const isNumber = typeof value === 'number';
-                return `<td class="${isNumber ? 'num' : ''}">${value}</td>`;
-              }).join('')}
-            </tr>
-          `).join('')}
-        </tbody>
+      container.innerHTML = `
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>${firstCol}</th>
+                <th>Conteo</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map(row => `
+                <tr>
+                  <td>${row.name}</td>
+                  <td>${row.value}</td>
+                </tr>
+              `).join('')}
+              <tr class="total-row">
+                <td>Total</td>
+                <td>${total}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       `;
-
-      el.innerHTML = `<div class="table-wrap"><table>${head}${body}</table></div>`;
     }
 
-    function renderPie(id, rows = []) {
-      const clean = cleanRows(rows);
+    function renderPieChart(id, rows = []) {
       const ctx = document.getElementById(id);
 
       new Chart(ctx, {
         type: 'pie',
         data: {
-          labels: clean.map(row => row.name),
+          labels: rows.map(row => row.name),
           datasets: [{
-            data: clean.map(row => row.value),
-            backgroundColor: colors,
+            data: rows.map(row => row.value),
+            backgroundColor: COLORS,
             borderColor: '#ffffff',
             borderWidth: 2
           }]
@@ -161,46 +157,48 @@
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              position: 'bottom',
-              labels: {
-                boxWidth: 14,
-                font: { size: 12 }
-              }
+              position: 'bottom'
             }
           }
         }
       });
     }
 
-    function renderBar(id, rows = []) {
-      const clean = cleanRows(rows).reverse();
+    function renderBarChart(id, rows = []) {
       const ctx = document.getElementById(id);
+      const ordered = [...rows].sort((a, b) => a.value - b.value);
 
       new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: clean.map(row => row.name),
+          labels: ordered.map(row => row.name),
           datasets: [{
             label: 'Evaluaciones',
-            data: clean.map(row => row.value),
-            backgroundColor: '#5B9BD5',
-            borderRadius: 5
+            data: ordered.map(row => row.value),
+            backgroundColor: '#2563eb',
+            borderRadius: 6
           }]
         },
         options: {
           indexAxis: 'y',
           maintainAspectRatio: false,
           plugins: {
-            legend: { display: false }
+            legend: {
+              display: false
+            }
           },
           scales: {
             x: {
               beginAtZero: true,
-              ticks: { precision: 0 }
+              ticks: {
+                precision: 0
+              }
             },
             y: {
               ticks: {
-                font: { size: 11 }
+                font: {
+                  size: 11
+                }
               }
             }
           }
@@ -208,69 +206,30 @@
       });
     }
 
-    function renderDashboard(DATA) {
-      document.getElementById('title').textContent = DATA.title || 'Dashboard Proyecto Puebla EC1291 2026';
-      document.getElementById('updatedDate').textContent = DATA.updated || '—';
+    function renderDashboard(data) {
+      const centros = normalizeRows(data.centros);
+      const evaluadores = normalizeRows(data.evaluadores);
 
-      renderCards('summaryGeneral', DATA.summaryGeneral);
-      renderCards('processSummary', DATA.processSummary);
-      renderCards('certificates', DATA.certificates);
+      document.getElementById('lastUpdated').textContent = formatDate(data.lastUpdated);
 
-      const simpleCols = [
-        { key: 'name', label: 'Etiquetas de fila' },
-        { key: 'value', label: 'Conteo de NÚMERO' }
-      ];
+      renderCards(data.cards || []);
+      renderTable('centrosTable', centros, 'Centro');
+      renderTable('evaluadoresTable', evaluadores, 'Evaluador');
 
-      renderTable('centersTotalTable', DATA.centersTotal, simpleCols);
-      renderTable('evaluatorsTotalTable', DATA.evaluatorsTotal, [
-        { key: 'name', label: 'Evaluador' },
-        { key: 'value', label: 'Evaluaciones' }
-      ]);
-      renderPie('centersTotalPie', DATA.centersTotal);
-      renderBar('evaluatorsTotalBar', DATA.evaluatorsTotal);
-
-      renderTable('centersJuneTable', DATA.centersJune, simpleCols);
-      renderTable('evaluatorsJuneTable', DATA.evaluatorsJune, [
-        { key: 'name', label: 'Evaluador' },
-        { key: 'value', label: 'Evaluaciones' }
-      ]);
-      renderPie('centersJunePie', DATA.centersJune);
-      renderBar('evaluatorsJuneBar', DATA.evaluatorsJune);
-
-      renderTable('centersMayTable', DATA.centersMay, simpleCols);
-      renderTable('evaluatorsMayTable', DATA.evaluatorsMay, [
-        { key: 'name', label: 'Evaluador' },
-        { key: 'value', label: 'Evaluaciones' }
-      ]);
-      renderPie('centersMayPie', DATA.centersMay);
-      renderBar('evaluatorsMayBar', DATA.evaluatorsMay);
-
-      renderTable('matrixTable', DATA.matrix, [
-        { key: 'evaluador', label: 'Evaluador' },
-        { key: 'CDI', label: 'CDI' },
-        { key: 'GLOBAL', label: 'GLOBAL' },
-        { key: 'LAATTER', label: 'LAATTER' },
-        { key: 'total', label: 'Total general' }
-      ]);
-
-      renderTable('detailTable', DATA.detail, [
-        { key: 'evaluador', label: 'Evaluador' },
-        { key: 'centro', label: 'Centro' },
-        { key: 'evaluaciones', label: 'Evaluaciones' }
-      ]);
+      renderPieChart('centrosChart', centros);
+      renderBarChart('evaluadoresChart', evaluadores);
     }
 
-    loadData()
+    getData()
       .then(renderDashboard)
       .catch(error => {
         console.error(error);
-        document.body.innerHTML = `
-          <main class="page">
-            <section class="error-box">
-              <h1>No se pudo cargar el dashboard</h1>
-              <p>Revisa que el archivo <strong>data.json</strong> exista en la raíz del repositorio y tenga datos válidos.</p>
-            </section>
-          </main>
+
+        document.querySelector('.container').innerHTML = `
+          <section class="error">
+            <h1>No se pudo cargar el dashboard</h1>
+            <p>Revisa que <strong>data.json</strong> esté en la raíz del repositorio y que tenga formato JSON válido.</p>
+          </section>
         `;
       });
   </script>
