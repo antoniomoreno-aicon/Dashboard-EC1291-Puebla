@@ -1,6 +1,5 @@
 :root {
   --blue: #DDEBF7;
-  --dark-blue: #1F4E79;
   --excel-blue: #4472C4;
   --orange: #F4B183;
   --gray: #A6A6A6;
@@ -23,55 +22,56 @@ body {
 .sheet {
   width: 1120px;
   margin: 0 auto;
-  padding: 28px 24px 80px;
+  padding: 18px 24px 80px;
 }
 
-.logo-header {
+.top-header {
   display: grid;
-  grid-template-columns: 180px 1fr 180px;
+  grid-template-columns: 150px 1fr 150px;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 18px;
+  gap: 18px;
+  margin-bottom: 10px;
 }
 
 .logo {
-  max-width: 165px;
-  max-height: 88px;
+  display: block;
   object-fit: contain;
 }
 
-.logo-left {
+.logo-aicon {
+  max-width: 135px !important;
+  max-height: 58px !important;
+  width: auto !important;
+  height: auto !important;
   justify-self: start;
 }
 
-.logo-right {
+.logo-conocer {
+  max-width: 145px !important;
+  max-height: 70px !important;
+  width: auto !important;
+  height: auto !important;
   justify-self: end;
-}
-
-.title-box {
-  text-align: center;
 }
 
 h1 {
   margin: 0;
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
 }
 
 .meta {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  margin-bottom: 24px;
-  font-size: 14px;
-}
-
-.meta-right {
-  line-height: 1.45;
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  margin: 4px 0 20px;
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .block {
-  margin: 28px 0 44px;
+  margin: 24px 0 42px;
 }
 
 h2 {
@@ -79,14 +79,14 @@ h2 {
   padding: 8px 12px;
   background: var(--blue);
   text-align: center;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
 }
 
 h3 {
   margin: -12px 0 20px;
   text-align: center;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
 }
 
@@ -131,7 +131,7 @@ h3 {
   padding: 8px;
   white-space: pre-line;
   line-height: 1.2;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .card-value {
@@ -204,7 +204,7 @@ tr.total td {
 @media (max-width: 1150px) {
   .sheet {
     width: 100%;
-    padding: 28px 14px 60px;
+    padding: 18px 14px 60px;
   }
 
   .cards.five {
@@ -217,23 +217,25 @@ tr.total td {
 }
 
 @media (max-width: 800px) {
-  .logo-header {
+  .top-header {
     grid-template-columns: 1fr;
     text-align: center;
   }
 
-  .logo-left,
-  .logo-right {
+  .logo-aicon,
+  .logo-conocer {
     justify-self: center;
-  }
-
-  .logo {
-    max-width: 150px;
-    max-height: 72px;
+    max-width: 130px !important;
+    max-height: 60px !important;
   }
 
   .meta {
-    grid-template-columns: 1fr;
+    justify-content: center;
+    flex-wrap: wrap;
     text-align: center;
+  }
+
+  .cards.five {
+    grid-template-columns: 1fr;
   }
 }
