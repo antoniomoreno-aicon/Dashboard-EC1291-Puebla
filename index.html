@@ -4,324 +4,167 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard EC1291 Puebla</title>
-
   <link rel="stylesheet" href="styles.css" />
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 </head>
 
 <body>
   <main class="page">
-    <header class="top-header">
-      <div class="brand brand-left">
-        <img src="logo-conocer.png.png" alt="Red Conocer" class="logo logo-conocer">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">EC1291 Puebla</p>
+        <h1 id="title">Dashboard Proyecto Puebla EC1291 2026</h1>
+        <p class="subtitle">Seguimiento de evaluaciones, lotes, certificados, centros y evaluadores.</p>
       </div>
-
-      <h1 id="title">DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
-
-      <div class="brand brand-right">
-        <img src="logo-aicon.png.jpg" alt="AiCON International Consulting" class="logo logo-aicon">
+      <div class="updated">
+        <span>Actualizado</span>
+        <strong id="updatedDate">—</strong>
       </div>
     </header>
 
     <section class="section">
-      <h2>Resumen general</h2>
+      <h2>Resumen General</h2>
       <div id="summaryGeneral" class="cards"></div>
     </section>
 
     <section class="section">
-      <h2>Resumen de candidatos en lotes, proceso de carga y en proceso</h2>
+      <h2>Resumen de Candidatos en Lotes, Carga y Proceso</h2>
       <div id="processSummary" class="cards"></div>
     </section>
 
     <section class="section">
-      <h2>Resumen de certificados</h2>
+      <h2>Resumen de Certificados</h2>
       <div id="certificates" class="cards"></div>
     </section>
 
     <section class="section">
-      <h2>Resumen por Centro Evaluador<br><span>Mayo + Junio</span></h2>
-
+      <h2>Resumen por Centro Evaluador <span>Mayo + Junio</span></h2>
       <div class="grid two">
         <div id="centersTotalTable"></div>
-        <div class="chart pie-chart">
-          <canvas id="centersTotalPie"></canvas>
-        </div>
-
+        <div class="chart"><canvas id="centersTotalPie"></canvas></div>
         <div id="evaluatorsTotalTable"></div>
-        <div class="chart bar-chart">
-          <canvas id="evaluatorsTotalBar"></canvas>
-        </div>
+        <div class="chart wide"><canvas id="evaluatorsTotalBar"></canvas></div>
       </div>
     </section>
 
     <section class="section">
       <h2>Junio</h2>
-
       <div class="grid two">
         <div id="centersJuneTable"></div>
-        <div class="chart pie-chart">
-          <canvas id="centersJunePie"></canvas>
-        </div>
-
+        <div class="chart"><canvas id="centersJunePie"></canvas></div>
         <div id="evaluatorsJuneTable"></div>
-        <div class="chart bar-chart small-bar">
-          <canvas id="evaluatorsJuneBar"></canvas>
-        </div>
+        <div class="chart wide"><canvas id="evaluatorsJuneBar"></canvas></div>
       </div>
     </section>
 
     <section class="section">
       <h2>Mayo</h2>
-
       <div class="grid two">
         <div id="centersMayTable"></div>
-        <div class="chart pie-chart">
-          <canvas id="centersMayPie"></canvas>
-        </div>
-
+        <div class="chart"><canvas id="centersMayPie"></canvas></div>
         <div id="evaluatorsMayTable"></div>
-        <div class="chart bar-chart">
-          <canvas id="evaluatorsMayBar"></canvas>
-        </div>
+        <div class="chart wide"><canvas id="evaluatorsMayBar"></canvas></div>
       </div>
+    </section>
+
+    <section class="section">
+      <h2>Evaluaciones por Evaluador y Centro</h2>
+      <div id="matrixTable"></div>
+    </section>
+
+    <section class="section">
+      <h2>Detalle Agrupado</h2>
+      <div id="detailTable"></div>
     </section>
   </main>
 
   <script>
-    Chart.register(ChartDataLabels);
+    const colors = ['#5B9BD5', '#ED7D31', '#A5A5A5', '#70AD47', '#FFC000', '#4472C4'];
 
-    const DATA = {
-      title: "DASHBOARD PROYECTO PUEBLA EC1291 2026",
-
-      summaryGeneral: [
-        {
-          label: "Evaluaciones totales Abril\n(De evaluadores)",
-          value: 37,
-          variant: "gray"
-        },
-        {
-          label: "Evaluaciones\ntotales Mayo",
-          value: 88
-        },
-        {
-          label: "Evaluaciones\ntotales Junio",
-          value: 69
-        },
-        {
-          label: "Evaluaciones\nMayo + Junio",
-          value: 157
-        },
-        {
-          label: "Evaluaciones\nTotales",
-          value: 194,
-          variant: "blue"
-        }
-      ],
-
-      processSummary: [
-        {
-          label: "Procesos en lotes",
-          value: 186
-        },
-        {
-          label: "Total procesos\ncargados\nSin meter en lotes",
-          value: 8
-        },
-        {
-          label: "Procesos en lotes\n+ cargados sin\nmeter en lotes",
-          value: 194
-        },
-        {
-          label: "Evaluaciones del\ndía en proceso",
-          value: 4,
-          variant: "orange"
-        },
-        {
-          label: "Evaluaciones\nTotales",
-          value: 198,
-          variant: "blue"
-        }
-      ],
-
-      certificates: [
-        {
-          label: "Procesos en lotes",
-          value: 186
-        },
-        {
-          label: "Certificados\nsolicitados del\nEC1291\nAbr + May + Jun",
-          value: 161
-        },
-        {
-          label: "Certificados\nrecibidos del\nEC1291",
-          value: 137
-        },
-        {
-          label: "En procesos de\nsolicitud",
-          value: 25
-        },
-        {
-          label: "Promedio\nevaluaciones por\ndía",
-          value: "4.36"
-        }
-      ],
-
-      centersTotal: [
-        { name: "CDI", value: 46 },
-        { name: "GLOBAL", value: 53 },
-        { name: "LAATTER", value: 58 }
-      ],
-
-      evaluatorsTotal: [
-        { name: "JOSE DANIEL COLOMO MARTINEZ", value: 23 },
-        { name: "CRISTOPHER TORIJA MORALES", value: 16 },
-        { name: "FRANCISCO JAVIER TORRES ROSAS", value: 12 },
-        { name: "JOCELYN ANGELES IBARRA", value: 11 },
-        { name: "VICTOR ALEJANDRO SOTO CEBALLOS", value: 11 },
-        { name: "JUAN CARLOS ZAMUDIO SANCHEZ", value: 11 },
-        { name: "LAURA PICHARDO ROSAS", value: 10 },
-        { name: "MARIO JORGE ARRIAGA", value: 9 },
-        { name: "ADRIANA ANGELES GONZALEZ", value: 9 },
-        { name: "JAZER FEDERICO VEGA GONZALEZ", value: 7 },
-        { name: "JULIO DANIEL PINEDA HERNANDEZ", value: 7 },
-        { name: "ALBERTO FABIAN OLIVEROS ROBLES", value: 6 },
-        { name: "ALBERTO GARCIA VARELA", value: 5 },
-        { name: "MARTIN EDUARDO LOPEZ RODRIGUEZ", value: 5 },
-        { name: "EDGAR GARCIA VARELA", value: 5 },
-        { name: "OSCAR ALBERTO VARGAS DAMIAN", value: 3 },
-        { name: "MARIO ARRIAGA ROBLES", value: 3 },
-        { name: "ANDREA RUBÍ CARDENAS MORENO", value: 2 },
-        { name: "MIRNA GARCIA", value: 1 },
-        { name: "MARITZELENA GUADALUPE CAMPA FLORES", value: 1 }
-      ],
-
-      centersJune: [
-        { name: "CDI", value: 18 },
-        { name: "GLOBAL", value: 24 },
-        { name: "LAATTER", value: 27 }
-      ],
-
-      evaluatorsJune: [
-        { name: "CRISTOPHER TORIJA MORALES", value: 16 },
-        { name: "JOSE DANIEL COLOMO MARTINEZ", value: 13 },
-        { name: "VICTOR ALEJANDRO SOTO CEBALLOS", value: 11 },
-        { name: "MARIO JORGE ARRIAGA", value: 8 },
-        { name: "JUAN CARLOS ZAMUDIO SANCHEZ", value: 6 },
-        { name: "JULIO DANIEL PINEDA HERNANDEZ", value: 4 },
-        { name: "JAZER FEDERICO VEGA GONZALEZ", value: 3 },
-        { name: "OSCAR ALBERTO VARGAS DAMIAN", value: 2 },
-        { name: "FRANCISCO JAVIER TORRES ROSAS", value: 2 },
-        { name: "MIRNA GARCIA", value: 1 },
-        { name: "ALBERTO FABIAN OLIVEROS ROBLES", value: 1 },
-        { name: "ADRIANA ANGELES GONZALEZ", value: 1 },
-        { name: "EDGAR GARCIA VARELA", value: 1 }
-      ],
-
-      centersMay: [
-        { name: "CDI", value: 28 },
-        { name: "GLOBAL", value: 29 },
-        { name: "LAATTER", value: 31 }
-      ],
-
-      evaluatorsMay: [
-        { name: "JOCELYN ANGELES IBARRA", value: 11 },
-        { name: "LAURA PICHARDO ROSAS", value: 10 },
-        { name: "FRANCISCO JAVIER TORRES ROSAS", value: 10 },
-        { name: "JOSE DANIEL COLOMO MARTINEZ", value: 10 },
-        { name: "ADRIANA ANGELES GONZALEZ", value: 8 },
-        { name: "MARTIN EDUARDO LOPEZ RODRIGUEZ", value: 5 },
-        { name: "JUAN CARLOS ZAMUDIO SANCHEZ", value: 5 },
-        { name: "ALBERTO FABIAN OLIVEROS ROBLES", value: 5 },
-        { name: "ALBERTO GARCIA VARELA", value: 5 },
-        { name: "JAZER FEDERICO VEGA GONZALEZ", value: 4 },
-        { name: "EDGAR GARCIA VARELA", value: 4 },
-        { name: "MARIO ARRIAGA ROBLES", value: 3 },
-        { name: "JULIO DANIEL PINEDA HERNANDEZ", value: 3 },
-        { name: "ANDREA RUBÍ CARDENAS MORENO", value: 2 },
-        { name: "OSCAR ALBERTO VARGAS DAMIAN", value: 1 },
-        { name: "MARIO JORGE ARRIAGA", value: 1 },
-        { name: "MARITZELENA GUADALUPE CAMPA FLORES", value: 1 }
-      ]
-    };
-
-    const colors = ["#5B9BD5", "#ED7D31", "#A5A5A5", "#70AD47", "#FFC000"];
-
-    document.getElementById("title").textContent = DATA.title;
-
-    function renderCards(id, rows) {
-      document.getElementById(id).innerHTML = rows.map(item => `
-        <div class="card ${item.variant || ""}">
-          <div class="label">${item.label}</div>
-          <div class="value">${item.value}</div>
-        </div>
-      `).join("");
+    async function loadData() {
+      const response = await fetch('data.json', { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error('No se pudo cargar data.json');
+      }
+      return response.json();
     }
 
-    function renderTable(id, rows, cols, totalLabel) {
-      const finalRows = [...rows];
+    function cleanRows(rows = []) {
+      return rows.filter(row => {
+        const name = String(row.name || row.evaluador || row.centro || '').trim();
+        const value = Number(row.value ?? row.evaluaciones ?? row.total ?? 0);
+        return name && name.toLowerCase() !== 'etiquetas de fila' && value !== 0;
+      });
+    }
 
-      if (totalLabel) {
-        const total = {};
-        total[cols[0].key] = totalLabel;
+    function cardClass(card) {
+      return `card ${card.variant || ''}`.trim();
+    }
 
-        for (const c of cols.slice(1)) {
-          total[c.key] = rows.reduce((sum, row) => sum + (Number(row[c.key]) || 0), 0);
-        }
+    function renderCards(id, arr = []) {
+      const el = document.getElementById(id);
+      el.innerHTML = arr.map(card => `
+        <article class="${cardClass(card)}">
+          <div class="label">${card.label || ''}</div>
+          <div class="value">${card.value ?? ''}</div>
+        </article>
+      `).join('');
+    }
 
-        finalRows.push(total);
+    function renderTable(id, rows = [], cols = []) {
+      const el = document.getElementById(id);
+
+      if (!rows.length) {
+        el.innerHTML = '<p class="empty">Sin datos disponibles.</p>';
+        return;
       }
 
-      const head = "<tr>" + cols.map(c => `<th>${c.label}</th>`).join("") + "</tr>";
+      const head = `
+        <thead>
+          <tr>${cols.map(col => `<th>${col.label}</th>`).join('')}</tr>
+        </thead>
+      `;
 
-      const body = finalRows.map((row, idx) => {
-        const isTotal = totalLabel && idx === finalRows.length - 1;
+      const body = `
+        <tbody>
+          ${rows.map(row => `
+            <tr>
+              ${cols.map(col => {
+                const value = row[col.key] ?? '';
+                const isNumber = typeof value === 'number';
+                return `<td class="${isNumber ? 'num' : ''}">${value}</td>`;
+              }).join('')}
+            </tr>
+          `).join('')}
+        </tbody>
+      `;
 
-        return `<tr class="${isTotal ? "total-row" : ""}">` +
-          cols.map(c => `<td class="${typeof row[c.key] === "number" ? "num" : ""}">${row[c.key] ?? ""}</td>`).join("") +
-        "</tr>";
-      }).join("");
-
-      document.getElementById(id).innerHTML = `<table>${head}${body}</table>`;
+      el.innerHTML = `<div class="table-wrap"><table>${head}${body}</table></div>`;
     }
 
-    function pie(id, rows) {
-      const total = rows.reduce((s, r) => s + r.value, 0);
+    function renderPie(id, rows = []) {
+      const clean = cleanRows(rows);
+      const ctx = document.getElementById(id);
 
-      new Chart(document.getElementById(id), {
-        type: "pie",
+      new Chart(ctx, {
+        type: 'pie',
         data: {
-          labels: rows.map(r => r.name),
+          labels: clean.map(row => row.name),
           datasets: [{
-            data: rows.map(r => r.value),
+            data: clean.map(row => row.value),
             backgroundColor: colors,
-            borderColor: "#ffffff",
+            borderColor: '#ffffff',
             borderWidth: 2
           }]
         },
         options: {
-          responsive: true,
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              display: false
-            },
-            datalabels: {
-              color: "#ffffff",
-              font: {
-                weight: "bold",
-                size: 12
-              },
-              formatter: (value, ctx) => {
-                const label = ctx.chart.data.labels[ctx.dataIndex];
-                const pct = Math.round((value / total) * 100);
-                return `${label}\n${pct}%`;
-              }
-            },
-            tooltip: {
-              callbacks: {
-                label: ctx => `${ctx.label}: ${ctx.raw}`
+              position: 'bottom',
+              labels: {
+                boxWidth: 14,
+                font: { size: 12 }
               }
             }
           }
@@ -329,52 +172,35 @@
       });
     }
 
-    function bar(id, rows) {
-      const ordered = [...rows].reverse();
+    function renderBar(id, rows = []) {
+      const clean = cleanRows(rows).reverse();
+      const ctx = document.getElementById(id);
 
-      new Chart(document.getElementById(id), {
-        type: "bar",
+      new Chart(ctx, {
+        type: 'bar',
         data: {
-          labels: ordered.map(r => r.name),
+          labels: clean.map(row => row.name),
           datasets: [{
-            label: "Evaluaciones",
-            data: ordered.map(r => r.value),
-            backgroundColor: "#5B9BD5"
+            label: 'Evaluaciones',
+            data: clean.map(row => row.value),
+            backgroundColor: '#5B9BD5',
+            borderRadius: 5
           }]
         },
         options: {
-          indexAxis: "y",
-          responsive: true,
+          indexAxis: 'y',
           maintainAspectRatio: false,
           plugins: {
-            legend: {
-              display: false
-            },
-            datalabels: {
-              color: "#333333",
-              anchor: "end",
-              align: "right",
-              font: {
-                size: 11
-              },
-              formatter: value => value
-            }
+            legend: { display: false }
           },
           scales: {
             x: {
               beginAtZero: true,
-              grid: {
-                color: "#d9d9d9"
-              }
+              ticks: { precision: 0 }
             },
             y: {
               ticks: {
-                font: {
-                  size: 11
-                }
-              },
-              grid: {
-                display: false
+                font: { size: 11 }
               }
             }
           }
@@ -382,34 +208,71 @@
       });
     }
 
-    renderCards("summaryGeneral", DATA.summaryGeneral);
-    renderCards("processSummary", DATA.processSummary);
-    renderCards("certificates", DATA.certificates);
+    function renderDashboard(DATA) {
+      document.getElementById('title').textContent = DATA.title || 'Dashboard Proyecto Puebla EC1291 2026';
+      document.getElementById('updatedDate').textContent = DATA.updated || '—';
 
-    const centerCols = [
-      { key: "name", label: "Etiquetas de fila" },
-      { key: "value", label: "Conteo de NÚMERO" }
-    ];
+      renderCards('summaryGeneral', DATA.summaryGeneral);
+      renderCards('processSummary', DATA.processSummary);
+      renderCards('certificates', DATA.certificates);
 
-    const evaluatorCols = [
-      { key: "name", label: "Evaluador" },
-      { key: "value", label: "Evaluaciones" }
-    ];
+      const simpleCols = [
+        { key: 'name', label: 'Etiquetas de fila' },
+        { key: 'value', label: 'Conteo de NÚMERO' }
+      ];
 
-    renderTable("centersTotalTable", DATA.centersTotal, centerCols, "Total general");
-    renderTable("evaluatorsTotalTable", DATA.evaluatorsTotal, evaluatorCols, "Total general");
-    pie("centersTotalPie", DATA.centersTotal);
-    bar("evaluatorsTotalBar", DATA.evaluatorsTotal);
+      renderTable('centersTotalTable', DATA.centersTotal, simpleCols);
+      renderTable('evaluatorsTotalTable', DATA.evaluatorsTotal, [
+        { key: 'name', label: 'Evaluador' },
+        { key: 'value', label: 'Evaluaciones' }
+      ]);
+      renderPie('centersTotalPie', DATA.centersTotal);
+      renderBar('evaluatorsTotalBar', DATA.evaluatorsTotal);
 
-    renderTable("centersJuneTable", DATA.centersJune, centerCols, "Total general");
-    renderTable("evaluatorsJuneTable", DATA.evaluatorsJune, evaluatorCols, "Total general");
-    pie("centersJunePie", DATA.centersJune);
-    bar("evaluatorsJuneBar", DATA.evaluatorsJune);
+      renderTable('centersJuneTable', DATA.centersJune, simpleCols);
+      renderTable('evaluatorsJuneTable', DATA.evaluatorsJune, [
+        { key: 'name', label: 'Evaluador' },
+        { key: 'value', label: 'Evaluaciones' }
+      ]);
+      renderPie('centersJunePie', DATA.centersJune);
+      renderBar('evaluatorsJuneBar', DATA.evaluatorsJune);
 
-    renderTable("centersMayTable", DATA.centersMay, centerCols, "Total general");
-    renderTable("evaluatorsMayTable", DATA.evaluatorsMay, evaluatorCols, "Total general");
-    pie("centersMayPie", DATA.centersMay);
-    bar("evaluatorsMayBar", DATA.evaluatorsMay);
+      renderTable('centersMayTable', DATA.centersMay, simpleCols);
+      renderTable('evaluatorsMayTable', DATA.evaluatorsMay, [
+        { key: 'name', label: 'Evaluador' },
+        { key: 'value', label: 'Evaluaciones' }
+      ]);
+      renderPie('centersMayPie', DATA.centersMay);
+      renderBar('evaluatorsMayBar', DATA.evaluatorsMay);
+
+      renderTable('matrixTable', DATA.matrix, [
+        { key: 'evaluador', label: 'Evaluador' },
+        { key: 'CDI', label: 'CDI' },
+        { key: 'GLOBAL', label: 'GLOBAL' },
+        { key: 'LAATTER', label: 'LAATTER' },
+        { key: 'total', label: 'Total general' }
+      ]);
+
+      renderTable('detailTable', DATA.detail, [
+        { key: 'evaluador', label: 'Evaluador' },
+        { key: 'centro', label: 'Centro' },
+        { key: 'evaluaciones', label: 'Evaluaciones' }
+      ]);
+    }
+
+    loadData()
+      .then(renderDashboard)
+      .catch(error => {
+        console.error(error);
+        document.body.innerHTML = `
+          <main class="page">
+            <section class="error-box">
+              <h1>No se pudo cargar el dashboard</h1>
+              <p>Revisa que el archivo <strong>data.json</strong> exista en la raíz del repositorio y tenga datos válidos.</p>
+            </section>
+          </main>
+        `;
+      });
   </script>
 </body>
 </html>
