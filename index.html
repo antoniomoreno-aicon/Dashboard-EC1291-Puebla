@@ -4,156 +4,246 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard EC1291 Puebla</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=excel-1" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-  <main class="page">
-    <header class="hero">
+  <main class="sheet">
+    <h1>DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
+
+    <div class="meta">
+      <div></div>
       <div>
-        <p class="eyebrow">EC1291 Puebla</p>
-        <h1>Dashboard Proyecto Puebla EC1291 2026</h1>
-        <p class="subtitle">Seguimiento de evaluaciones, lotes, centros y evaluadores.</p>
+        <div><strong>Actualización:</strong> 12 de junio de 2026</div>
+        <div><strong>Hora:</strong> 9:50 a.m.</div>
       </div>
+    </div>
 
-      <div class="updated-box">
-        <span>Actualizado</span>
-        <strong id="lastUpdated">—</strong>
-      </div>
-    </header>
+    <section class="block">
+      <h2>Resumen general</h2>
+      <div class="cards five" id="summaryGeneral"></div>
+    </section>
 
-    <section class="cards" id="cards"></section>
+    <section class="block">
+      <h2>Resumen de candidatos en lotes, proceso de carga y en proceso</h2>
+      <div class="cards five" id="processSummary"></div>
+    </section>
 
-    <section class="section">
-      <div class="section-title">
-        <h2>Evaluaciones por Centro</h2>
-      </div>
+    <section class="block">
+      <h2>Resumen de certificados</h2>
+      <div class="cards five" id="certificateSummary"></div>
+    </section>
 
-      <div class="grid">
-        <div class="panel" id="centrosTable"></div>
-        <div class="panel chart-panel">
-          <canvas id="centrosChart"></canvas>
+    <section class="block">
+      <h2>Resumen por Centro Evaluador</h2>
+      <h3>Mayo + Junio</h3>
+      <div class="two-col">
+        <div id="centersTotalTable"></div>
+        <div class="chart-box">
+          <canvas id="centersTotalChart"></canvas>
+        </div>
+        <div id="evaluatorsTotalTable"></div>
+        <div class="chart-box tall">
+          <canvas id="evaluatorsTotalChart"></canvas>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-title">
-        <h2>Evaluaciones por Evaluador</h2>
+    <section class="block">
+      <h2>Junio</h2>
+      <div class="two-col">
+        <div id="centersJuneTable"></div>
+        <div class="chart-box">
+          <canvas id="centersJuneChart"></canvas>
+        </div>
+        <div id="evaluatorsJuneTable"></div>
+        <div class="chart-box tall">
+          <canvas id="evaluatorsJuneChart"></canvas>
+        </div>
       </div>
+    </section>
 
-      <div class="grid evaluadores-grid">
-        <div class="panel" id="evaluadoresTable"></div>
-        <div class="panel chart-panel tall">
-          <canvas id="evaluadoresChart"></canvas>
+    <section class="block">
+      <h2>Mayo</h2>
+      <div class="two-col">
+        <div id="centersMayTable"></div>
+        <div class="chart-box">
+          <canvas id="centersMayChart"></canvas>
+        </div>
+        <div id="evaluatorsMayTable"></div>
+        <div class="chart-box tall">
+          <canvas id="evaluatorsMayChart"></canvas>
         </div>
       </div>
     </section>
   </main>
 
   <script>
-    const COLORS = ['#2F6BDE', '#F97316', '#16A34A', '#9333EA', '#DC2626', '#0891B2', '#CA8A04'];
+    const DATA = {
+      summaryGeneral: [
+        { label: 'Evaluaciones totales Abril \\n(De evaluadores)', value: 37, gray: true },
+        { label: 'Evaluaciones totales Mayo', value: 88 },
+        { label: 'Evaluaciones totales Junio', value: 74 },
+        { label: 'Evaluaciones Mayo + Junio', value: 162 },
+        { label: 'Evaluaciones Totales', value: 199, blue: true }
+      ],
+      processSummary: [
+        { label: 'Procesos en lotes', value: 186 },
+        { label: 'Total procesos cargados \\nSin meter en lotes', value: 13 },
+        { label: 'Procesos en lotes + cargados sin meter en lotes', value: 199 },
+        { label: 'Evaluaciones del día en proceso', value: 1, orange: true },
+        { label: 'Evaluaciones Totales', value: 200, blue: true }
+      ],
+      certificateSummary: [
+        { label: 'Procesos en lotes', value: 186 },
+        { label: 'Certificados solicitados del EC1291\\nAbr + May + Jun', value: 161 },
+        { label: 'Certificados recibidos del EC1291', value: 137 },
+        { label: 'En procesos de solicitud', value: 25 },
+        { label: 'Promedio evaluaciones por día', value: 4.5 }
+      ],
+      centersTotal: [
+        { name: 'CDI', value: 47 },
+        { name: 'GLOBAL', value: 55 },
+        { name: 'LAATTER', value: 60 }
+      ],
+      evaluatorsTotal: [
+        { name: 'JOSE DANIEL COLOMO MARTINEZ', value: 23 },
+        { name: 'CRISTOPHER TORIJA MORALES', value: 16 },
+        { name: 'FRANCISCO JAVIER TORRES ROSAS', value: 12 },
+        { name: 'JUAN CARLOS ZAMUDIO SANCHEZ', value: 11 },
+        { name: 'VICTOR ALEJANDRO SOTO CEBALLOS', value: 11 },
+        { name: 'JOCELYN ANGELES IBARRA', value: 11 },
+        { name: 'LAURA PICHARDO ROSAS', value: 10 },
+        { name: 'MARIO JORGE ARRIAGA', value: 9 },
+        { name: 'ADRIANA ANGELES GONZALEZ', value: 9 },
+        { name: 'JAZER FEDERICO VEGA GONZALEZ', value: 7 },
+        { name: 'JULIO DANIEL PINEDA HERNANDEZ', value: 7 },
+        { name: 'ALBERTO FABIAN OLIVEROS ROBLES', value: 6 },
+        { name: 'EDGAR GARCIA VARELA', value: 5 },
+        { name: 'ALBERTO GARCIA VARELA', value: 5 },
+        { name: 'MARTIN EDUARDO LOPEZ RODRIGUEZ', value: 5 },
+        { name: 'MARIO ARRIAGA ROBLES', value: 3 },
+        { name: 'OSCAR ALBERTO VARGAS DAMIAN', value: 3 },
+        { name: 'DANIEL COLOMO', value: 2 },
+        { name: 'ANDREA RUBÍ CARDENAS MORENO', value: 2 },
+        { name: 'JOCELYN ANGELES', value: 1 },
+        { name: 'MARITZELENA GUADALUPE CAMPA FLORES', value: 1 },
+        { name: 'CRISTOPHER', value: 1 },
+        { name: 'VICTOR ALEJANDRO SOTO', value: 1 },
+        { name: 'MIRNA GARCIA', value: 1 }
+      ],
+      centersJune: [
+        { name: 'CDI', value: 19 },
+        { name: 'GLOBAL', value: 26 },
+        { name: 'LAATTER', value: 29 }
+      ],
+      evaluatorsJune: [
+        { name: 'CRISTOPHER TORIJA MORALES', value: 16 },
+        { name: 'JOSE DANIEL COLOMO MARTINEZ', value: 13 },
+        { name: 'VICTOR ALEJANDRO SOTO CEBALLOS', value: 11 },
+        { name: 'MARIO JORGE ARRIAGA', value: 8 },
+        { name: 'JUAN CARLOS ZAMUDIO SANCHEZ', value: 6 },
+        { name: 'JULIO DANIEL PINEDA HERNANDEZ', value: 4 },
+        { name: 'JAZER FEDERICO VEGA GONZALEZ', value: 3 },
+        { name: 'DANIEL COLOMO', value: 2 },
+        { name: 'FRANCISCO JAVIER TORRES ROSAS', value: 2 },
+        { name: 'OSCAR ALBERTO VARGAS DAMIAN', value: 2 },
+        { name: 'MIRNA GARCIA', value: 1 },
+        { name: 'JOCELYN ANGELES', value: 1 },
+        { name: 'EDGAR GARCIA VARELA', value: 1 },
+        { name: 'ALBERTO FABIAN OLIVEROS ROBLES', value: 1 },
+        { name: 'VICTOR ALEJANDRO SOTO', value: 1 },
+        { name: 'ADRIANA ANGELES GONZALEZ', value: 1 },
+        { name: 'CRISTOPHER', value: 1 }
+      ],
+      centersMay: [
+        { name: 'CDI', value: 28 },
+        { name: 'GLOBAL', value: 29 },
+        { name: 'LAATTER', value: 31 }
+      ],
+      evaluatorsMay: [
+        { name: 'JOCELYN ANGELES IBARRA', value: 11 },
+        { name: 'LAURA PICHARDO ROSAS', value: 10 },
+        { name: 'FRANCISCO JAVIER TORRES ROSAS', value: 10 },
+        { name: 'JOSE DANIEL COLOMO MARTINEZ', value: 10 },
+        { name: 'ADRIANA ANGELES GONZALEZ', value: 8 },
+        { name: 'MARTIN EDUARDO LOPEZ RODRIGUEZ', value: 5 },
+        { name: 'JUAN CARLOS ZAMUDIO SANCHEZ', value: 5 },
+        { name: 'ALBERTO FABIAN OLIVEROS ROBLES', value: 5 },
+        { name: 'ALBERTO GARCIA VARELA', value: 5 },
+        { name: 'JAZER FEDERICO VEGA GONZALEZ', value: 4 },
+        { name: 'EDGAR GARCIA VARELA', value: 4 },
+        { name: 'MARIO ARRIAGA ROBLES', value: 3 },
+        { name: 'JULIO DANIEL PINEDA HERNANDEZ', value: 3 },
+        { name: 'ANDREA RUBÍ CARDENAS MORENO', value: 2 },
+        { name: 'OSCAR ALBERTO VARGAS DAMIAN', value: 1 },
+        { name: 'MARIO JORGE ARRIAGA', value: 1 },
+        { name: 'MARITZELENA GUADALUPE CAMPA FLORES', value: 1 }
+      ]
+    };
 
-    async function loadData() {
-      const response = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' });
-      if (!response.ok) throw new Error('No se pudo cargar data.json');
-      return response.json();
+    const COLORS = ['#4472C4', '#ED7D31', '#70AD47', '#A5A5A5', '#FFC000', '#5B9BD5'];
+
+    function total(rows) {
+      return rows.reduce((sum, row) => sum + Number(row.value || 0), 0);
     }
 
-    function formatDate(value) {
-      if (!value) return '—';
-
-      const date = new Date(value);
-      if (Number.isNaN(date.getTime())) return value;
-
-      return date.toLocaleString('es-MX', {
-        year: 'numeric',
-        month: 'long',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-    }
-
-    function normalizeRows(rows = []) {
-      return rows
-        .map(row => ({
-          name: row.name || row.label || '',
-          value: Number(row.count ?? row.value ?? 0)
-        }))
-        .filter(row => row.name);
-    }
-
-    function renderCards(cards = []) {
-      const el = document.getElementById('cards');
-
-      el.innerHTML = cards.map(card => `
-        <article class="card">
-          <p>${card.label}</p>
-          <strong>${card.value}</strong>
-        </article>
+    function renderCards(id, cards) {
+      document.getElementById(id).innerHTML = cards.map(card => `
+        <div class="card ${card.gray ? 'gray' : ''} ${card.blue ? 'blue' : ''} ${card.orange ? 'orange' : ''}">
+          <div class="card-label">${card.label}</div>
+          <div class="card-value">${card.value}</div>
+        </div>
       `).join('');
     }
 
-    function renderTable(id, rows = [], label = 'Nombre') {
-      const el = document.getElementById(id);
-      const total = rows.reduce((sum, row) => sum + Number(row.value || 0), 0);
-
-      if (!rows.length) {
-        el.innerHTML = '<p class="empty">Sin datos disponibles.</p>';
-        return;
-      }
-
-      el.innerHTML = `
-        <div class="table-wrap">
-          <table>
-            <thead>
+    function renderTable(id, rows, firstLabel, secondLabel) {
+      const t = total(rows);
+      document.getElementById(id).innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>${firstLabel}</th>
+              <th>${secondLabel}</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map(row => `
               <tr>
-                <th>${label}</th>
-                <th>Conteo</th>
+                <td>${row.name}</td>
+                <td class="num">${row.value}</td>
               </tr>
-            </thead>
-            <tbody>
-              ${rows.map(row => `
-                <tr>
-                  <td>${row.name}</td>
-                  <td>${row.value}</td>
-                </tr>
-              `).join('')}
-              <tr class="total-row">
-                <td>Total</td>
-                <td>${total}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            `).join('')}
+            <tr class="total">
+              <td>Total general</td>
+              <td class="num">${t}</td>
+            </tr>
+          </tbody>
+        </table>
       `;
     }
 
-    function renderPieChart(id, rows = []) {
-      const ctx = document.getElementById(id);
-
-      new Chart(ctx, {
+    function pieChart(id, rows) {
+      new Chart(document.getElementById(id), {
         type: 'pie',
         data: {
-          labels: rows.map(row => row.name),
+          labels: rows.map(r => r.name),
           datasets: [{
-            data: rows.map(row => row.value),
+            data: rows.map(r => r.value),
             backgroundColor: COLORS,
-            borderColor: '#FFFFFF',
-            borderWidth: 3
+            borderColor: '#ffffff',
+            borderWidth: 2
           }]
         },
         options: {
-          responsive: true,
           maintainAspectRatio: false,
           plugins: {
             legend: {
               position: 'bottom',
               labels: {
-                boxWidth: 14,
-                padding: 16
+                font: { size: 12 },
+                boxWidth: 14
               }
             }
           }
@@ -161,24 +251,19 @@
       });
     }
 
-    function renderBarChart(id, rows = []) {
-      const ctx = document.getElementById(id);
-      const ordered = [...rows].sort((a, b) => a.value - b.value);
-
-      new Chart(ctx, {
+    function barChart(id, rows) {
+      const ordered = [...rows].reverse();
+      new Chart(document.getElementById(id), {
         type: 'bar',
         data: {
-          labels: ordered.map(row => row.name),
+          labels: ordered.map(r => r.name),
           datasets: [{
-            label: 'Evaluaciones',
-            data: ordered.map(row => row.value),
-            backgroundColor: '#2F6BDE',
-            borderRadius: 6
+            data: ordered.map(r => r.value),
+            backgroundColor: '#4472C4'
           }]
         },
         options: {
           indexAxis: 'y',
-          responsive: true,
           maintainAspectRatio: false,
           plugins: {
             legend: { display: false }
@@ -190,7 +275,7 @@
             },
             y: {
               ticks: {
-                font: { size: 11 }
+                font: { size: 10 }
               }
             }
           }
@@ -198,33 +283,24 @@
       });
     }
 
-    function renderDashboard(data) {
-      const centros = normalizeRows(data.centros);
-      const evaluadores = normalizeRows(data.evaluadores);
+    renderCards('summaryGeneral', DATA.summaryGeneral);
+    renderCards('processSummary', DATA.processSummary);
+    renderCards('certificateSummary', DATA.certificateSummary);
 
-      document.getElementById('lastUpdated').textContent = formatDate(data.lastUpdated);
+    renderTable('centersTotalTable', DATA.centersTotal, 'Etiquetas de fila', 'Conteo de NÚMERO');
+    renderTable('evaluatorsTotalTable', DATA.evaluatorsTotal, 'Evaluador', 'Evaluaciones');
+    pieChart('centersTotalChart', DATA.centersTotal);
+    barChart('evaluatorsTotalChart', DATA.evaluatorsTotal);
 
-      renderCards(data.cards || []);
-      renderTable('centrosTable', centros, 'Centro');
-      renderTable('evaluadoresTable', evaluadores, 'Evaluador');
-      renderPieChart('centrosChart', centros);
-      renderBarChart('evaluadoresChart', evaluadores);
-    }
+    renderTable('centersJuneTable', DATA.centersJune, 'Etiquetas de fila', 'Conteo de NÚMERO');
+    renderTable('evaluatorsJuneTable', DATA.evaluatorsJune, 'Evaluador', 'Evaluaciones');
+    pieChart('centersJuneChart', DATA.centersJune);
+    barChart('evaluatorsJuneChart', DATA.evaluatorsJune);
 
-    loadData()
-      .then(renderDashboard)
-      .catch(error => {
-        console.error(error);
-
-        document.body.innerHTML = `
-          <main class="page">
-            <section class="error-box">
-              <h1>No se pudo cargar el dashboard</h1>
-              <p>Revisa que <strong>data.json</strong> esté en la raíz del repositorio y tenga formato válido.</p>
-            </section>
-          </main>
-        `;
-      });
+    renderTable('centersMayTable', DATA.centersMay, 'Etiquetas de fila', 'Conteo de NÚMERO');
+    renderTable('evaluatorsMayTable', DATA.evaluatorsMay, 'Evaluador', 'Evaluaciones');
+    pieChart('centersMayChart', DATA.centersMay);
+    barChart('evaluatorsMayChart', DATA.evaluatorsMay);
   </script>
 </body>
 </html>
