@@ -9,61 +9,55 @@
 </head>
 
 <body>
-  <main class="container">
-    <header class="header">
-      <p class="eyebrow">EC1291 Puebla</p>
-      <h1>Dashboard Proyecto Puebla EC1291 2026</h1>
-      <p class="muted">Seguimiento de evaluaciones, lotes, centros y evaluadores.</p>
-      <p class="updated">Actualizado: <strong id="lastUpdated">—</strong></p>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">EC1291 Puebla</p>
+        <h1>Dashboard Proyecto Puebla EC1291 2026</h1>
+        <p class="subtitle">Seguimiento de evaluaciones, lotes, centros y evaluadores.</p>
+      </div>
+
+      <div class="updated-box">
+        <span>Actualizado</span>
+        <strong id="lastUpdated">—</strong>
+      </div>
     </header>
 
     <section class="cards" id="cards"></section>
 
-    <section class="grid">
-      <div class="panel">
-        <div class="panel-header">
-          <h2>Evaluaciones por Centro</h2>
-        </div>
-        <div id="centrosTable"></div>
+    <section class="section">
+      <div class="section-title">
+        <h2>Evaluaciones por Centro</h2>
       </div>
 
-      <div class="panel chart-panel">
-        <canvas id="centrosChart"></canvas>
+      <div class="grid">
+        <div class="panel" id="centrosTable"></div>
+        <div class="panel chart-panel">
+          <canvas id="centrosChart"></canvas>
+        </div>
       </div>
     </section>
 
-    <section class="grid">
-      <div class="panel">
-        <div class="panel-header">
-          <h2>Evaluaciones por Evaluador</h2>
-        </div>
-        <div id="evaluadoresTable"></div>
+    <section class="section">
+      <div class="section-title">
+        <h2>Evaluaciones por Evaluador</h2>
       </div>
 
-      <div class="panel chart-panel tall">
-        <canvas id="evaluadoresChart"></canvas>
+      <div class="grid evaluadores-grid">
+        <div class="panel" id="evaluadoresTable"></div>
+        <div class="panel chart-panel tall">
+          <canvas id="evaluadoresChart"></canvas>
+        </div>
       </div>
     </section>
   </main>
 
   <script>
-    const COLORS = [
-      '#2563eb',
-      '#f97316',
-      '#16a34a',
-      '#9333ea',
-      '#dc2626',
-      '#0891b2',
-      '#ca8a04'
-    ];
+    const COLORS = ['#2F6BDE', '#F97316', '#16A34A', '#9333EA', '#DC2626', '#0891B2', '#CA8A04'];
 
-    async function getData() {
-      const response = await fetch('data.json', { cache: 'no-store' });
-
-      if (!response.ok) {
-        throw new Error('No se pudo cargar data.json');
-      }
-
+    async function loadData() {
+      const response = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' });
+      if (!response.ok) throw new Error('No se pudo cargar data.json');
       return response.json();
     }
 
@@ -71,7 +65,6 @@
       if (!value) return '—';
 
       const date = new Date(value);
-
       if (Number.isNaN(date.getTime())) return value;
 
       return date.toLocaleString('es-MX', {
@@ -89,13 +82,13 @@
           name: row.name || row.label || '',
           value: Number(row.count ?? row.value ?? 0)
         }))
-        .filter(row => row.name && row.value >= 0);
+        .filter(row => row.name);
     }
 
     function renderCards(cards = []) {
-      const container = document.getElementById('cards');
+      const el = document.getElementById('cards');
 
-      container.innerHTML = cards.map(card => `
+      el.innerHTML = cards.map(card => `
         <article class="card">
           <p>${card.label}</p>
           <strong>${card.value}</strong>
@@ -103,22 +96,21 @@
       `).join('');
     }
 
-    function renderTable(id, rows = [], firstCol = 'Nombre') {
-      const container = document.getElementById(id);
+    function renderTable(id, rows = [], label = 'Nombre') {
+      const el = document.getElementById(id);
+      const total = rows.reduce((sum, row) => sum + Number(row.value || 0), 0);
 
       if (!rows.length) {
-        container.innerHTML = '<p class="empty">Sin datos disponibles.</p>';
+        el.innerHTML = '<p class="empty">Sin datos disponibles.</p>';
         return;
       }
 
-      const total = rows.reduce((sum, row) => sum + Number(row.value || 0), 0);
-
-      container.innerHTML = `
+      el.innerHTML = `
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>${firstCol}</th>
+                <th>${label}</th>
                 <th>Conteo</th>
               </tr>
             </thead>
@@ -149,15 +141,20 @@
           datasets: [{
             data: rows.map(row => row.value),
             backgroundColor: COLORS,
-            borderColor: '#ffffff',
-            borderWidth: 2
+            borderColor: '#FFFFFF',
+            borderWidth: 3
           }]
         },
         options: {
+          responsive: true,
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              position: 'bottom'
+              position: 'bottom',
+              labels: {
+                boxWidth: 14,
+                padding: 16
+              }
             }
           }
         }
@@ -175,30 +172,25 @@
           datasets: [{
             label: 'Evaluaciones',
             data: ordered.map(row => row.value),
-            backgroundColor: '#2563eb',
+            backgroundColor: '#2F6BDE',
             borderRadius: 6
           }]
         },
         options: {
           indexAxis: 'y',
+          responsive: true,
           maintainAspectRatio: false,
           plugins: {
-            legend: {
-              display: false
-            }
+            legend: { display: false }
           },
           scales: {
             x: {
               beginAtZero: true,
-              ticks: {
-                precision: 0
-              }
+              ticks: { precision: 0 }
             },
             y: {
               ticks: {
-                font: {
-                  size: 11
-                }
+                font: { size: 11 }
               }
             }
           }
@@ -215,21 +207,22 @@
       renderCards(data.cards || []);
       renderTable('centrosTable', centros, 'Centro');
       renderTable('evaluadoresTable', evaluadores, 'Evaluador');
-
       renderPieChart('centrosChart', centros);
       renderBarChart('evaluadoresChart', evaluadores);
     }
 
-    getData()
+    loadData()
       .then(renderDashboard)
       .catch(error => {
         console.error(error);
 
-        document.querySelector('.container').innerHTML = `
-          <section class="error">
-            <h1>No se pudo cargar el dashboard</h1>
-            <p>Revisa que <strong>data.json</strong> esté en la raíz del repositorio y que tenga formato JSON válido.</p>
-          </section>
+        document.body.innerHTML = `
+          <main class="page">
+            <section class="error-box">
+              <h1>No se pudo cargar el dashboard</h1>
+              <p>Revisa que <strong>data.json</strong> esté en la raíz del repositorio y tenga formato válido.</p>
+            </section>
+          </main>
         `;
       });
   </script>
