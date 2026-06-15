@@ -27,9 +27,9 @@ body {
 
 .top-header {
   display: grid;
-  grid-template-columns: 150px 1fr 150px;
+  grid-template-columns: 140px 1fr 140px;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   margin-bottom: 10px;
 }
 
@@ -39,16 +39,16 @@ body {
 }
 
 .logo-aicon {
-  max-width: 135px !important;
-  max-height: 58px !important;
+  max-width: 120px !important;
+  max-height: 52px !important;
   width: auto !important;
   height: auto !important;
   justify-self: start;
 }
 
 .logo-conocer {
-  max-width: 145px !important;
-  max-height: 70px !important;
+  max-width: 130px !important;
+  max-height: 62px !important;
   width: auto !important;
   height: auto !important;
   justify-self: end;
@@ -225,8 +225,8 @@ tr.total td {
   .logo-aicon,
   .logo-conocer {
     justify-self: center;
-    max-width: 130px !important;
-    max-height: 60px !important;
+    max-width: 120px !important;
+    max-height: 55px !important;
   }
 
   .meta {
