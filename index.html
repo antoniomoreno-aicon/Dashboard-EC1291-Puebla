@@ -4,17 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard EC1291 Puebla</title>
-  <link rel="stylesheet" href="styles.css?v=excel-1" />
+  <link rel="stylesheet" href="styles.css?v=dashboard-excel-logos-1" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
   <main class="sheet">
-    <h1>DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
+
+    <header class="logo-header">
+      <img src="logo-aicon.png.jpg" alt="Logo AICON" class="logo logo-left" />
+
+      <div class="title-box">
+        <h1>DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
+      </div>
+
+      <img src="logo-conocer.png.png" alt="Logo CONOCER" class="logo logo-right" />
+    </header>
 
     <div class="meta">
       <div></div>
-      <div>
+      <div class="meta-right">
         <div><strong>Actualización:</strong> 12 de junio de 2026</div>
         <div><strong>Hora:</strong> 9:50 a.m.</div>
       </div>
@@ -38,12 +47,16 @@
     <section class="block">
       <h2>Resumen por Centro Evaluador</h2>
       <h3>Mayo + Junio</h3>
+
       <div class="two-col">
         <div id="centersTotalTable"></div>
+
         <div class="chart-box">
           <canvas id="centersTotalChart"></canvas>
         </div>
+
         <div id="evaluatorsTotalTable"></div>
+
         <div class="chart-box tall">
           <canvas id="evaluatorsTotalChart"></canvas>
         </div>
@@ -52,12 +65,16 @@
 
     <section class="block">
       <h2>Junio</h2>
+
       <div class="two-col">
         <div id="centersJuneTable"></div>
+
         <div class="chart-box">
           <canvas id="centersJuneChart"></canvas>
         </div>
+
         <div id="evaluatorsJuneTable"></div>
+
         <div class="chart-box tall">
           <canvas id="evaluatorsJuneChart"></canvas>
         </div>
@@ -66,47 +83,56 @@
 
     <section class="block">
       <h2>Mayo</h2>
+
       <div class="two-col">
         <div id="centersMayTable"></div>
+
         <div class="chart-box">
           <canvas id="centersMayChart"></canvas>
         </div>
+
         <div id="evaluatorsMayTable"></div>
+
         <div class="chart-box tall">
           <canvas id="evaluatorsMayChart"></canvas>
         </div>
       </div>
     </section>
+
   </main>
 
   <script>
     const DATA = {
       summaryGeneral: [
-        { label: 'Evaluaciones totales Abril \\n(De evaluadores)', value: 37, gray: true },
+        { label: 'Evaluaciones totales Abril \n(De evaluadores)', value: 37, gray: true },
         { label: 'Evaluaciones totales Mayo', value: 88 },
         { label: 'Evaluaciones totales Junio', value: 74 },
         { label: 'Evaluaciones Mayo + Junio', value: 162 },
         { label: 'Evaluaciones Totales', value: 199, blue: true }
       ],
+
       processSummary: [
         { label: 'Procesos en lotes', value: 186 },
-        { label: 'Total procesos cargados \\nSin meter en lotes', value: 13 },
+        { label: 'Total procesos cargados \nSin meter en lotes', value: 13 },
         { label: 'Procesos en lotes + cargados sin meter en lotes', value: 199 },
         { label: 'Evaluaciones del día en proceso', value: 1, orange: true },
         { label: 'Evaluaciones Totales', value: 200, blue: true }
       ],
+
       certificateSummary: [
         { label: 'Procesos en lotes', value: 186 },
-        { label: 'Certificados solicitados del EC1291\\nAbr + May + Jun', value: 161 },
+        { label: 'Certificados solicitados del EC1291\nAbr + May + Jun', value: 161 },
         { label: 'Certificados recibidos del EC1291', value: 137 },
         { label: 'En procesos de solicitud', value: 25 },
         { label: 'Promedio evaluaciones por día', value: 4.5 }
       ],
+
       centersTotal: [
         { name: 'CDI', value: 47 },
         { name: 'GLOBAL', value: 55 },
         { name: 'LAATTER', value: 60 }
       ],
+
       evaluatorsTotal: [
         { name: 'JOSE DANIEL COLOMO MARTINEZ', value: 23 },
         { name: 'CRISTOPHER TORIJA MORALES', value: 16 },
@@ -133,11 +159,13 @@
         { name: 'VICTOR ALEJANDRO SOTO', value: 1 },
         { name: 'MIRNA GARCIA', value: 1 }
       ],
+
       centersJune: [
         { name: 'CDI', value: 19 },
         { name: 'GLOBAL', value: 26 },
         { name: 'LAATTER', value: 29 }
       ],
+
       evaluatorsJune: [
         { name: 'CRISTOPHER TORIJA MORALES', value: 16 },
         { name: 'JOSE DANIEL COLOMO MARTINEZ', value: 13 },
@@ -157,11 +185,13 @@
         { name: 'ADRIANA ANGELES GONZALEZ', value: 1 },
         { name: 'CRISTOPHER', value: 1 }
       ],
+
       centersMay: [
         { name: 'CDI', value: 28 },
         { name: 'GLOBAL', value: 29 },
         { name: 'LAATTER', value: 31 }
       ],
+
       evaluatorsMay: [
         { name: 'JOCELYN ANGELES IBARRA', value: 11 },
         { name: 'LAURA PICHARDO ROSAS', value: 10 },
@@ -200,6 +230,7 @@
 
     function renderTable(id, rows, firstLabel, secondLabel) {
       const t = total(rows);
+
       document.getElementById(id).innerHTML = `
         <table>
           <thead>
@@ -228,9 +259,9 @@
       new Chart(document.getElementById(id), {
         type: 'pie',
         data: {
-          labels: rows.map(r => r.name),
+          labels: rows.map(row => row.name),
           datasets: [{
-            data: rows.map(r => r.value),
+            data: rows.map(row => row.value),
             backgroundColor: COLORS,
             borderColor: '#ffffff',
             borderWidth: 2
@@ -242,7 +273,9 @@
             legend: {
               position: 'bottom',
               labels: {
-                font: { size: 12 },
+                font: {
+                  size: 12
+                },
                 boxWidth: 14
               }
             }
@@ -253,12 +286,13 @@
 
     function barChart(id, rows) {
       const ordered = [...rows].reverse();
+
       new Chart(document.getElementById(id), {
         type: 'bar',
         data: {
-          labels: ordered.map(r => r.name),
+          labels: ordered.map(row => row.name),
           datasets: [{
-            data: ordered.map(r => r.value),
+            data: ordered.map(row => row.value),
             backgroundColor: '#4472C4'
           }]
         },
@@ -266,16 +300,22 @@
           indexAxis: 'y',
           maintainAspectRatio: false,
           plugins: {
-            legend: { display: false }
+            legend: {
+              display: false
+            }
           },
           scales: {
             x: {
               beginAtZero: true,
-              ticks: { precision: 0 }
+              ticks: {
+                precision: 0
+              }
             },
             y: {
               ticks: {
-                font: { size: 10 }
+                font: {
+                  size: 10
+                }
               }
             }
           }
