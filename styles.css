@@ -23,11 +23,37 @@ body {
 .sheet {
   width: 1120px;
   margin: 0 auto;
-  padding: 42px 24px 80px;
+  padding: 28px 24px 80px;
+}
+
+.logo-header {
+  display: grid;
+  grid-template-columns: 180px 1fr 180px;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.logo {
+  max-width: 165px;
+  max-height: 88px;
+  object-fit: contain;
+}
+
+.logo-left {
+  justify-self: start;
+}
+
+.logo-right {
+  justify-self: end;
+}
+
+.title-box {
+  text-align: center;
 }
 
 h1 {
-  margin: 0 0 22px;
+  margin: 0;
   text-align: center;
   font-size: 24px;
   font-weight: 700;
@@ -35,9 +61,13 @@ h1 {
 
 .meta {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  margin-bottom: 20px;
+  grid-template-columns: 1fr 320px;
+  margin-bottom: 24px;
   font-size: 14px;
+}
+
+.meta-right {
+  line-height: 1.45;
 }
 
 .block {
@@ -183,5 +213,27 @@ tr.total td {
 
   .two-col {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .logo-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .logo-left,
+  .logo-right {
+    justify-self: center;
+  }
+
+  .logo {
+    max-width: 150px;
+    max-height: 72px;
+  }
+
+  .meta {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
 }
