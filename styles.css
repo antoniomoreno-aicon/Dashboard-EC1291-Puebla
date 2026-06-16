@@ -1,212 +1,237 @@
-:root{
-  --bg:#eef4fb;
-  --card:#ffffff;
-  --ink:#08284a;
-  --muted:#53657d;
-  --line:#d3e1ef;
-  --accent:#0b3d75;
-  --accent2:#7a0a3d;
-  --soft:#eaf3fb;
-  --shadow:0 14px 34px rgba(8,40,74,.12);
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #000000;
+  font-family: Calibri, Arial, sans-serif;
+  font-size: 12px;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0!important;
-  background:var(--bg)!important;
-  color:var(--ink)!important;
-  font-family:Calibri,Arial,Helvetica,sans-serif!important;
-  font-size:16px!important;
-  line-height:1.35!important;
+
+.page {
+  width: 100%;
+  overflow-x: auto;
+  background: #ffffff;
+  padding: 20px 0 40px;
 }
-.page{
-  width:min(1180px,calc(100% - 40px))!important;
-  margin:0 auto!important;
-  padding:28px 0 42px!important;
+
+.excel-sheet {
+  width: 1220px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 0 0 40px;
 }
-.hero{
-  display:grid!important;
-  grid-template-columns:260px 1fr!important;
-  gap:24px!important;
-  align-items:center!important;
-  padding:22px 24px!important;
-  margin-bottom:22px!important;
-  background:#fff!important;
-  border:1px solid var(--line)!important;
-  border-radius:20px!important;
-  box-shadow:var(--shadow)!important;
+
+.excel-header {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  align-items: end;
+  min-height: 150px;
+  margin-bottom: 12px;
 }
-.logo-strip{
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:12px!important;
-  padding:10px!important;
-  background:#fff!important;
-  border-radius:16px!important;
+
+.logos {
+  position: relative;
+  height: 150px;
 }
-.logo{display:block!important;object-fit:contain!important;height:auto!important}
-.logo-aicon{width:76px!important;max-height:58px!important}
-.logo-conocer{width:150px!important;max-height:66px!important}
-.hero-copy h1{
-  margin:6px 0 8px!important;
-  color:var(--accent)!important;
-  font-size:clamp(28px,3vw,44px)!important;
-  line-height:1.05!important;
-  letter-spacing:-.02em!important;
+
+.logo-aicon {
+  position: absolute;
+  left: 0;
+  bottom: 12px;
+  width: 115px;
+  height: auto;
 }
-.eyebrow{
-  margin:0!important;
-  color:var(--accent)!important;
-  font-size:12px!important;
-  font-weight:800!important;
-  text-transform:uppercase!important;
-  letter-spacing:.08em!important;
+
+.logo-conocer {
+  position: absolute;
+  left: 150px;
+  top: 0;
+  width: 390px;
+  max-width: 390px;
+  height: auto;
 }
-.updated{margin:0!important;color:var(--muted)!important;font-size:13px!important}
-.section-card{
-  display:block!important;
-  margin:18px 0 0!important;
-  padding:20px!important;
-  background:var(--card)!important;
-  border:1px solid var(--line)!important;
-  border-radius:18px!important;
-  box-shadow:0 8px 22px rgba(8,40,74,.08)!important;
+
+.title-block {
+  padding-left: 12px;
+  padding-bottom: 4px;
 }
-.section-title{
-  display:flex!important;
-  align-items:center!important;
-  gap:12px!important;
-  margin:0 0 16px!important;
+
+.title-block h1 {
+  margin: 0 0 12px;
+  font-family: Cambria, Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
 }
-.section-title span{
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  width:38px!important;
-  height:38px!important;
-  min-width:38px!important;
-  color:#fff!important;
-  background:var(--accent2)!important;
-  border-radius:999px!important;
-  font-weight:800!important;
+
+.title-block p {
+  margin: 2px 0;
+  font-size: 11px;
+  font-style: italic;
 }
-.section-title h2{
-  margin:0!important;
-  color:#061f3f!important;
-  font-size:23px!important;
-  line-height:1.15!important;
+
+.title-block span {
+  font-weight: 700;
 }
-.metric-grid{
-  display:grid!important;
-  grid-template-columns:repeat(5,minmax(0,1fr))!important;
-  gap:14px!important;
+
+.section-title {
+  width: 620px;
+  margin: 18px 0 10px;
+  padding: 5px 8px;
+  font-family: Cambria, Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: #000000;
 }
-.metric-card{
-  display:block!important;
-  min-height:128px!important;
-  padding:16px!important;
-  background:linear-gradient(180deg,#fff 0%,#f8edf3 100%)!important;
-  border:1px solid #ead1dd!important;
-  border-radius:16px!important;
+
+.month-title {
+  width: 220px;
+  margin: 14px 0 10px;
+  padding: 5px 8px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #000000;
 }
-.metric-card span{
-  display:block!important;
-  min-height:42px!important;
-  color:#53657d!important;
-  font-size:14px!important;
-  font-weight:700!important;
+
+.blue {
+  background: #DDEBF7;
 }
-.metric-card strong{
-  display:block!important;
-  margin-top:10px!important;
-  color:var(--accent2)!important;
-  font-size:44px!important;
-  line-height:1!important;
+
+.excel-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 18px;
 }
-.metric-card small{
-  display:block!important;
-  margin-top:7px!important;
-  color:#0f766e!important;
-  font-weight:800!important;
+
+.summary-table {
+  width: 960px;
 }
-.grid-two{
-  display:grid!important;
-  grid-template-columns:minmax(280px,.85fr) minmax(360px,1.15fr)!important;
-  gap:18px!important;
+
+.excel-table th,
+.excel-table td {
+  border: 1px solid #ffffff;
+  padding: 8px 10px;
+  text-align: center;
+  vertical-align: middle;
+  color: #000000;
 }
-.compact{align-self:start!important}
-.filter-pill{
-  display:inline-block!important;
-  margin:0 0 12px!important;
-  padding:6px 12px!important;
-  color:#0b3d75!important;
-  background:#e8f2ff!important;
-  border:1px solid #cfe4ff!important;
-  border-radius:999px!important;
-  font-size:14px!important;
-  font-weight:800!important;
+
+.excel-table th {
+  height: 54px;
+  background: #DDEBF7;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: normal;
 }
-.table-wrap{
-  width:100%!important;
-  overflow:auto!important;
-  background:#fff!important;
-  border:1px solid var(--line)!important;
-  border-radius:14px!important;
+
+.excel-table td {
+  height: 24px;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
 }
-.table-wrap.tall{max-height:430px!important}
-table{
-  width:100%!important;
-  border-collapse:collapse!important;
-  font-size:14px!important;
-  background:#fff!important;
+
+.excel-table .gray {
+  background: #A5A5A5;
+  color: #ffffff;
 }
-th,td{
-  padding:10px 12px!important;
-  border-bottom:1px solid var(--line)!important;
-  vertical-align:top!important;
+
+.excel-table .dark-blue {
+  background: #5B9BD5;
 }
-th{
-  position:sticky!important;
-  top:0!important;
-  z-index:2!important;
-  background:#0b3d75!important;
-  color:#fff!important;
-  text-align:left!important;
-  font-weight:800!important;
+
+.excel-table .orange {
+  background: #F4B084;
 }
-th:last-child,td.num{text-align:right!important}
-tbody tr:nth-child(even){background:#f7fbff!important}
-tbody tr:hover{background:#fff4f8!important}
-.total-row td{
-  background:#f7edf3!important;
-  color:var(--accent2)!important;
-  font-weight:900!important;
-  border-top:2px solid var(--accent2)!important;
+
+.excel-grid {
+  display: grid;
+  gap: 42px;
+  align-items: start;
+  margin-bottom: 24px;
 }
-.footer{
-  display:flex!important;
-  justify-content:space-between!important;
-  gap:12px!important;
-  margin-top:20px!important;
-  padding-top:14px!important;
-  color:var(--muted)!important;
-  border-top:1px solid var(--line)!important;
-  font-size:13px!important;
+
+.two-cols {
+  grid-template-columns: 310px 440px;
 }
-@media(max-width:980px){
-  .hero,.grid-two{grid-template-columns:1fr!important}
-  .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  .logo-strip{justify-content:flex-start!important}
+
+.pivot-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: 10px;
 }
-@media(max-width:620px){
-  .page{width:calc(100% - 20px)!important;padding-top:14px!important}
-  .hero,.section-card{padding:15px!important;border-radius:14px!important}
-  .metric-grid{grid-template-columns:1fr!important}
-  .logo-aicon{width:64px!important}
-  .logo-conocer{width:132px!important}
-  .metric-card{min-height:auto!important}
-  .metric-card strong{font-size:38px!important}
-  th,td{padding:9px 10px!important;font-size:13px!important}
-  .footer{flex-direction:column!important}
+
+.pivot-table th,
+.pivot-table td {
+  border: 1px solid #ffffff;
+  padding: 5px 8px;
+  height: 22px;
+  font-size: 12px;
+  color: #000000;
+  vertical-align: middle;
+}
+
+.pivot-table th {
+  background: #DDEBF7;
+  font-weight: 700;
+  text-align: left;
+}
+
+.pivot-table th:last-child,
+.pivot-table td:last-child {
+  text-align: center;
+}
+
+.filter-label,
+.filter-value {
+  border: none !important;
+  background: #ffffff !important;
+  text-align: left !important;
+  font-weight: 400 !important;
+}
+
+.evaluator-table {
+  width: 440px;
+}
+
+.evaluator-table td:first-child {
+  text-align: left;
+}
+
+.evaluator-table td:last-child {
+  width: 85px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.gray-row td {
+  background: #BFBFBF;
+}
+
+.blue-row td {
+  background: #DDEBF7;
+}
+
+.yellow-row td {
+  background: #FFC000;
+}
+
+.total td {
+  font-weight: 700;
+  background: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .excel-sheet {
+    width: 1220px;
+    margin: 0;
+  }
+
+  .page {
+    padding: 10px;
+  }
 }
