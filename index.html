@@ -1,150 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1180, initial-scale=1.0" />
   <title>DASHBOARD PROYECTO PUEBLA EC1291 2026</title>
-  <link rel="stylesheet" href="styles.css?v=20260616-excel-fix-logos" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="page">
-    <section class="dashboard-excel">
-      <header class="top-excel">
-        <img class="logo-aicon" src="logo-aicon.png.jpg" alt="AICON International Consulting" />
-        <img class="logo-conocer" src="logo-conocer.png.png" alt="Red CONOCER" />
-      </header>
+  <main class="excel-dashboard">
 
-      <h1 class="main-title">DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
-      <p class="updated">Actualizado desde Excel: 16/06/2026 10:46</p>
+    <!-- Encabezado -->
+    <img class="logo logo-conocer" src="logo-conocer.png.png" alt="Red Conocer" />
+    <h1 class="main-title">DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
+    <img class="logo logo-aicon" src="logo-aicon.png.jpg" alt="AiCon International Consulting" />
 
-      <h2 class="bar-title">Resumen general</h2>
-      <table class="summary-table">
-        <tr>
-          <th class="gray">Evaluaciones totales Abril<br>(De evaluadores)</th>
-          <th>Evaluaciones totales Mayo</th>
-          <th>Evaluaciones totales Junio</th>
-          <th>Evaluaciones Mayo + Junio</th>
-          <th class="blue-strong">Evaluaciones Totales</th>
-        </tr>
-        <tr class="numbers">
-          <td>37</td>
-          <td>88</td>
-          <td>77</td>
-          <td>165</td>
-          <td>202</td>
-        </tr>
-      </table>
+    <!-- Resumen general -->
+    <section class="section-bar top-bar">Resumen general</section>
 
-      <h2 class="bar-title wide">Resumen de candidatos en lotes, proceso de carga y en proceso</h2>
-      <table class="summary-table">
-        <tr>
-          <th>Procesos en lotes</th>
-          <th>Total procesos cargados<br>Sin meter en lotes</th>
-          <th>Procesos en lotes + cargados<br>sin meter en lotes</th>
-          <th class="orange">Evaluaciones del día en proceso</th>
-          <th class="blue-strong">Evaluaciones Totales</th>
-        </tr>
-        <tr class="numbers">
-          <td>199</td>
-          <td>3</td>
-          <td>202</td>
-          <td>2</td>
-          <td>204</td>
-        </tr>
-      </table>
-
-      <h2 class="plain-title">Resumen de certificados</h2>
-      <table class="summary-table">
-        <tr>
-          <th>Procesos en lotes</th>
-          <th>Certificados solicitados del EC1291<br>Abr + May + Jun</th>
-          <th>Certificados recibidos del<br>EC1291</th>
-          <th>En procesos de solicitud</th>
-          <th>Promedio evaluaciones por día</th>
-        </tr>
-        <tr class="numbers">
-          <td>199</td>
-          <td>186</td>
-          <td>161</td>
-          <td>13</td>
-          <td>4.58</td>
-        </tr>
-      </table>
-
-      <h2 class="bar-title wide">Resumen por Centro Evaluador</h2>
-      <h3 class="month-title">Mayo + Junio</h3>
-
-      <div class="pivot-layout">
-        <section class="pivot-left">
-          <table class="filter">
-            <tr>
-              <td>Mes</td>
-              <td>(Todas)</td>
-            </tr>
-          </table>
-
-          <table class="pivot">
-            <thead>
-              <tr>
-                <th>Etiquetas de fila</th>
-                <th>Conteo de NÚMERO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>CDI</td><td>47</td></tr>
-              <tr><td>GLOBAL</td><td>57</td></tr>
-              <tr><td>LAATTER</td><td>61</td></tr>
-              <tr class="total"><td>Total general</td><td>165</td></tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section class="pivot-right">
-          <table class="filter">
-            <tr>
-              <td>Mes</td>
-              <td>(Todas)</td>
-            </tr>
-          </table>
-
-          <table class="pivot evaluator">
-            <thead>
-              <tr>
-                <th>Evaluador</th>
-                <th>Evaluaciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="gray-row"><td>JOSE DANIEL COLOMO MARTINEZ</td><td>23</td></tr>
-              <tr class="blue-row"><td>CRISTOPHER TORIJA MORALES</td><td>16</td></tr>
-              <tr class="blue-row"><td>FRANCISCO JAVIER TORRES ROSAS</td><td>12</td></tr>
-              <tr class="gray-row"><td>JUAN CARLOS ZAMUDIO SANCHEZ</td><td>11</td></tr>
-              <tr class="yellow-row"><td>VICTOR ALEJANDRO SOTO CEBALLOS</td><td>11</td></tr>
-              <tr class="yellow-row"><td>JOCELYN ANGELES IBARRA</td><td>11</td></tr>
-              <tr class="blue-row"><td>LAURA PICHARDO ROSAS</td><td>10</td></tr>
-              <tr class="yellow-row"><td>MARIO JORGE ARRIAGA</td><td>9</td></tr>
-              <tr class="yellow-row"><td>ADRIANA ANGELES GONZALEZ</td><td>9</td></tr>
-              <tr class="gray-row"><td>JAZER FEDERICO VEGA GONZALEZ</td><td>7</td></tr>
-              <tr class="gray-row"><td>JULIO DANIEL PINEDA HERNANDEZ</td><td>7</td></tr>
-              <tr class="yellow-row"><td>ALBERTO FABIAN OLIVEROS ROBLES</td><td>6</td></tr>
-              <tr class="gray-row"><td>EDGAR GARCIA VARELA</td><td>5</td></tr>
-              <tr class="gray-row"><td>ALBERTO GARCIA VARELA</td><td>5</td></tr>
-              <tr class="blue-row"><td>MARTIN EDUARDO LOPEZ RODRIGUEZ</td><td>5</td></tr>
-              <tr class="yellow-row"><td>MARIO ARRIAGA ROBLES</td><td>3</td></tr>
-              <tr class="gray-row"><td>OSCAR ALBERTO VARGAS DAMIAN</td><td>3</td></tr>
-              <tr><td>DANIEL COLOMO</td><td>2</td></tr>
-              <tr class="blue-row"><td>ANDREA RUBÍ CARDENAS MORENO</td><td>2</td></tr>
-              <tr><td>JOCELYN ANGELES</td><td>1</td></tr>
-              <tr class="blue-row"><td>MARITZELENA GUADALUPE CAMPA FLORES</td><td>1</td></tr>
-              <tr><td>CRISTOPHER</td><td>1</td></tr>
-              <tr><td>VICTOR ALEJANDRO SOTO</td><td>1</td></tr>
-              <tr class="yellow-row"><td>MIRNA GARCIA</td><td>1</td></tr>
-              <tr class="total"><td>Total general</td><td>162</td></tr>
-            </tbody>
-          </table>
-        </section>
-      </div>
-    </section>
-  </main>
-</body>
-</html>
+    <div class="updated">
+      <div><em>Actualización:</em>&nbsp;&nbsp; 16/06/2026</div>
+      <div><em>Hora:</em>&nbsp;&nbsp; 13:44</div>
+    </div>
