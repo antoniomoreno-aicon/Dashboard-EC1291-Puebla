@@ -11,12 +11,22 @@ body {
   font-family: Calibri, Arial, sans-serif;
 }
 
+/* Margen controlado: evita que los cuadros se corten a la izquierda */
+.page-wrap {
+  width: 100%;
+  min-width: 1220px;
+  padding-left: 28px;
+  padding-right: 28px;
+  background: #ffffff;
+  overflow-x: auto;
+}
+
 .dashboard {
   position: relative;
   width: 1150px;
   height: 3825px;
   background: #ffffff;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .main-title {
