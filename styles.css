@@ -2,210 +2,197 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: #ffffff;
-  color: #000000;
+  background: #fff;
+  color: #000;
   font-family: Calibri, Arial, sans-serif;
   font-size: 12px;
 }
 
 .page {
   width: 100%;
-  overflow-x: auto;
-  background: #ffffff;
-  padding: 20px 0 40px;
+  overflow: auto;
+  background: #fff;
 }
 
-.excel-sheet {
-  width: 1220px;
+.dashboard-excel {
+  width: 1120px;
   margin: 0 auto;
-  background: #ffffff;
-  padding: 0 0 40px;
+  background: #fff;
+  padding: 0 0 60px;
 }
 
-.excel-header {
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  align-items: end;
-  min-height: 150px;
-  margin-bottom: 12px;
-}
-
-.logos {
+.top-excel {
   position: relative;
-  height: 150px;
+  width: 100%;
+  height: 355px;
 }
 
 .logo-aicon {
   position: absolute;
   left: 0;
-  bottom: 12px;
-  width: 115px;
+  top: 210px;
+  width: 145px;
   height: auto;
 }
 
 .logo-conocer {
   position: absolute;
-  left: 150px;
-  top: 0;
-  width: 390px;
-  max-width: 390px;
+  left: 240px;
+  top: 24px;
+  width: 560px;
   height: auto;
 }
 
-.title-block {
-  padding-left: 12px;
-  padding-bottom: 4px;
-}
-
-.title-block h1 {
-  margin: 0 0 12px;
+.main-title {
+  margin: 0 0 4px 0;
   font-family: Cambria, Georgia, serif;
   font-size: 28px;
   font-weight: 700;
-  color: #000000;
+  color: #000;
 }
 
-.title-block p {
-  margin: 2px 0;
-  font-size: 11px;
-  font-style: italic;
+.updated {
+  margin: 0 0 20px 0;
+  font-size: 12px;
 }
 
-.title-block span {
-  font-weight: 700;
-}
-
-.section-title {
+.bar-title {
   width: 620px;
-  margin: 18px 0 10px;
-  padding: 5px 8px;
+  margin: 0 0 10px 0;
+  padding: 7px 10px;
+  background: #DDEBF7;
   font-family: Cambria, Georgia, serif;
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 700;
   text-align: center;
-  color: #000000;
+  line-height: 1.1;
+}
+
+.bar-title.wide {
+  width: 760px;
+}
+
+.plain-title {
+  width: 960px;
+  margin: 32px 0 14px 0;
+  font-family: Cambria, Georgia, serif;
+  font-size: 23px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.summary-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 960px;
+  margin: 0 0 34px 0;
+}
+
+.summary-table th,
+.summary-table td {
+  border: 1px solid #fff;
+  text-align: center;
+  vertical-align: middle;
+  color: #000;
+}
+
+.summary-table th {
+  height: 58px;
+  background: #DDEBF7;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px;
+}
+
+.summary-table td {
+  height: 29px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px;
+}
+
+.summary-table .gray {
+  background: #A5A5A5;
+  color: #fff;
+}
+
+.summary-table .blue-strong {
+  background: #5B9BD5;
+}
+
+.summary-table .orange {
+  background: #F4B084;
+}
+
+.numbers td {
+  font-weight: 700;
 }
 
 .month-title {
   width: 220px;
-  margin: 14px 0 10px;
-  padding: 5px 8px;
-  font-size: 20px;
+  margin: 0 0 16px 0;
+  padding: 7px 10px;
+  background: #DDEBF7;
+  font-size: 18px;
   font-weight: 700;
   text-align: center;
-  color: #000000;
 }
 
-.blue {
-  background: #DDEBF7;
-}
-
-.excel-table {
-  border-collapse: collapse;
-  table-layout: fixed;
-  margin-bottom: 18px;
-}
-
-.summary-table {
-  width: 960px;
-}
-
-.excel-table th,
-.excel-table td {
-  border: 1px solid #ffffff;
-  padding: 8px 10px;
-  text-align: center;
-  vertical-align: middle;
-  color: #000000;
-}
-
-.excel-table th {
-  height: 54px;
-  background: #DDEBF7;
-  font-size: 13px;
-  font-weight: 700;
-  white-space: normal;
-}
-
-.excel-table td {
-  height: 24px;
-  background: #ffffff;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.excel-table .gray {
-  background: #A5A5A5;
-  color: #ffffff;
-}
-
-.excel-table .dark-blue {
-  background: #5B9BD5;
-}
-
-.excel-table .orange {
-  background: #F4B084;
-}
-
-.excel-grid {
+.pivot-layout {
   display: grid;
-  gap: 42px;
-  align-items: start;
-  margin-bottom: 24px;
-}
-
-.two-cols {
   grid-template-columns: 310px 440px;
+  gap: 78px;
+  align-items: start;
 }
 
-.pivot-table {
+.filter,
+.pivot {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-.pivot-table th,
-.pivot-table td {
-  border: 1px solid #ffffff;
-  padding: 5px 8px;
-  height: 22px;
-  font-size: 12px;
-  color: #000000;
-  vertical-align: middle;
+.filter td {
+  height: 24px;
+  border: 1px solid #fff;
+  background: #fff;
+  padding: 4px 8px;
+  font-size: 11px;
 }
 
-.pivot-table th {
+.filter td:last-child {
+  text-align: right;
+}
+
+.pivot th,
+.pivot td {
+  height: 24px;
+  border: 1px solid #fff;
+  padding: 4px 8px;
+  font-size: 11px;
+  color: #000;
+}
+
+.pivot th {
   background: #DDEBF7;
   font-weight: 700;
   text-align: left;
 }
 
-.pivot-table th:last-child,
-.pivot-table td:last-child {
+.pivot th:last-child,
+.pivot td:last-child {
   text-align: center;
+  font-weight: 700;
 }
 
-.filter-label,
-.filter-value {
-  border: none !important;
-  background: #ffffff !important;
-  text-align: left !important;
-  font-weight: 400 !important;
-}
-
-.evaluator-table {
-  width: 440px;
-}
-
-.evaluator-table td:first-child {
+.pivot td:first-child {
   text-align: left;
 }
 
-.evaluator-table td:last-child {
-  width: 85px;
-  text-align: center;
-  font-weight: 700;
+.evaluator {
+  width: 440px;
 }
 
 .gray-row td {
@@ -221,17 +208,16 @@ body {
 }
 
 .total td {
+  background: #fff;
   font-weight: 700;
-  background: #ffffff;
 }
 
 @media (max-width: 900px) {
-  .excel-sheet {
-    width: 1220px;
+  .dashboard-excel {
     margin: 0;
   }
 
   .page {
-    padding: 10px;
+    overflow: auto;
   }
 }
