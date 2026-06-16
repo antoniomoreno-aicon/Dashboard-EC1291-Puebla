@@ -9,7 +9,6 @@
   --soft-blue: #eaf3f8;
   --green: #70ad47;
   --grid: #d9e1f2;
-  --accent: #ffc000;
   --shadow: 0 18px 45px rgba(23, 54, 93, 0.14);
 }
 
@@ -273,3 +272,19 @@ tbody tr:hover {
   }
 
   .section h2 {
+    font-size: 16px;
+  }
+
+  .grid {
+    padding: 10px;
+  }
+
+  .table-card {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 520px;
+    font-size: 12px;
+  }
+}
