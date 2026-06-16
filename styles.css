@@ -1,223 +1,449 @@
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
-  background: #fff;
-  color: #000;
+  background: #ffffff;
   font-family: Calibri, Arial, sans-serif;
-  font-size: 12px;
+  color: #000000;
 }
 
-.page {
-  width: 100%;
-  overflow: auto;
-  background: #fff;
-}
-
-.dashboard-excel {
-  width: 1120px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 0 0 60px;
-}
-
-.top-excel {
+.excel-dashboard {
   position: relative;
-  width: 100%;
-  height: 355px;
+  width: 1160px;
+  height: 3820px;
+  background: #ffffff;
+  overflow: hidden;
 }
 
-.logo-aicon {
+/* Encabezado */
+.logo {
   position: absolute;
-  left: 0;
-  top: 210px;
-  width: 145px;
-  height: auto;
+  object-fit: contain;
 }
 
 .logo-conocer {
-  position: absolute;
-  left: 240px;
-  top: 24px;
-  width: 560px;
-  height: auto;
+  left: 30px;
+  top: 13px;
+  width: 180px;
+  height: 102px;
+}
+
+.logo-aicon {
+  left: 760px;
+  top: 26px;
+  width: 162px;
+  height: 84px;
 }
 
 .main-title {
-  margin: 0 0 4px 0;
-  font-family: Cambria, Georgia, serif;
-  font-size: 28px;
+  position: absolute;
+  left: 300px;
+  top: 52px;
+  width: 500px;
+  margin: 0;
+  font-size: 25px;
+  line-height: 1.15;
+  text-align: center;
   font-weight: 700;
-  color: #000;
 }
 
 .updated {
-  margin: 0 0 20px 0;
+  position: absolute;
+  left: 928px;
+  top: 210px;
+  width: 140px;
   font-size: 12px;
-}
-
-.bar-title {
-  width: 620px;
-  margin: 0 0 10px 0;
-  padding: 7px 10px;
-  background: #DDEBF7;
-  font-family: Cambria, Georgia, serif;
-  font-size: 23px;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1.1;
-}
-
-.bar-title.wide {
-  width: 760px;
-}
-
-.plain-title {
-  width: 960px;
-  margin: 32px 0 14px 0;
-  font-family: Cambria, Georgia, serif;
-  font-size: 23px;
-  font-weight: 700;
+  line-height: 1.45;
   text-align: center;
 }
 
-.summary-table {
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: 960px;
-  margin: 0 0 34px 0;
-}
-
-.summary-table th,
-.summary-table td {
-  border: 1px solid #fff;
-  text-align: center;
-  vertical-align: middle;
-  color: #000;
-}
-
-.summary-table th {
-  height: 58px;
-  background: #DDEBF7;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 7px;
-}
-
-.summary-table td {
-  height: 29px;
-  background: #fff;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 5px;
-}
-
-.summary-table .gray {
-  background: #A5A5A5;
-  color: #fff;
-}
-
-.summary-table .blue-strong {
-  background: #5B9BD5;
-}
-
-.summary-table .orange {
-  background: #F4B084;
-}
-
-.numbers td {
-  font-weight: 700;
-}
-
-.month-title {
-  width: 220px;
-  margin: 0 0 16px 0;
-  padding: 7px 10px;
-  background: #DDEBF7;
-  font-size: 18px;
+/* Barras de sección */
+.section-bar {
+  position: absolute;
+  left: 0;
+  width: 1148px;
+  background: #ddebf7;
+  color: #000000;
   font-weight: 700;
   text-align: center;
+  overflow: hidden;
 }
 
-.pivot-layout {
-  display: grid;
-  grid-template-columns: 310px 440px;
-  gap: 78px;
-  align-items: start;
+.top-bar {
+  top: 155px;
+  height: 50px;
+  font-size: 32px;
+  line-height: 50px;
 }
 
-.filter,
-.pivot {
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: 100%;
-  margin-bottom: 12px;
+.candidates-bar {
+  top: 397px;
+  height: 49px;
+  font-size: 34px;
+  line-height: 49px;
 }
 
-.filter td {
+.center-bar {
+  top: 960px;
+  height: 90px;
+  font-size: 32px;
+  line-height: 46px;
+  padding-top: 8px;
+}
+
+.center-bar .subtitle {
+  font-size: 29px;
+  line-height: 34px;
+}
+
+.month-bar {
+  height: 42px;
+  font-size: 30px;
+  line-height: 42px;
+}
+
+.june-bar {
+  top: 1978px;
+}
+
+.may-bar {
+  top: 2940px;
+}
+
+/* Tarjetas de resumen */
+.metric-card {
+  position: absolute;
+  width: 145px;
+  border: 2px solid #000000;
+  background: #ffffff;
+  text-align: center;
+  font-size: 17px;
+}
+
+.metric-card .metric-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ddebf7;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 6px 4px;
+  border-bottom: 2px solid #000000;
+}
+
+.metric-card .metric-value {
+  height: 26px;
+  line-height: 25px;
+  font-size: 17px;
+  background: #ffffff;
+}
+
+.metric-card.small {
+  width: 162px;
+  height: 90px;
+}
+
+.metric-card.small .metric-label {
+  height: 64px;
+}
+
+.metric-card.tall {
+  width: 154px;
+  height: 169px;
+}
+
+.metric-card.tall .metric-label {
+  height: 144px;
+}
+
+.metric-card.cert {
+  width: 154px;
+  height: 118px;
+}
+
+.metric-card.cert .metric-label {
+  height: 92px;
+}
+
+.metric-card.gray .metric-label {
+  background: #a5a5a5;
+  color: #ffffff;
+}
+
+.metric-card.blue .metric-label {
+  background: #5b9bd5;
+}
+
+.metric-card.orange .metric-label {
+  background: #f4b084;
+}
+
+.metric-value.bold {
+  font-weight: 700;
+}
+
+.cert-title {
+  position: absolute;
+  left: 455px;
+  top: 732px;
+  width: 360px;
+  margin: 0;
+  font-size: 34px;
+  line-height: 42px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Tablas dinámicas simuladas */
+.pivot-filter {
+  position: absolute;
   height: 24px;
-  border: 1px solid #fff;
-  background: #fff;
-  padding: 4px 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 22px;
+  align-items: center;
+  background: #ddebf7;
+  border-bottom: 1px solid #9dc3e6;
+  font-size: 16px;
+}
+
+.pivot-filter span {
+  padding: 2px 4px;
+}
+
+.filter-box {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  margin-left: 3px;
+  border: 1px solid #b7b7b7;
+  background: linear-gradient(#ffffff, #e8edf3);
+  color: #666666;
+  text-align: center;
+  line-height: 17px;
   font-size: 11px;
 }
 
-.filter td:last-child {
-  text-align: right;
+.small-filter {
+  float: right;
+  margin-top: -1px;
+}
+
+.pivot {
+  position: absolute;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 16px;
+  line-height: 20px;
+  overflow: hidden;
 }
 
 .pivot th,
 .pivot td {
-  height: 24px;
-  border: 1px solid #fff;
-  padding: 4px 8px;
-  font-size: 11px;
-  color: #000;
+  height: 22px;
+  padding: 1px 4px;
+  border: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 .pivot th {
-  background: #DDEBF7;
+  background: #ddebf7;
   font-weight: 700;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+
+.pivot td:first-child,
+.pivot th:first-child {
   text-align: left;
 }
 
-.pivot th:last-child,
-.pivot td:last-child {
+.pivot td:last-child,
+.pivot th:last-child {
+  text-align: right;
+}
+
+.pivot.center-pivot {
+  width: 310px;
+}
+
+.pivot.center-pivot th:first-child,
+.pivot.center-pivot td:first-child {
+  width: 155px;
+}
+
+.pivot.center-pivot th:last-child,
+.pivot.center-pivot td:last-child {
+  width: 155px;
+}
+
+.pivot.eval-pivot {
+  width: 310px;
+}
+
+.pivot.eval-pivot th:first-child,
+.pivot.eval-pivot td:first-child {
+  width: 154px;
+}
+
+.pivot.eval-pivot th:last-child,
+.pivot.eval-pivot td:last-child {
+  width: 156px;
   text-align: center;
-  font-weight: 700;
 }
 
-.pivot td:first-child {
-  text-align: left;
+.pivot.eval-pivot th,
+.pivot.eval-pivot td {
+  border-bottom: 1px solid #000000;
 }
 
-.evaluator {
-  width: 440px;
-}
-
-.gray-row td {
-  background: #BFBFBF;
-}
-
-.blue-row td {
-  background: #DDEBF7;
-}
-
-.yellow-row td {
-  background: #FFC000;
+.pivot.eval-pivot th {
+  background: #ffffff;
+  border: 1px solid #000000;
 }
 
 .total td {
-  background: #fff;
+  background: #ddebf7;
   font-weight: 700;
 }
 
-@media (max-width: 900px) {
-  .dashboard-excel {
-    margin: 0;
-  }
-
-  .page {
-    overflow: auto;
-  }
+.blue-row td {
+  background: #ddebf7;
 }
+
+.gray-row td {
+  background: #bfbfbf;
+}
+
+.yellow-row td {
+  background: #ffc000;
+}
+
+.june-table {
+  font-size: 16px;
+}
+
+.may-table {
+  font-size: 16px;
+}
+
+/* Gráficas */
+.chart-box {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+}
+
+.chart-filter {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  height: 23px;
+  padding: 3px 22px 3px 6px;
+  background: #e5e5e5;
+  font-size: 12px;
+}
+
+.chart-filter::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 7px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #777777;
+}
+
+.chart-caption {
+  position: absolute;
+  left: 15px;
+  top: 42px;
+  height: 23px;
+  padding: 4px 7px;
+  background: #e5e5e5;
+  font-size: 12px;
+}
+
+.pie-box {
+  width: 454px;
+  height: 326px;
+}
+
+.small-pie {
+  width: 456px;
+  height: 304px;
+}
+
+.pie {
+  position: absolute;
+  left: 178px;
+  top: 67px;
+  width: 224px;
+  height: 224px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+
+.pie::before,
+.pie::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 112px;
+  background: #ffffff;
+  transform-origin: top center;
+}
+
+.pie::before {
+  transform: rotate(0deg);
+}
+
+.pie::after {
+  transform: rotate(102deg);
+}
+
+.pie-total {
+  background: conic-gradient(
+    #5b9bd5 0deg 101deg,
+    #ed7d31 101deg 227deg,
+    #a5a5a5 227deg 360deg
+  );
+}
+
+.pie-june,
+.pie-may {
+  background: conic-gradient(
+    #5b9bd5 0deg 90deg,
+    #ed7d31 90deg 220deg,
+    #a5a5a5 220deg 360deg
+  );
+}
+
+.pie-label {
+  position: absolute;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.15;
+}
+
+.pie-label.cdi {
+  right: 34px;
+  top: 43px;
+}
+
+.pie-label.global {
+  right: 48px;
+  bottom: 32px;
+}
+
+.pie-label.laatter {
+ 
