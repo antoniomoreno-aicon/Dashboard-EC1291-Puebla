@@ -4,35 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DASHBOARD PROYECTO PUEBLA EC1291 2026</title>
-  <link rel="stylesheet" href="styles.css?v=20260616-excel-literal-v2" />
+  <link rel="stylesheet" href="styles.css?v=20260616-excel-fix-logos" />
 </head>
 <body>
   <main class="page">
-    <section class="excel-sheet">
-
-      <header class="excel-header">
-        <div class="logos">
-          <img src="logo-aicon.png.jpg" alt="AICON International Consulting" class="logo-aicon">
-          <img src="logo-conocer.png.png" alt="Red CONOCER" class="logo-conocer">
-        </div>
-
-        <div class="title-block">
-          <h1>DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
-          <p><span>Actualización:</span> 16/06/2026</p>
-          <p><span>Hora:</span> 10:46</p>
-        </div>
+    <section class="dashboard-excel">
+      <header class="top-excel">
+        <img class="logo-aicon" src="logo-aicon.png.jpg" alt="AICON International Consulting" />
+        <img class="logo-conocer" src="logo-conocer.png.png" alt="Red CONOCER" />
       </header>
 
-      <h2 class="section-title blue">Resumen general</h2>
-      <table class="excel-table summary-table">
+      <h1 class="main-title">DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
+      <p class="updated">Actualizado desde Excel: 16/06/2026 10:46</p>
+
+      <h2 class="bar-title">Resumen general</h2>
+      <table class="summary-table">
         <tr>
           <th class="gray">Evaluaciones totales Abril<br>(De evaluadores)</th>
           <th>Evaluaciones totales Mayo</th>
           <th>Evaluaciones totales Junio</th>
           <th>Evaluaciones Mayo + Junio</th>
-          <th class="dark-blue">Evaluaciones Totales</th>
+          <th class="blue-strong">Evaluaciones Totales</th>
         </tr>
-        <tr>
+        <tr class="numbers">
           <td>37</td>
           <td>88</td>
           <td>77</td>
@@ -41,16 +35,16 @@
         </tr>
       </table>
 
-      <h2 class="section-title blue">Resumen de candidatos en lotes, proceso de carga y en proceso</h2>
-      <table class="excel-table summary-table">
+      <h2 class="bar-title wide">Resumen de candidatos en lotes, proceso de carga y en proceso</h2>
+      <table class="summary-table">
         <tr>
           <th>Procesos en lotes</th>
           <th>Total procesos cargados<br>Sin meter en lotes</th>
-          <th>Procesos en lotes + cargados sin meter en lotes</th>
+          <th>Procesos en lotes + cargados<br>sin meter en lotes</th>
           <th class="orange">Evaluaciones del día en proceso</th>
-          <th class="dark-blue">Evaluaciones Totales</th>
+          <th class="blue-strong">Evaluaciones Totales</th>
         </tr>
-        <tr>
+        <tr class="numbers">
           <td>199</td>
           <td>3</td>
           <td>202</td>
@@ -59,16 +53,16 @@
         </tr>
       </table>
 
-      <h2 class="section-title">Resumen de certificados</h2>
-      <table class="excel-table summary-table">
+      <h2 class="plain-title">Resumen de certificados</h2>
+      <table class="summary-table">
         <tr>
           <th>Procesos en lotes</th>
           <th>Certificados solicitados del EC1291<br>Abr + May + Jun</th>
-          <th>Certificados recibidos del EC1291</th>
+          <th>Certificados recibidos del<br>EC1291</th>
           <th>En procesos de solicitud</th>
           <th>Promedio evaluaciones por día</th>
         </tr>
-        <tr>
+        <tr class="numbers">
           <td>199</td>
           <td>186</td>
           <td>161</td>
@@ -77,19 +71,19 @@
         </tr>
       </table>
 
-      <h2 class="section-title blue">Resumen por Centro Evaluador</h2>
-      <h3 class="month-title blue">Mayo + Junio</h3>
+      <h2 class="bar-title wide">Resumen por Centro Evaluador</h2>
+      <h3 class="month-title">Mayo + Junio</h3>
 
-      <div class="excel-grid two-cols">
-        <section>
-          <table class="pivot-table">
+      <div class="pivot-layout">
+        <section class="pivot-left">
+          <table class="filter">
             <tr>
-              <td class="filter-label">Mes</td>
-              <td class="filter-value">(Todas)</td>
+              <td>Mes</td>
+              <td>(Todas)</td>
             </tr>
           </table>
 
-          <table class="pivot-table">
+          <table class="pivot">
             <thead>
               <tr>
                 <th>Etiquetas de fila</th>
@@ -105,15 +99,15 @@
           </table>
         </section>
 
-        <section>
-          <table class="pivot-table">
+        <section class="pivot-right">
+          <table class="filter">
             <tr>
-              <td class="filter-label">Mes</td>
-              <td class="filter-value">(Todas)</td>
+              <td>Mes</td>
+              <td>(Todas)</td>
             </tr>
           </table>
 
-          <table class="pivot-table evaluator-table">
+          <table class="pivot evaluator">
             <thead>
               <tr>
                 <th>Evaluador</th>
@@ -150,139 +144,6 @@
           </table>
         </section>
       </div>
-
-      <h3 class="month-title blue">Junio</h3>
-
-      <div class="excel-grid two-cols">
-        <section>
-          <table class="pivot-table">
-            <tr>
-              <td class="filter-label">Mes</td>
-              <td class="filter-value">JUNIO</td>
-            </tr>
-          </table>
-
-          <table class="pivot-table">
-            <thead>
-              <tr>
-                <th>Etiquetas de fila</th>
-                <th>Conteo de NÚMERO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>CDI</td><td>19</td></tr>
-              <tr><td>GLOBAL</td><td>28</td></tr>
-              <tr><td>LAATTER</td><td>30</td></tr>
-              <tr class="total"><td>Total general</td><td>77</td></tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section>
-          <table class="pivot-table">
-            <tr>
-              <td class="filter-label">Mes</td>
-              <td class="filter-value">JUNIO</td>
-            </tr>
-          </table>
-
-          <table class="pivot-table evaluator-table">
-            <thead>
-              <tr>
-                <th>Evaluador</th>
-                <th>Evaluaciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="blue-row"><td>CRISTOPHER TORIJA MORALES</td><td>16</td></tr>
-              <tr class="gray-row"><td>JOSE DANIEL COLOMO MARTINEZ</td><td>13</td></tr>
-              <tr class="yellow-row"><td>VICTOR ALEJANDRO SOTO CEBALLOS</td><td>11</td></tr>
-              <tr class="yellow-row"><td>MARIO JORGE ARRIAGA</td><td>8</td></tr>
-              <tr class="gray-row"><td>JUAN CARLOS ZAMUDIO SANCHEZ</td><td>6</td></tr>
-              <tr class="gray-row"><td>JULIO DANIEL PINEDA HERNANDEZ</td><td>4</td></tr>
-              <tr class="gray-row"><td>JAZER FEDERICO VEGA GONZALEZ</td><td>3</td></tr>
-              <tr><td>DANIEL COLOMO</td><td>2</td></tr>
-              <tr class="blue-row"><td>FRANCISCO JAVIER TORRES ROSAS</td><td>2</td></tr>
-              <tr class="gray-row"><td>OSCAR ALBERTO VARGAS DAMIAN</td><td>2</td></tr>
-              <tr class="yellow-row"><td>MIRNA GARCIA</td><td>1</td></tr>
-              <tr><td>JOCELYN ANGELES</td><td>1</td></tr>
-              <tr class="gray-row"><td>EDGAR GARCIA VARELA</td><td>1</td></tr>
-              <tr class="yellow-row"><td>ALBERTO FABIAN OLIVEROS ROBLES</td><td>1</td></tr>
-              <tr><td>VICTOR ALEJANDRO SOTO</td><td>1</td></tr>
-              <tr class="yellow-row"><td>ADRIANA ANGELES GONZALEZ</td><td>1</td></tr>
-              <tr><td>CRISTOPHER</td><td>1</td></tr>
-              <tr class="total"><td>Total general</td><td>74</td></tr>
-            </tbody>
-          </table>
-        </section>
-      </div>
-
-      <h3 class="month-title blue">Mayo</h3>
-
-      <div class="excel-grid two-cols">
-        <section>
-          <table class="pivot-table">
-            <tr>
-              <td class="filter-label">Mes</td>
-              <td class="filter-value">MAYO</td>
-            </tr>
-          </table>
-
-          <table class="pivot-table">
-            <thead>
-              <tr>
-                <th>Etiquetas de fila</th>
-                <th>Conteo de NÚMERO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>CDI</td><td>28</td></tr>
-              <tr><td>GLOBAL</td><td>29</td></tr>
-              <tr><td>LAATTER</td><td>31</td></tr>
-              <tr class="total"><td>Total general</td><td>88</td></tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section>
-          <table class="pivot-table">
-            <tr>
-              <td class="filter-label">Mes</td>
-              <td class="filter-value">MAYO</td>
-            </tr>
-          </table>
-
-          <table class="pivot-table evaluator-table">
-            <thead>
-              <tr>
-                <th>Evaluador</th>
-                <th>Evaluaciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="yellow-row"><td>JOCELYN ANGELES IBARRA</td><td>11</td></tr>
-              <tr class="blue-row"><td>LAURA PICHARDO ROSAS</td><td>10</td></tr>
-              <tr class="blue-row"><td>FRANCISCO JAVIER TORRES ROSAS</td><td>10</td></tr>
-              <tr class="gray-row"><td>JOSE DANIEL COLOMO MARTINEZ</td><td>10</td></tr>
-              <tr class="yellow-row"><td>ADRIANA ANGELES GONZALEZ</td><td>8</td></tr>
-              <tr class="blue-row"><td>MARTIN EDUARDO LOPEZ RODRIGUEZ</td><td>5</td></tr>
-              <tr class="gray-row"><td>JUAN CARLOS ZAMUDIO SANCHEZ</td><td>5</td></tr>
-              <tr class="yellow-row"><td>ALBERTO FABIAN OLIVEROS ROBLES</td><td>5</td></tr>
-              <tr class="gray-row"><td>ALBERTO GARCIA VARELA</td><td>5</td></tr>
-              <tr class="gray-row"><td>JAZER FEDERICO VEGA GONZALEZ</td><td>4</td></tr>
-              <tr class="gray-row"><td>EDGAR GARCIA VARELA</td><td>4</td></tr>
-              <tr class="yellow-row"><td>MARIO ARRIAGA ROBLES</td><td>3</td></tr>
-              <tr class="gray-row"><td>JULIO DANIEL PINEDA HERNANDEZ</td><td>3</td></tr>
-              <tr class="blue-row"><td>ANDREA RUBÍ CARDENAS MORENO</td><td>2</td></tr>
-              <tr class="gray-row"><td>OSCAR ALBERTO VARGAS DAMIAN</td><td>1</td></tr>
-              <tr class="yellow-row"><td>MARIO JORGE ARRIAGA</td><td>1</td></tr>
-              <tr class="blue-row"><td>MARITZELENA GUADALUPE CAMPA FLORES</td><td>1</td></tr>
-              <tr class="total"><td>Total general</td><td>88</td></tr>
-            </tbody>
-          </table>
-        </section>
-      </div>
-
     </section>
   </main>
 </body>
