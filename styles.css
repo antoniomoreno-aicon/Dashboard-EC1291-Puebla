@@ -11,16 +11,17 @@ body {
   font-family: Calibri, Arial, sans-serif;
 }
 
-/* Margen controlado: evita que los cuadros se corten a la izquierda */
+/* Contenedor general con margen izquierdo para que nada se corte */
 .page-wrap {
   width: 100%;
-  min-width: 1220px;
-  padding-left: 28px;
-  padding-right: 28px;
+  min-width: 1260px;
+  padding-left: 56px;
+  padding-right: 56px;
   background: #ffffff;
   overflow-x: auto;
 }
 
+/* Área del dashboard, equivalente a la zona visible de Excel */
 .dashboard {
   position: relative;
   width: 1150px;
@@ -29,6 +30,7 @@ body {
   overflow: visible;
 }
 
+/* Título principal */
 .main-title {
   position: absolute;
   left: 300px;
@@ -41,6 +43,7 @@ body {
   text-align: center;
 }
 
+/* Barras de sección */
 .section-bar {
   position: absolute;
   left: 0;
@@ -58,6 +61,41 @@ body {
   line-height: 50px;
 }
 
+.candidatos {
+  top: 397px;
+  height: 49px;
+  font-size: 34px;
+  line-height: 49px;
+}
+
+.centro {
+  top: 960px;
+  height: 90px;
+  padding-top: 8px;
+  font-size: 32px;
+  line-height: 42px;
+}
+
+.centro-sub {
+  font-size: 29px;
+  line-height: 34px;
+}
+
+.month {
+  height: 42px;
+  font-size: 30px;
+  line-height: 42px;
+}
+
+.junio {
+  top: 1978px;
+}
+
+.mayo {
+  top: 2940px;
+}
+
+/* Fecha y hora */
 .update-box {
   position: absolute;
   left: 928px;
@@ -68,6 +106,7 @@ body {
   text-align: center;
 }
 
+/* Cuadros resumen */
 .metric {
   position: absolute;
   width: 154px;
@@ -143,13 +182,6 @@ body {
   background: #f4b084;
 }
 
-.candidatos {
-  top: 397px;
-  height: 49px;
-  font-size: 34px;
-  line-height: 49px;
-}
-
 .cert-title {
   position: absolute;
   left: 455px;
@@ -162,33 +194,7 @@ body {
   text-align: center;
 }
 
-.centro {
-  top: 960px;
-  height: 90px;
-  padding-top: 8px;
-  font-size: 32px;
-  line-height: 42px;
-}
-
-.centro-sub {
-  font-size: 29px;
-  line-height: 34px;
-}
-
-.month {
-  height: 42px;
-  font-size: 30px;
-  line-height: 42px;
-}
-
-.junio {
-  top: 1978px;
-}
-
-.mayo {
-  top: 2940px;
-}
-
+/* Filtros tipo tabla dinámica */
 .pivot-filter {
   position: absolute;
   width: 310px;
@@ -217,6 +223,7 @@ button {
   vertical-align: middle;
 }
 
+/* Tablas */
 .pivot {
   position: absolute;
   width: 310px;
@@ -289,6 +296,7 @@ button {
   background: #ffc000;
 }
 
+/* Gráficas */
 .chart-box {
   position: absolute;
   background: #ffffff;
@@ -325,6 +333,7 @@ button {
   font-size: 12px;
 }
 
+/* Pasteles */
 .pie {
   position: absolute;
   left: 178px;
@@ -395,6 +404,7 @@ button {
   top: 86px;
 }
 
+/* Barras */
 .bar-box {
   background: #ffffff;
   border: 1px solid #d0d0d0;
