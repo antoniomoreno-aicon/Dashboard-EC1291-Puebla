@@ -11,7 +11,6 @@ body {
   font-family: Calibri, Arial, sans-serif;
 }
 
-/* Contenedor general con margen izquierdo para que nada se corte */
 .page-wrap {
   width: 100%;
   min-width: 1260px;
@@ -21,7 +20,6 @@ body {
   overflow-x: auto;
 }
 
-/* Área del dashboard, equivalente a la zona visible de Excel */
 .dashboard {
   position: relative;
   width: 1150px;
@@ -30,7 +28,6 @@ body {
   overflow: visible;
 }
 
-/* Título principal */
 .main-title {
   position: absolute;
   left: 300px;
@@ -43,7 +40,6 @@ body {
   text-align: center;
 }
 
-/* Barras de sección */
 .section-bar {
   position: absolute;
   left: 0;
@@ -95,7 +91,6 @@ body {
   top: 2940px;
 }
 
-/* Fecha y hora */
 .update-box {
   position: absolute;
   left: 928px;
@@ -106,7 +101,6 @@ body {
   text-align: center;
 }
 
-/* Cuadros resumen */
 .metric {
   position: absolute;
   width: 154px;
@@ -194,7 +188,6 @@ body {
   text-align: center;
 }
 
-/* Filtros tipo tabla dinámica */
 .pivot-filter {
   position: absolute;
   width: 310px;
@@ -223,7 +216,6 @@ button {
   vertical-align: middle;
 }
 
-/* Tablas */
 .pivot {
   position: absolute;
   width: 310px;
@@ -296,7 +288,6 @@ button {
   background: #ffc000;
 }
 
-/* Gráficas */
 .chart-box {
   position: absolute;
   background: #ffffff;
@@ -333,7 +324,6 @@ button {
   font-size: 12px;
 }
 
-/* Pasteles */
 .pie {
   position: absolute;
   left: 178px;
@@ -404,7 +394,6 @@ button {
   top: 86px;
 }
 
-/* Barras */
 .bar-box {
   background: #ffffff;
   border: 1px solid #d0d0d0;
