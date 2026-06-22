@@ -1,311 +1,476 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DASHBOARD PROYECTO PUEBLA EC1291 2026</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-  <main class="dashboard">
-    <h1 class="main-title">DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
+  <main class="page">
+    <header class="top-header">
+      <h1>DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
+      <div class="update-box">
+        <div><strong>Actualización:</strong> <span id="fechaActualizacion">--</span></div>
+        <div><strong>Hora:</strong> <span id="horaActualizacion">--</span></div>
+      </div>
+    </header>
 
     <section class="section">
-      <div class="blue-band">
-        <span>Resumen general</span>
-      </div>
-
-      <div class="updated">
-        Actualización:&nbsp; 18/06/2026<br>
-        Hora:&nbsp; 18:40
-      </div>
-
-      <div class="cards">
-        <div class="card gray">
-          <div class="card-label">Evaluaciones totales<br>Abril<br>(De evaluadores)</div>
-          <div class="card-value">37</div>
-        </div>
-
-        <div class="card">
-          <div class="card-label">Evaluaciones totales<br>Mayo</div>
-          <div class="card-value">88</div>
-        </div>
-
-        <div class="card">
-          <div class="card-label">Evaluaciones<br>totales Junio</div>
-          <div class="card-value">83</div>
-        </div>
-
-        <div class="card">
-          <div class="card-label">Evaluaciones Mayo<br>+ Junio</div>
-          <div class="card-value">171</div>
-        </div>
-
-        <div class="card blue-strong">
-          <div class="card-label">Evaluaciones<br>Totales</div>
-          <div class="card-value">208</div>
-        </div>
+      <h2>Resumen general</h2>
+      <div class="cards five">
+        <article class="metric-card gray">
+          <h3>Evaluaciones totales Abril<br /><span>(De evaluadores)</span></h3>
+          <p id="abril">0</p>
+        </article>
+        <article class="metric-card">
+          <h3>Evaluaciones totales Mayo</h3>
+          <p id="mayoTotal">0</p>
+        </article>
+        <article class="metric-card">
+          <h3>Evaluaciones totales Junio</h3>
+          <p id="junioTotal">0</p>
+        </article>
+        <article class="metric-card small">
+          <h3>Evaluaciones Mayo<br />+ Junio</h3>
+          <p id="mayoJunio">0</p>
+        </article>
+        <article class="metric-card blue">
+          <h3>Evaluaciones<br />Totales</h3>
+          <p id="evaluacionesTotales">0</p>
+        </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="blue-band">
-        <span>Resumen de candidatos en lotes, proceso de carga y en proceso</span>
+      <h2>Resumen de candidatos en lotes, proceso de carga y en proceso</h2>
+      <div class="cards five">
+        <article class="metric-card tall">
+          <h3>Procesos en lotes</h3>
+          <p id="procesosLotes">0</p>
+        </article>
+        <article class="metric-card tall">
+          <h3>Total procesos cargados<br />Sin meter en lotes</h3>
+          <p id="procesosSinLote">0</p>
+        </article>
+        <article class="metric-card tall">
+          <h3>Procesos en lotes + cargados sin meter en lotes</h3>
+          <p id="procesosTotal">0</p>
+        </article>
+        <article class="metric-card tall orange">
+          <h3>Evaluaciones del<br />día en proceso</h3>
+          <p id="evaluacionesDia">0</p>
+        </article>
+        <article class="metric-card tall blue">
+          <h3>Evaluaciones<br />Totales</h3>
+          <p id="evaluacionesTotales2">0</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <h2>Resumen de certificados</h2>
+      <div class="cards five">
+        <article class="metric-card">
+          <h3>Procesos en lotes</h3>
+          <p id="certProcesosLotes">0</p>
+        </article>
+        <article class="metric-card">
+          <h3>Certificados solicitados del EC1291<br />Abr + May + Jun</h3>
+          <p id="certSolicitados">0</p>
+        </article>
+        <article class="metric-card">
+          <h3>Certificados recibidos del EC1291</h3>
+          <p id="certRecibidos">0</p>
+        </article>
+        <article class="metric-card small">
+          <h3>En procesos de<br />solicitud</h3>
+          <p id="certProceso">0</p>
+        </article>
+        <article class="metric-card small">
+          <h3>Promedio evaluaciones por día</h3>
+          <p id="promedioDia">0</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Resumen por Centro Evaluador</h2>
+      <h4>Mayo + Junio</h4>
+      <div class="dashboard-grid">
+        <div class="table-wrap">
+          <table id="tablaCentrosTotal"></table>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chartCentrosTotal"></canvas>
+        </div>
       </div>
 
-      <div class="cards tall">
-        <div class="card big">
-          <div class="card-label">Procesos en lotes</div>
-          <div class="card-value">208</div>
+      <div class="dashboard-grid">
+        <div class="table-wrap">
+          <table id="tablaEvaluadoresTotal"></table>
         </div>
-
-        <div class="card big">
-          <div class="card-label">Total procesos<br>cargados<br>Sin meter en lotes</div>
-          <div class="card-value">5</div>
-        </div>
-
-        <div class="card big">
-          <div class="card-label">Procesos en lotes +<br>cargados sin meter<br>en lotes</div>
-          <div class="card-value">213</div>
-        </div>
-
-        <div class="card big orange">
-          <div class="card-label">Evaluaciones del<br>día en proceso</div>
-          <div class="card-value">16</div>
-        </div>
-
-        <div class="card big blue-strong">
-          <div class="card-label">Evaluaciones<br>Totales</div>
-          <div class="card-value">229</div>
+        <div class="chart-wrap wide">
+          <canvas id="chartEvaluadoresTotal"></canvas>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2 class="plain-title">Resumen de certificados</h2>
-
-      <div class="cards cert">
-        <div class="card cert-card">
-          <div class="card-label">Procesos en lotes</div>
-          <div class="card-value">208</div>
+      <h2>Junio</h2>
+      <div class="dashboard-grid">
+        <div class="table-wrap">
+          <table id="tablaCentrosJunio"></table>
         </div>
-
-        <div class="card cert-card">
-          <div class="card-label">Certificados<br>solicitados del<br>EC1291<br>Abr + May + Jun</div>
-          <div class="card-value">199</div>
+        <div class="chart-wrap">
+          <canvas id="chartCentrosJunio"></canvas>
         </div>
+      </div>
 
-        <div class="card cert-card">
-          <div class="card-label">Certificados<br>recibidos del<br>EC1291</div>
-          <div class="card-value">171</div>
+      <div class="dashboard-grid">
+        <div class="table-wrap">
+          <table id="tablaEvaluadoresJunio"></table>
         </div>
-
-        <div class="card cert-card">
-          <div class="card-label">En procesos de<br>solicitud</div>
-          <div class="card-value">9</div>
-        </div>
-
-        <div class="card cert-card note">
-          <div class="card-label">Promedio<br>evaluaciones por<br>día</div>
-          <div class="card-value"><b>4.75</b></div>
+        <div class="chart-wrap wide">
+          <canvas id="chartEvaluadoresJunio"></canvas>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="blue-band double">
-        <span>Resumen por Centro Evaluador</span>
-        <span>Mayo + Junio</span>
-      </div>
-
-      <div class="analysis-row">
-        <div class="left-block">
-          <table class="filter">
-            <tr>
-              <td>Mes</td>
-              <td>(Todas)<span class="drop">▾</span></td>
-            </tr>
-          </table>
-
-          <table class="pivot">
-            <thead>
-              <tr>
-                <th>Etiquetas de fila <span class="drop">▾</span></th>
-                <th>Conteo de NÚMERO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>CDI</td><td>49</td></tr>
-              <tr><td>GLOBAL</td><td>59</td></tr>
-              <tr><td>LAATTER</td><td>63</td></tr>
-              <tr class="total"><td>Total general</td><td>171</td></tr>
-            </tbody>
-          </table>
+      <h2>Mayo</h2>
+      <div class="dashboard-grid">
+        <div class="table-wrap">
+          <table id="tablaCentrosMayo"></table>
         </div>
-
-        <div class="chart pie-chart">
-          <div class="tag">Mes ▾</div>
-          <div class="tag second">Conteo de NÚMERO</div>
-
-          <div class="pie pie-all">
-            <span class="p1">CDI<br>29%</span>
-            <span class="p2">GLOBAL<br>34%</span>
-            <span class="p3">LAATTER<br>37%</span>
-          </div>
+        <div class="chart-wrap">
+          <canvas id="chartCentrosMayo"></canvas>
         </div>
       </div>
 
-      <div class="analysis-row bars-row">
-        <div class="left-block">
-          <table class="filter">
-            <tr>
-              <td>Mes</td>
-              <td>(Todas)<span class="drop">▾</span></td>
-            </tr>
-          </table>
-
-          <table class="pivot evaluator">
-            <thead>
-              <tr>
-                <th>Evaluador <span class="drop">▾</span></th>
-                <th>Evaluaciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="r-gray"><td>JOSE DANIEL COLOMO MARTINEZ</td><td>27</td></tr>
-              <tr class="r-blue"><td>CRISTOPHER TORIJA MORALES</td><td>19</td></tr>
-              <tr class="r-yellow"><td>VICTOR ALEJANDRO SOTO CEBALLOS</td><td>15</td></tr>
-              <tr class="r-yellow"><td>JOCELYN ANGELES IBARRA</td><td>12</td></tr>
-              <tr class="r-yellow"><td>MARIO ARRIAGA ROBLES</td><td>12</td></tr>
-              <tr class="r-blue"><td>FRANCISCO JAVIER TORRES ROSAS</td><td>12</td></tr>
-              <tr class="r-gray"><td>JUAN CARLOS ZAMUDIO SANCHEZ</td><td>11</td></tr>
-              <tr class="r-blue"><td>LAURA PICHARDO ROSAS</td><td>10</td></tr>
-              <tr class="r-yellow"><td>ADRIANA ANGELES GONZALEZ</td><td>9</td></tr>
-              <tr class="r-gray"><td>JAZER FEDERICO VEGA GONZALEZ</td><td>8</td></tr>
-              <tr class="r-gray"><td>JULIO DANIEL PINEDA HERNANDEZ</td><td>7</td></tr>
-              <tr class="r-yellow"><td>ALBERTO FABIAN OLIVEROS ROBLES</td><td>6</td></tr>
-              <tr class="r-gray"><td>ALBERTO GARCIA VARELA</td><td>5</td></tr>
-              <tr class="r-blue"><td>MARTIN EDUARDO LOPEZ RODRIGUEZ</td><td>5</td></tr>
-              <tr class="r-gray"><td>EDGAR GARCIA VARELA</td><td>5</td></tr>
-              <tr class="r-gray"><td>OSCAR ALBERTO VARGAS DAMIAN</td><td>3</td></tr>
-              <tr class="r-blue"><td>ANDREA RUBÍ CARDENAS MORENO</td><td>2</td></tr>
-              <tr><td>BRIANDA AVRIL</td><td>1</td></tr>
-              <tr class="r-yellow"><td>MIRNA GARCIA</td><td>1</td></tr>
-              <tr class="r-blue"><td>MARITZELENA GUADALUPE CAMPA FLORES</td><td>1</td></tr>
-              <tr class="total"><td>Total general</td><td>171</td></tr>
-            </tbody>
-          </table>
+      <div class="dashboard-grid">
+        <div class="table-wrap">
+          <table id="tablaEvaluadoresMayo"></table>
         </div>
-
-        <div class="chart bar-chart">
-          <div class="bar-plot">
-            <div class="bar-line"><span class="bar-name">MARITZELENA GUADALUPE CAMPA...</span><span class="bar-wrap"><i style="width:4%"></i></span><span class="bar-num">1</span></div>
-            <div class="bar-line"><span class="bar-name">MIRNA GARCIA</span><span class="bar-wrap"><i style="width:4%"></i></span><span class="bar-num">1</span></div>
-            <div class="bar-line"><span class="bar-name">BRIANDA AVRIL</span><span class="bar-wrap"><i style="width:4%"></i></span><span class="bar-num">1</span></div>
-            <div class="bar-line"><span class="bar-name">ANDREA RUBÍ CARDENAS MORENO</span><span class="bar-wrap"><i style="width:7%"></i></span><span class="bar-num">2</span></div>
-            <div class="bar-line"><span class="bar-name">OSCAR ALBERTO VARGAS DAMIAN</span><span class="bar-wrap"><i style="width:11%"></i></span><span class="bar-num">3</span></div>
-            <div class="bar-line"><span class="bar-name">EDGAR GARCIA VARELA</span><span class="bar-wrap"><i style="width:19%"></i></span><span class="bar-num">5</span></div>
-            <div class="bar-line"><span class="bar-name">MARTIN EDUARDO LOPEZ RODRIGUEZ</span><span class="bar-wrap"><i style="width:19%"></i></span><span class="bar-num">5</span></div>
-            <div class="bar-line"><span class="bar-name">ALBERTO GARCIA VARELA</span><span class="bar-wrap"><i style="width:19%"></i></span><span class="bar-num">5</span></div>
-            <div class="bar-line"><span class="bar-name">ALBERTO FABIAN OLIVEROS ROBLES</span><span class="bar-wrap"><i style="width:22%"></i></span><span class="bar-num">6</span></div>
-            <div class="bar-line"><span class="bar-name">JULIO DANIEL PINEDA HERNANDEZ</span><span class="bar-wrap"><i style="width:26%"></i></span><span class="bar-num">7</span></div>
-            <div class="bar-line"><span class="bar-name">JAZER FEDERICO VEGA GONZALEZ</span><span class="bar-wrap"><i style="width:30%"></i></span><span class="bar-num">8</span></div>
-            <div class="bar-line"><span class="bar-name">ADRIANA ANGELES GONZALEZ</span><span class="bar-wrap"><i style="width:33%"></i></span><span class="bar-num">9</span></div>
-            <div class="bar-line"><span class="bar-name">LAURA PICHARDO ROSAS</span><span class="bar-wrap"><i style="width:37%"></i></span><span class="bar-num">10</span></div>
-            <div class="bar-line"><span class="bar-name">JUAN CARLOS ZAMUDIO SANCHEZ</span><span class="bar-wrap"><i style="width:41%"></i></span><span class="bar-num">11</span></div>
-            <div class="bar-line"><span class="bar-name">FRANCISCO JAVIER TORRES ROSAS</span><span class="bar-wrap"><i style="width:44%"></i></span><span class="bar-num">12</span></div>
-            <div class="bar-line"><span class="bar-name">MARIO ARRIAGA ROBLES</span><span class="bar-wrap"><i style="width:44%"></i></span><span class="bar-num">12</span></div>
-            <div class="bar-line"><span class="bar-name">JOCELYN ANGELES IBARRA</span><span class="bar-wrap"><i style="width:44%"></i></span><span class="bar-num">12</span></div>
-            <div class="bar-line"><span class="bar-name">VICTOR ALEJANDRO SOTO CEBALLOS</span><span class="bar-wrap"><i style="width:56%"></i></span><span class="bar-num">15</span></div>
-            <div class="bar-line"><span class="bar-name">CRISTOPHER TORIJA MORALES</span><span class="bar-wrap"><i style="width:70%"></i></span><span class="bar-num">19</span></div>
-            <div class="bar-line"><span class="bar-name">JOSE DANIEL COLOMO MARTINEZ</span><span class="bar-wrap"><i style="width:100%"></i></span><span class="bar-num">27</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section month-section">
-      <div class="blue-band small-title">Junio</div>
-
-      <div class="analysis-row">
-        <div class="left-block">
-          <table class="filter">
-            <tr>
-              <td>Mes</td>
-              <td>JUNIO<span class="drop">▾</span></td>
-            </tr>
-          </table>
-
-          <table class="pivot">
-            <thead>
-              <tr>
-                <th>Etiquetas de fila <span class="drop">▾</span></th>
-                <th>Conteo de NÚMERO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>CDI</td><td>21</td></tr>
-              <tr><td>GLOBAL</td><td>30</td></tr>
-              <tr><td>LAATTER</td><td>32</td></tr>
-              <tr class="total"><td>Total general</td><td>83</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="chart pie-chart">
-          <div class="tag">Mes ▾</div>
-          <div class="tag second">Conteo de NÚMERO</div>
-
-          <div class="pie pie-jun">
-            <span class="p1">CDI<br>25%</span>
-            <span class="p2">GLOBAL<br>36%</span>
-            <span class="p3">LAATTER<br>39%</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section month-section mayo-section">
-      <div class="blue-band small-title">Mayo</div>
-
-      <div class="analysis-row">
-        <div class="left-block">
-          <table class="filter">
-            <tr>
-              <td>Mes</td>
-              <td>MAYO<span class="drop">▾</span></td>
-            </tr>
-          </table>
-
-          <table class="pivot">
-            <thead>
-              <tr>
-                <th>Etiquetas de fila <span class="drop">▾</span></th>
-                <th>Conteo de NÚMERO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>CDI</td><td>28</td></tr>
-              <tr><td>GLOBAL</td><td>29</td></tr>
-              <tr><td>LAATTER</td><td>31</td></tr>
-              <tr class="total"><td>Total general</td><td>88</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="chart pie-chart">
-          <div class="tag">Mes ▾</div>
-          <div class="tag second">Conteo de NÚMERO</div>
-
-          <div class="pie pie-may">
-            <span class="p1">CDI<br>32%</span>
-            <span class="p2">GLOBAL<br>33%</span>
-            <span class="p3">LAATTER<br>35%</span>
-          </div>
+        <div class="chart-wrap wide">
+          <canvas id="chartEvaluadoresMayo"></canvas>
         </div>
       </div>
     </section>
   </main>
+
+  <script>
+    const fallbackData = {
+      actualizacion: "22/06/2026",
+      hora: "08:08",
+      resumenGeneral: {
+        abril: 37,
+        mayo: 88,
+        junio: 109,
+        mayoJunio: 197,
+        total: 234
+      },
+      candidatos: {
+        procesosLotes: 208,
+        procesosSinLote: 26,
+        procesosTotal: 234,
+        evaluacionesDia: 0,
+        evaluacionesTotales: 234
+      },
+      certificados: {
+        procesosLotes: 208,
+        solicitados: 199,
+        recibidos: 171,
+        proceso: 9,
+        promedioDia: 5.47
+      },
+      centrosTotal: [
+        ["CDI", 56],
+        ["GLOBAL", 67],
+        ["LAATTER", 74]
+      ],
+      centrosJunio: [
+        ["CDI", 28],
+        ["GLOBAL", 38],
+        ["LAATTER", 43]
+      ],
+      centrosMayo: [
+        ["CDI", 28],
+        ["GLOBAL", 29],
+        ["LAATTER", 31]
+      ],
+      evaluadoresTotal: [
+        ["JOSE DANIEL COLOMO MARTINEZ", 30],
+        ["CRISTOPHER TORIJA MORALES", 26],
+        ["VICTOR ALEJANDRO SOTO CEBALLOS", 22],
+        ["JOCELYN ANGELES IBARRA", 13],
+        ["MARIO ARRIAGA ROBLES", 12],
+        ["JAZER FEDERICO VEGA GONZALEZ", 12],
+        ["FRANCISCO JAVIER TORRES ROSAS", 12],
+        ["JUAN CARLOS ZAMUDIO SANCHEZ", 11],
+        ["JULIO DANIEL PINEDA HERNANDEZ", 10],
+        ["LAURA PICHARDO ROSAS", 10],
+        ["ADRIANA ANGELES GONZALEZ", 9],
+        ["ALBERTO FABIAN OLIVEROS ROBLES", 6],
+        ["EDGAR GARCIA VARELA", 5],
+        ["MARTIN EDUARDO LOPEZ RODRIGUEZ", 5],
+        ["ALBERTO GARCIA VARELA", 5],
+        ["OSCAR ALBERTO VARGAS DAMIAN", 3],
+        ["ANDREA RUBÍ CARDENAS MORENO", 2],
+        ["BRIANDA AVRIL", 1],
+        ["MIRNA GARCIA", 1],
+        ["MARITZELENA GUADALUPE CAMPA FLORES", 1]
+      ],
+      evaluadoresJunio: [
+        ["CRISTOPHER TORIJA MORALES", 26],
+        ["VICTOR ALEJANDRO SOTO CEBALLOS", 22],
+        ["JOSE DANIEL COLOMO MARTINEZ", 21],
+        ["MARIO ARRIAGA ROBLES", 8],
+        ["JAZER FEDERICO VEGA GONZALEZ", 8],
+        ["JULIO DANIEL PINEDA HERNANDEZ", 7],
+        ["JUAN CARLOS ZAMUDIO SANCHEZ", 6],
+        ["OSCAR ALBERTO VARGAS DAMIAN", 2],
+        ["FRANCISCO JAVIER TORRES ROSAS", 2],
+        ["JOCELYN ANGELES IBARRA", 2],
+        ["EDGAR GARCIA VARELA", 1],
+        ["ALBERTO FABIAN OLIVEROS ROBLES", 1],
+        ["BRIANDA AVRIL", 1],
+        ["ADRIANA ANGELES GONZALEZ", 1],
+        ["MIRNA GARCIA", 1]
+      ],
+      evaluadoresMayo: [
+        ["JOCELYN ANGELES IBARRA", 11],
+        ["FRANCISCO JAVIER TORRES ROSAS", 10],
+        ["LAURA PICHARDO ROSAS", 10],
+        ["JOSE DANIEL COLOMO MARTINEZ", 10],
+        ["ADRIANA ANGELES GONZALEZ", 8],
+        ["ALBERTO FABIAN OLIVEROS ROBLES", 5],
+        ["MARTIN EDUARDO LOPEZ RODRIGUEZ", 5],
+        ["ALBERTO GARCIA VARELA", 5],
+        ["JUAN CARLOS ZAMUDIO SANCHEZ", 5],
+        ["EDGAR GARCIA VARELA", 4],
+        ["JAZER FEDERICO VEGA GONZALEZ", 4],
+        ["MARIO ARRIAGA ROBLES", 4],
+        ["JULIO DANIEL PINEDA HERNANDEZ", 3],
+        ["ANDREA RUBÍ CARDENAS MORENO", 2],
+        ["OSCAR ALBERTO VARGAS DAMIAN", 1],
+        ["MARITZELENA GUADALUPE CAMPA FLORES", 1]
+      ]
+    };
+
+    let charts = [];
+
+    async function cargarDatos() {
+      try {
+        const response = await fetch(`data.json?nocache=${Date.now()}`);
+        if (!response.ok) throw new Error("No se pudo cargar data.json");
+        const json = await response.json();
+        return normalizarDatos(json);
+      } catch (error) {
+        console.warn("Usando datos de respaldo:", error);
+        return fallbackData;
+      }
+    }
+
+    function normalizarDatos(json) {
+      if (!json) return fallbackData;
+
+      if (json.resumenGeneral || json.centrosTotal || json.evaluadoresTotal) {
+        return { ...fallbackData, ...json };
+      }
+
+      if (Array.isArray(json)) {
+        const data = structuredClone(fallbackData);
+
+        json.forEach(row => {
+          const cells = Array.isArray(row) ? row : Object.values(row);
+          const a = String(cells[0] ?? "").trim();
+          const b = cells[1];
+          const c = cells[2];
+
+          if (!a) return;
+
+          const label = a.toLowerCase();
+          const value = Number(b ?? c);
+
+          if (label.includes("actualización")) data.actualizacion = String(b ?? c);
+          if (label === "hora") data.hora = String(b ?? c);
+
+          if (label.includes("abril")) data.resumenGeneral.abril = value;
+          if (label.includes("mayo") && label.includes("total")) data.resumenGeneral.mayo = value;
+          if (label.includes("junio") && label.includes("total")) data.resumenGeneral.junio = value;
+          if (label.includes("mayo + junio")) data.resumenGeneral.mayoJunio = value;
+          if (label.includes("evaluaciones totales")) data.resumenGeneral.total = value;
+        });
+
+        return data;
+      }
+
+      return fallbackData;
+    }
+
+    function setText(id, value) {
+      const element = document.getElementById(id);
+      if (element) element.textContent = value ?? 0;
+    }
+
+    function renderMetricas(data) {
+      setText("fechaActualizacion", data.actualizacion);
+      setText("horaActualizacion", data.hora);
+
+      setText("abril", data.resumenGeneral.abril);
+      setText("mayoTotal", data.resumenGeneral.mayo);
+      setText("junioTotal", data.resumenGeneral.junio);
+      setText("mayoJunio", data.resumenGeneral.mayoJunio);
+      setText("evaluacionesTotales", data.resumenGeneral.total);
+
+      setText("procesosLotes", data.candidatos.procesosLotes);
+      setText("procesosSinLote", data.candidatos.procesosSinLote);
+      setText("procesosTotal", data.candidatos.procesosTotal);
+      setText("evaluacionesDia", data.candidatos.evaluacionesDia);
+      setText("evaluacionesTotales2", data.candidatos.evaluacionesTotales);
+
+      setText("certProcesosLotes", data.certificados.procesosLotes);
+      setText("certSolicitados", data.certificados.solicitados);
+      setText("certRecibidos", data.certificados.recibidos);
+      setText("certProceso", data.certificados.proceso);
+      setText("promedioDia", data.certificados.promedioDia);
+    }
+
+    function renderTabla(id, rows, header1, header2) {
+      const table = document.getElementById(id);
+      if (!table) return;
+
+      const total = rows.reduce((sum, row) => sum + Number(row[1] || 0), 0);
+
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th>${header1}</th>
+            <th>${header2}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(row => `
+            <tr>
+              <td>${row[0]}</td>
+              <td>${row[1]}</td>
+            </tr>
+          `).join("")}
+          <tr class="total-row">
+            <td>Total general</td>
+            <td>${total}</td>
+          </tr>
+        </tbody>
+      `;
+    }
+
+    function crearPieChart(id, rows) {
+      const ctx = document.getElementById(id);
+      if (!ctx) return;
+
+      const chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: rows.map(row => row[0]),
+          datasets: [{
+            data: rows.map(row => row[1]),
+            backgroundColor: ["#5B9BD5", "#ED7D31", "#A5A5A5"],
+            borderColor: "#ffffff",
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: context => {
+                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                  const value = context.raw;
+                  const pct = total ? Math.round((value / total) * 100) : 0;
+                  return `${context.label}: ${value} (${pct}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      charts.push(chart);
+    }
+
+    function crearBarChart(id, rows) {
+      const ctx = document.getElementById(id);
+      if (!ctx) return;
+
+      const sorted = [...rows].reverse();
+
+      const chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: sorted.map(row => row[0]),
+          datasets: [{
+            data: sorted.map(row => row[1]),
+            backgroundColor: "#5B9BD5",
+            borderColor: "#5B9BD5",
+            borderWidth: 1
+          }]
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              grid: { color: "#d9d9d9" },
+              ticks: { color: "#555555" }
+            },
+            y: {
+              grid: { display: false },
+              ticks: {
+                color: "#555555",
+                font: { size: 10 }
+              }
+            }
+          }
+        }
+      });
+
+      charts.push(chart);
+    }
+
+    function renderDashboard(data) {
+      renderMetricas(data);
+
+      renderTabla("tablaCentrosTotal", data.centrosTotal, "Etiquetas de fila", "Conteo de NÚMERO");
+      renderTabla("tablaCentrosJunio", data.centrosJunio, "Etiquetas de fila", "Conteo de NÚMERO");
+      renderTabla("tablaCentrosMayo", data.centrosMayo, "Etiquetas de fila", "Conteo de NÚMERO");
+
+      renderTabla("tablaEvaluadoresTotal", data.evaluadoresTotal, "Evaluador", "Cuenta de NOMBRE DEL EVALUADOR");
+      renderTabla("tablaEvaluadoresJunio", data.evaluadoresJunio, "Evaluador", "Cuenta de NOMBRE DEL EVALUADOR");
+      renderTabla("tablaEvaluadoresMayo", data.evaluadoresMayo, "Evaluador", "Evaluaciones");
+
+      charts.forEach(chart => chart.destroy());
+      charts = [];
+
+      crearPieChart("chartCentrosTotal", data.centrosTotal);
+      crearPieChart("chartCentrosJunio", data.centrosJunio);
+      crearPieChart("chartCentrosMayo", data.centrosMayo);
+
+      crearBarChart("chartEvaluadoresTotal", data.evaluadoresTotal);
+      crearBarChart("chartEvaluadoresJunio", data.evaluadoresJunio);
+      crearBarChart("chartEvaluadoresMayo", data.evaluadoresMayo);
+    }
+
+    cargarDatos().then(renderDashboard);
+  </script>
 </body>
 </html>
