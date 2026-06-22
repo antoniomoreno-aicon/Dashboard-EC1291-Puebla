@@ -4,156 +4,215 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DASHBOARD PROYECTO PUEBLA EC1291 2026</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Importante: ?v=5 fuerza a GitHub/Chrome a cargar el CSS nuevo -->
+  <link rel="stylesheet" href="./styles.css?v=5" />
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-  <main class="page">
-    <header class="top-header">
+  <main class="dashboard-page">
+    <header class="dashboard-header">
       <h1>DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
-      <div class="update-box">
-        <div><strong>Actualización:</strong> <span id="fechaActualizacion">--</span></div>
-        <div><strong>Hora:</strong> <span id="horaActualizacion">--</span></div>
+
+      <div class="update-info">
+        <div><strong>Actualización:</strong> <span id="fechaActualizacion">22/06/2026</span></div>
+        <div><strong>Hora:</strong> <span id="horaActualizacion">08:08</span></div>
       </div>
     </header>
 
-    <section class="section">
+    <!-- RESUMEN GENERAL -->
+    <section class="dashboard-section">
       <h2>Resumen general</h2>
-      <div class="cards five">
-        <article class="metric-card gray">
-          <h3>Evaluaciones totales Abril<br /><span>(De evaluadores)</span></h3>
-          <p id="abril">0</p>
+
+      <div class="card-row card-row-5">
+        <article class="metric-card gray-card">
+          <div class="metric-title">Evaluaciones totales Abril<br><span>(De evaluadores)</span></div>
+          <div class="metric-value" id="abril">37</div>
         </article>
+
         <article class="metric-card">
-          <h3>Evaluaciones totales Mayo</h3>
-          <p id="mayoTotal">0</p>
+          <div class="metric-title">Evaluaciones totales Mayo</div>
+          <div class="metric-value" id="mayoTotal">88</div>
         </article>
+
         <article class="metric-card">
-          <h3>Evaluaciones totales Junio</h3>
-          <p id="junioTotal">0</p>
+          <div class="metric-title">Evaluaciones totales Junio</div>
+          <div class="metric-value" id="junioTotal">109</div>
         </article>
-        <article class="metric-card small">
-          <h3>Evaluaciones Mayo<br />+ Junio</h3>
-          <p id="mayoJunio">0</p>
+
+        <article class="metric-card narrow-card">
+          <div class="metric-title">Evaluaciones Mayo<br>+ Junio</div>
+          <div class="metric-value" id="mayoJunio">197</div>
         </article>
-        <article class="metric-card blue">
-          <h3>Evaluaciones<br />Totales</h3>
-          <p id="evaluacionesTotales">0</p>
+
+        <article class="metric-card narrow-card blue-card">
+          <div class="metric-title">Evaluaciones<br>Totales</div>
+          <div class="metric-value" id="evaluacionesTotales">234</div>
         </article>
       </div>
     </section>
 
-    <section class="section">
+    <!-- CANDIDATOS -->
+    <section class="dashboard-section">
       <h2>Resumen de candidatos en lotes, proceso de carga y en proceso</h2>
-      <div class="cards five">
-        <article class="metric-card tall">
-          <h3>Procesos en lotes</h3>
-          <p id="procesosLotes">0</p>
+
+      <div class="card-row card-row-5">
+        <article class="metric-card tall-card">
+          <div class="metric-title">Procesos en lotes</div>
+          <div class="metric-value" id="procesosLotes">208</div>
         </article>
-        <article class="metric-card tall">
-          <h3>Total procesos cargados<br />Sin meter en lotes</h3>
-          <p id="procesosSinLote">0</p>
+
+        <article class="metric-card tall-card">
+          <div class="metric-title">Total procesos cargados<br>Sin meter en lotes</div>
+          <div class="metric-value" id="procesosSinLote">26</div>
         </article>
-        <article class="metric-card tall">
-          <h3>Procesos en lotes + cargados sin meter en lotes</h3>
-          <p id="procesosTotal">0</p>
+
+        <article class="metric-card tall-card">
+          <div class="metric-title">Procesos en lotes + cargados sin meter en lotes</div>
+          <div class="metric-value" id="procesosTotal">234</div>
         </article>
-        <article class="metric-card tall orange">
-          <h3>Evaluaciones del<br />día en proceso</h3>
-          <p id="evaluacionesDia">0</p>
+
+        <article class="metric-card tall-card narrow-card orange-card">
+          <div class="metric-title">Evaluaciones del<br>día en proceso</div>
+          <div class="metric-value" id="evaluacionesDia">0</div>
         </article>
-        <article class="metric-card tall blue">
-          <h3>Evaluaciones<br />Totales</h3>
-          <p id="evaluacionesTotales2">0</p>
+
+        <article class="metric-card tall-card narrow-card blue-card">
+          <div class="metric-title">Evaluaciones<br>Totales</div>
+          <div class="metric-value" id="evaluacionesTotales2">234</div>
         </article>
       </div>
     </section>
 
-    <section class="section compact">
-      <h2>Resumen de certificados</h2>
-      <div class="cards five">
+    <!-- CERTIFICADOS -->
+    <section class="dashboard-section certificados-section">
+      <h3>Resumen de certificados</h3>
+
+      <div class="card-row card-row-5">
         <article class="metric-card">
-          <h3>Procesos en lotes</h3>
-          <p id="certProcesosLotes">0</p>
+          <div class="metric-title">Procesos en lotes</div>
+          <div class="metric-value" id="certProcesosLotes">208</div>
         </article>
+
         <article class="metric-card">
-          <h3>Certificados solicitados del EC1291<br />Abr + May + Jun</h3>
-          <p id="certSolicitados">0</p>
+          <div class="metric-title">Certificados solicitados del EC1291<br>Abr + May + Jun</div>
+          <div class="metric-value" id="certSolicitados">199</div>
         </article>
+
         <article class="metric-card">
-          <h3>Certificados recibidos del EC1291</h3>
-          <p id="certRecibidos">0</p>
+          <div class="metric-title">Certificados recibidos del EC1291</div>
+          <div class="metric-value" id="certRecibidos">171</div>
         </article>
-        <article class="metric-card small">
-          <h3>En procesos de<br />solicitud</h3>
-          <p id="certProceso">0</p>
+
+        <article class="metric-card narrow-card">
+          <div class="metric-title">En procesos de<br>solicitud</div>
+          <div class="metric-value" id="certProceso">9</div>
         </article>
-        <article class="metric-card small">
-          <h3>Promedio evaluaciones por día</h3>
-          <p id="promedioDia">0</p>
+
+        <article class="metric-card narrow-card">
+          <div class="metric-title">Promedio evaluaciones por día</div>
+          <div class="metric-value" id="promedioDia">5.47</div>
         </article>
       </div>
     </section>
 
-    <section class="section">
+    <!-- MAYO + JUNIO -->
+    <section class="dashboard-section">
       <h2>Resumen por Centro Evaluador</h2>
       <h4>Mayo + Junio</h4>
-      <div class="dashboard-grid">
+
+      <div class="grid-block">
         <div class="table-wrap">
+          <div class="filter-row">
+            <span>Mes</span>
+            <span>(Todas)</span>
+          </div>
           <table id="tablaCentrosTotal"></table>
         </div>
-        <div class="chart-wrap">
+
+        <div class="chart-box pie-box">
           <canvas id="chartCentrosTotal"></canvas>
         </div>
       </div>
 
-      <div class="dashboard-grid">
+      <div class="grid-block">
         <div class="table-wrap">
+          <div class="filter-row">
+            <span>Mes</span>
+            <span>(Todas)</span>
+          </div>
           <table id="tablaEvaluadoresTotal"></table>
         </div>
-        <div class="chart-wrap wide">
+
+        <div class="chart-box bar-box">
           <canvas id="chartEvaluadoresTotal"></canvas>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <!-- JUNIO -->
+    <section class="dashboard-section">
       <h2>Junio</h2>
-      <div class="dashboard-grid">
+
+      <div class="grid-block">
         <div class="table-wrap">
+          <div class="filter-row">
+            <span>Mes</span>
+            <span>JUNIO</span>
+          </div>
           <table id="tablaCentrosJunio"></table>
         </div>
-        <div class="chart-wrap">
+
+        <div class="chart-box pie-box">
           <canvas id="chartCentrosJunio"></canvas>
         </div>
       </div>
 
-      <div class="dashboard-grid">
+      <div class="grid-block">
         <div class="table-wrap">
+          <div class="filter-row">
+            <span>Mes</span>
+            <span>JUNIO</span>
+          </div>
           <table id="tablaEvaluadoresJunio"></table>
         </div>
-        <div class="chart-wrap wide">
+
+        <div class="chart-box bar-box">
           <canvas id="chartEvaluadoresJunio"></canvas>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <!-- MAYO -->
+    <section class="dashboard-section">
       <h2>Mayo</h2>
-      <div class="dashboard-grid">
+
+      <div class="grid-block">
         <div class="table-wrap">
+          <div class="filter-row">
+            <span>Mes</span>
+            <span>MAYO</span>
+          </div>
           <table id="tablaCentrosMayo"></table>
         </div>
-        <div class="chart-wrap">
+
+        <div class="chart-box pie-box">
           <canvas id="chartCentrosMayo"></canvas>
         </div>
       </div>
 
-      <div class="dashboard-grid">
+      <div class="grid-block">
         <div class="table-wrap">
+          <div class="filter-row">
+            <span>Mes</span>
+            <span>MAYO</span>
+          </div>
           <table id="tablaEvaluadoresMayo"></table>
         </div>
-        <div class="chart-wrap wide">
+
+        <div class="chart-box bar-box">
           <canvas id="chartEvaluadoresMayo"></canvas>
         </div>
       </div>
@@ -164,6 +223,7 @@
     const fallbackData = {
       actualizacion: "22/06/2026",
       hora: "08:08",
+
       resumenGeneral: {
         abril: 37,
         mayo: 88,
@@ -171,6 +231,7 @@
         mayoJunio: 197,
         total: 234
       },
+
       candidatos: {
         procesosLotes: 208,
         procesosSinLote: 26,
@@ -178,6 +239,7 @@
         evaluacionesDia: 0,
         evaluacionesTotales: 234
       },
+
       certificados: {
         procesosLotes: 208,
         solicitados: 199,
@@ -185,21 +247,25 @@
         proceso: 9,
         promedioDia: 5.47
       },
+
       centrosTotal: [
         ["CDI", 56],
         ["GLOBAL", 67],
         ["LAATTER", 74]
       ],
+
       centrosJunio: [
         ["CDI", 28],
         ["GLOBAL", 38],
         ["LAATTER", 43]
       ],
+
       centrosMayo: [
         ["CDI", 28],
         ["GLOBAL", 29],
         ["LAATTER", 31]
       ],
+
       evaluadoresTotal: [
         ["JOSE DANIEL COLOMO MARTINEZ", 30],
         ["CRISTOPHER TORIJA MORALES", 26],
@@ -222,6 +288,7 @@
         ["MIRNA GARCIA", 1],
         ["MARITZELENA GUADALUPE CAMPA FLORES", 1]
       ],
+
       evaluadoresJunio: [
         ["CRISTOPHER TORIJA MORALES", 26],
         ["VICTOR ALEJANDRO SOTO CEBALLOS", 22],
@@ -239,6 +306,7 @@
         ["ADRIANA ANGELES GONZALEZ", 1],
         ["MIRNA GARCIA", 1]
       ],
+
       evaluadoresMayo: [
         ["JOCELYN ANGELES IBARRA", 11],
         ["FRANCISCO JAVIER TORRES ROSAS", 10],
@@ -263,56 +331,50 @@
 
     async function cargarDatos() {
       try {
-        const response = await fetch(`data.json?nocache=${Date.now()}`);
+        const response = await fetch("./data.json?v=" + Date.now());
         if (!response.ok) throw new Error("No se pudo cargar data.json");
+
         const json = await response.json();
-        return normalizarDatos(json);
+
+        if (json && typeof json === "object" && !Array.isArray(json)) {
+          return combinarDatos(fallbackData, json);
+        }
+
+        return fallbackData;
       } catch (error) {
         console.warn("Usando datos de respaldo:", error);
         return fallbackData;
       }
     }
 
-    function normalizarDatos(json) {
-      if (!json) return fallbackData;
-
-      if (json.resumenGeneral || json.centrosTotal || json.evaluadoresTotal) {
-        return { ...fallbackData, ...json };
-      }
-
-      if (Array.isArray(json)) {
-        const data = structuredClone(fallbackData);
-
-        json.forEach(row => {
-          const cells = Array.isArray(row) ? row : Object.values(row);
-          const a = String(cells[0] ?? "").trim();
-          const b = cells[1];
-          const c = cells[2];
-
-          if (!a) return;
-
-          const label = a.toLowerCase();
-          const value = Number(b ?? c);
-
-          if (label.includes("actualización")) data.actualizacion = String(b ?? c);
-          if (label === "hora") data.hora = String(b ?? c);
-
-          if (label.includes("abril")) data.resumenGeneral.abril = value;
-          if (label.includes("mayo") && label.includes("total")) data.resumenGeneral.mayo = value;
-          if (label.includes("junio") && label.includes("total")) data.resumenGeneral.junio = value;
-          if (label.includes("mayo + junio")) data.resumenGeneral.mayoJunio = value;
-          if (label.includes("evaluaciones totales")) data.resumenGeneral.total = value;
-        });
-
-        return data;
-      }
-
-      return fallbackData;
+    function combinarDatos(base, nuevo) {
+      return {
+        ...base,
+        ...nuevo,
+        resumenGeneral: {
+          ...base.resumenGeneral,
+          ...(nuevo.resumenGeneral || {})
+        },
+        candidatos: {
+          ...base.candidatos,
+          ...(nuevo.candidatos || {})
+        },
+        certificados: {
+          ...base.certificados,
+          ...(nuevo.certificados || {})
+        },
+        centrosTotal: nuevo.centrosTotal || base.centrosTotal,
+        centrosJunio: nuevo.centrosJunio || base.centrosJunio,
+        centrosMayo: nuevo.centrosMayo || base.centrosMayo,
+        evaluadoresTotal: nuevo.evaluadoresTotal || base.evaluadoresTotal,
+        evaluadoresJunio: nuevo.evaluadoresJunio || base.evaluadoresJunio,
+        evaluadoresMayo: nuevo.evaluadoresMayo || base.evaluadoresMayo
+      };
     }
 
     function setText(id, value) {
-      const element = document.getElementById(id);
-      if (element) element.textContent = value ?? 0;
+      const el = document.getElementById(id);
+      if (el) el.textContent = value ?? 0;
     }
 
     function renderMetricas(data) {
@@ -342,7 +404,8 @@
       const table = document.getElementById(id);
       if (!table) return;
 
-      const total = rows.reduce((sum, row) => sum + Number(row[1] || 0), 0);
+      const safeRows = Array.isArray(rows) ? rows : [];
+      const total = safeRows.reduce((sum, row) => sum + Number(row[1] || 0), 0);
 
       table.innerHTML = `
         <thead>
@@ -352,7 +415,7 @@
           </tr>
         </thead>
         <tbody>
-          ${rows.map(row => `
+          ${safeRows.map(row => `
             <tr>
               <td>${row[0]}</td>
               <td>${row[1]}</td>
@@ -367,10 +430,10 @@
     }
 
     function crearPieChart(id, rows) {
-      const ctx = document.getElementById(id);
-      if (!ctx) return;
+      const canvas = document.getElementById(id);
+      if (!canvas) return;
 
-      const chart = new Chart(ctx, {
+      const chart = new Chart(canvas, {
         type: "pie",
         data: {
           labels: rows.map(row => row[0]),
@@ -385,10 +448,12 @@
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
-            legend: { display: false },
+            legend: {
+              display: false
+            },
             tooltip: {
               callbacks: {
-                label: context => {
+                label: function(context) {
                   const total = context.dataset.data.reduce((a, b) => a + b, 0);
                   const value = context.raw;
                   const pct = total ? Math.round((value / total) * 100) : 0;
@@ -404,12 +469,12 @@
     }
 
     function crearBarChart(id, rows) {
-      const ctx = document.getElementById(id);
-      if (!ctx) return;
+      const canvas = document.getElementById(id);
+      if (!canvas) return;
 
       const sorted = [...rows].reverse();
 
-      const chart = new Chart(ctx, {
+      const chart = new Chart(canvas, {
         type: "bar",
         data: {
           labels: sorted.map(row => row[0]),
@@ -425,19 +490,29 @@
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
-            legend: { display: false }
+            legend: {
+              display: false
+            }
           },
           scales: {
             x: {
               beginAtZero: true,
-              grid: { color: "#d9d9d9" },
-              ticks: { color: "#555555" }
+              grid: {
+                color: "#D9D9D9"
+              },
+              ticks: {
+                color: "#555555"
+              }
             },
             y: {
-              grid: { display: false },
+              grid: {
+                display: false
+              },
               ticks: {
                 color: "#555555",
-                font: { size: 10 }
+                font: {
+                  size: 10
+                }
               }
             }
           }
