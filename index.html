@@ -1,551 +1,237 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DASHBOARD PROYECTO PUEBLA EC1291 2026</title>
-
-  <!-- Importante: ?v=5 fuerza a GitHub/Chrome a cargar el CSS nuevo -->
-  <link rel="stylesheet" href="./styles.css?v=5" />
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css?v=20260623-dashboard-excel" />
 </head>
-
 <body>
-  <main class="dashboard-page">
-    <header class="dashboard-header">
-      <h1>DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
+  <main class="excel-page">
+    <h1 class="main-title">DASHBOARD PROYECTO PUEBLA EC1291 2026</h1>
 
-      <div class="update-info">
-        <div><strong>Actualización:</strong> <span id="fechaActualizacion">23/06/2026</span></div>
-        <div><strong>Hora:</strong> <span id="horaActualizacion">09:37</span></div>
-      </div>
-    </header>
-
-    <!-- RESUMEN GENERAL -->
-    <section class="dashboard-section">
-      <h2>Resumen general</h2>
-
-      <div class="card-row card-row-5">
-        <article class="metric-card gray-card">
-          <div class="metric-title">Evaluaciones totales Abril<br><span>(De evaluadores)</span></div>
-          <div class="metric-value" id="abril">37</div>
-        </article>
-
-        <article class="metric-card">
-          <div class="metric-title">Evaluaciones totales Mayo</div>
-          <div class="metric-value" id="mayoTotal">88</div>
-        </article>
-
-        <article class="metric-card">
-          <div class="metric-title">Evaluaciones totales Junio</div>
-          <div class="metric-value" id="junioTotal">109</div>
-        </article>
-
-        <article class="metric-card narrow-card">
-          <div class="metric-title">Evaluaciones Mayo<br>+ Junio</div>
-          <div class="metric-value" id="mayoJunio">200</div>
-        </article>
-
-        <article class="metric-card narrow-card blue-card">
-          <div class="metric-title">Evaluaciones<br>Totales</div>
-          <div class="metric-value" id="evaluacionesTotales">237</div>
-        </article>
+    <section class="section resumen-general">
+      <div class="blue-band"><span>Resumen general</span></div>
+      <div class="updated"><em>Actualización:</em>&nbsp; 23/06/2026<br><em>Hora:</em>&nbsp; 09:36</div>
+      <div class="card-row">
+        <article class="metric-card gray"><div class="metric-label">Evaluaciones totales<br>Abril<br>(De evaluadores)</div><div class="metric-value">37</div></article>
+        <article class="metric-card "><div class="metric-label">Evaluaciones totales<br>Mayo</div><div class="metric-value">88</div></article>
+        <article class="metric-card "><div class="metric-label">Evaluaciones<br>totales Junio</div><div class="metric-value">112</div></article>
+        <article class="metric-card "><div class="metric-label">Evaluaciones Mayo<br>+ Junio</div><div class="metric-value">200</div></article>
+        <article class="metric-card strong-blue"><div class="metric-label">Evaluaciones<br>Totales</div><div class="metric-value">237</div></article>
       </div>
     </section>
 
-    <!-- CANDIDATOS -->
-    <section class="dashboard-section">
-      <h2>Resumen de candidatos en lotes, proceso de carga y en proceso</h2>
-
-      <div class="card-row card-row-5">
-        <article class="metric-card tall-card">
-          <div class="metric-title">Procesos en lotes</div>
-          <div class="metric-value" id="procesosLotes">234</div>
-        </article>
-
-        <article class="metric-card tall-card">
-          <div class="metric-title">Total procesos cargados<br>Sin meter en lotes</div>
-          <div class="metric-value" id="procesosSinLote">3</div>
-        </article>
-
-        <article class="metric-card tall-card">
-          <div class="metric-title">Procesos en lotes + cargados sin meter en lotes</div>
-          <div class="metric-value" id="procesosTotal">237</div>
-        </article>
-
-        <article class="metric-card tall-card narrow-card orange-card">
-          <div class="metric-title">Evaluaciones del<br>día en proceso</div>
-          <div class="metric-value" id="evaluacionesDia">0</div>
-        </article>
-
-        <article class="metric-card tall-card narrow-card blue-card">
-          <div class="metric-title">Evaluaciones<br>Totales</div>
-          <div class="metric-value" id="evaluacionesTotales2">237</div>
-        </article>
+    <section class="section">
+      <div class="blue-band big"><span>Resumen de candidatos en lotes, proceso de carga y en proceso</span></div>
+      <div class="card-row tall">
+        <article class="metric-card "><div class="metric-label">Procesos en lotes</div><div class="metric-value">234</div></article>
+        <article class="metric-card "><div class="metric-label">Total procesos<br>cargados<br>Sin meter en lotes</div><div class="metric-value">3</div></article>
+        <article class="metric-card "><div class="metric-label">Procesos en lotes +<br>cargados sin meter<br>en lotes</div><div class="metric-value">237</div></article>
+        <article class="metric-card orange"><div class="metric-label">Evaluaciones del<br>día en proceso</div><div class="metric-value">0</div></article>
+        <article class="metric-card strong-blue"><div class="metric-label">Evaluaciones<br>Totales</div><div class="metric-value">237</div></article>
       </div>
     </section>
 
-    <!-- CERTIFICADOS -->
-    <section class="dashboard-section certificados-section">
-      <h3>Resumen de certificados</h3>
-
-      <div class="card-row card-row-5">
-        <article class="metric-card">
-          <div class="metric-title">Procesos en lotes</div>
-          <div class="metric-value" id="certProcesosLotes">208</div>
-        </article>
-
-        <article class="metric-card">
-          <div class="metric-title">Certificados solicitados del EC1291<br>Abr + May + Jun</div>
-          <div class="metric-value" id="certSolicitados">199</div>
-        </article>
-
-        <article class="metric-card">
-          <div class="metric-title">Certificados recibidos del EC1291</div>
-          <div class="metric-value" id="certRecibidos">171</div>
-        </article>
-
-        <article class="metric-card narrow-card">
-          <div class="metric-title">En procesos de<br>solicitud</div>
-          <div class="metric-value" id="certProceso">9</div>
-        </article>
-
-        <article class="metric-card narrow-card">
-          <div class="metric-title">Promedio evaluaciones por día</div>
-          <div class="metric-value" id="promedioDia">5.47</div>
-        </article>
+    <section class="section certificados">
+      <h2 class="plain-title">Resumen de certificados</h2>
+      <div class="card-row cert-row">
+        <article class="metric-card "><div class="metric-label">Procesos en lotes</div><div class="metric-value">234</div></article>
+        <article class="metric-card "><div class="metric-label">Certificados<br>solicitados del<br>EC1291<br>Abr + May + Jun</div><div class="metric-value">208</div></article>
+        <article class="metric-card "><div class="metric-label">Certificados<br>recibidos del<br>EC1291</div><div class="metric-value">199</div></article>
+        <article class="metric-card "><div class="metric-label">En procesos de<br>solicitud</div><div class="metric-value">26</div></article>
+        <article class="metric-card note"><div class="metric-label">Promedio<br>evaluaciones por<br>día</div><div class="metric-value">5.56</div></article>
       </div>
     </section>
 
-    <!-- MAYO + JUNIO -->
-    <section class="dashboard-section">
-      <h2>Resumen por Centro Evaluador</h2>
-      <h4>Mayo + Junio</h4>
-
-      <div class="grid-block">
-        <div class="table-wrap">
-          <div class="filter-row">
-            <span>Mes</span>
-            <span>(Todas)</span>
-          </div>
-          <table id="tablaCentrosTotal"></table>
+    <section class="section centro">
+      <div class="blue-band double"><span>Resumen por Centro Evaluador</span><b>Mayo + Junio</b></div>
+      <div class="analysis-row">
+        <div class="left-stack">
+          <table class="filter"><tr><td>Mes</td><td>(Todas)<span>▾</span></td></tr></table>
+          <table class="pivot">
+<thead><tr><th>Etiquetas de fila</th><th>Conteo de NÚMERO</th></tr></thead>
+<tbody>
+<tr><td>CDI</td><td>56</td></tr>
+<tr><td>GLOBAL</td><td>67</td></tr>
+<tr><td>LAATTER</td><td>74</td></tr>
+<tr class="total"><td>Total general</td><td>197</td></tr>
+</tbody></table>
         </div>
-
-        <div class="chart-box pie-box">
-          <canvas id="chartCentrosTotal"></canvas>
-        </div>
+        <div class="pie-card"><div class="chart-pill">Conteo de NÚMERO</div><div class="pie" style="background:conic-gradient(#4f81bd 0.00% 28.43%,#f79646 28.43% 62.44%,#a5a5a5 62.44% 100.00%);"><span class="pie-label l1">CDI<br>28%</span><span class="pie-label l2">GLOBAL<br>34%</span><span class="pie-label l3">LAATTER<br>38%</span></div></div>
       </div>
-
-      <div class="grid-block">
-        <div class="table-wrap">
-          <div class="filter-row">
-            <span>Mes</span>
-            <span>(Todas)</span>
-          </div>
-          <table id="tablaEvaluadoresTotal"></table>
+      <div class="analysis-row bars-row">
+        <div class="left-stack">
+          <table class="filter"><tr><td>Mes</td><td>(Todas)<span>▾</span></td></tr></table>
+          <table class="pivot evaluator">
+<thead><tr><th>Evaluador</th><th>Evaluaciones</th></tr></thead>
+<tbody>
+<tr><td>JOSE DANIEL COLOMO MARTINEZ</td><td>30</td></tr>
+<tr><td>CRISTOPHER TORIJA MORALES</td><td>26</td></tr>
+<tr><td>VICTOR ALEJANDRO SOTO CEBALLOS</td><td>22</td></tr>
+<tr><td>JOCELYN ANGELES IBARRA</td><td>13</td></tr>
+<tr><td>MARIO ARRIAGA ROBLES</td><td>12</td></tr>
+<tr><td>JAZER FEDERICO VEGA GONZALEZ</td><td>12</td></tr>
+<tr><td>FRANCISCO JAVIER TORRES ROSAS</td><td>12</td></tr>
+<tr><td>JUAN CARLOS ZAMUDIO SANCHEZ</td><td>11</td></tr>
+<tr><td>JULIO DANIEL PINEDA HERNANDEZ</td><td>10</td></tr>
+<tr><td>LAURA PICHARDO ROSAS</td><td>10</td></tr>
+<tr><td>ADRIANA ANGELES GONZALEZ</td><td>9</td></tr>
+<tr><td>ALBERTO FABIAN OLIVEROS ROBLES</td><td>6</td></tr>
+<tr><td>EDGAR GARCIA VARELA</td><td>5</td></tr>
+<tr><td>MARTIN EDUARDO LOPEZ RODRIGUEZ</td><td>5</td></tr>
+<tr><td>ALBERTO GARCIA VARELA</td><td>5</td></tr>
+<tr><td>OSCAR ALBERTO VARGAS DAMIAN</td><td>3</td></tr>
+<tr><td>ANDREA RUBÍ CARDENAS MORENO</td><td>2</td></tr>
+<tr><td>BRIANDA AVRIL</td><td>1</td></tr>
+<tr><td>MIRNA GARCIA</td><td>1</td></tr>
+<tr><td>MARITZELENA GUADALUPE CAMPA FLORES</td><td>1</td></tr>
+<tr class="total"><td>Total general</td><td>196</td></tr>
+</tbody></table>
         </div>
-
-        <div class="chart-box bar-box">
-          <canvas id="chartEvaluadoresTotal"></canvas>
-        </div>
-      </div>
-    </section>
-
-    <!-- JUNIO -->
-    <section class="dashboard-section">
-      <h2>Junio</h2>
-
-      <div class="grid-block">
-        <div class="table-wrap">
-          <div class="filter-row">
-            <span>Mes</span>
-            <span>JUNIO</span>
-          </div>
-          <table id="tablaCentrosJunio"></table>
-        </div>
-
-        <div class="chart-box pie-box">
-          <canvas id="chartCentrosJunio"></canvas>
-        </div>
-      </div>
-
-      <div class="grid-block">
-        <div class="table-wrap">
-          <div class="filter-row">
-            <span>Mes</span>
-            <span>JUNIO</span>
-          </div>
-          <table id="tablaEvaluadoresJunio"></table>
-        </div>
-
-        <div class="chart-box bar-box">
-          <canvas id="chartEvaluadoresJunio"></canvas>
-        </div>
-      </div>
-    </section>
-
-    <!-- MAYO -->
-    <section class="dashboard-section">
-      <h2>Mayo</h2>
-
-      <div class="grid-block">
-        <div class="table-wrap">
-          <div class="filter-row">
-            <span>Mes</span>
-            <span>MAYO</span>
-          </div>
-          <table id="tablaCentrosMayo"></table>
-        </div>
-
-        <div class="chart-box pie-box">
-          <canvas id="chartCentrosMayo"></canvas>
-        </div>
-      </div>
-
-      <div class="grid-block">
-        <div class="table-wrap">
-          <div class="filter-row">
-            <span>Mes</span>
-            <span>MAYO</span>
-          </div>
-          <table id="tablaEvaluadoresMayo"></table>
-        </div>
-
-        <div class="chart-box bar-box">
-          <canvas id="chartEvaluadoresMayo"></canvas>
-        </div>
+        <div class="bar-chart"><div class="bar-plot"><div class="bar-line"><span class="bar-name">BRIANDA AVRIL</span><span class="bar-wrap"><i style="width:3%"></i></span><span class="bar-num">1</span></div>
+<div class="bar-line"><span class="bar-name">MIRNA GARCIA</span><span class="bar-wrap"><i style="width:3%"></i></span><span class="bar-num">1</span></div>
+<div class="bar-line"><span class="bar-name">MARITZELENA GUADALUPE CAMPA FLORES</span><span class="bar-wrap"><i style="width:3%"></i></span><span class="bar-num">1</span></div>
+<div class="bar-line"><span class="bar-name">ANDREA RUBÍ CARDENAS MORENO</span><span class="bar-wrap"><i style="width:7%"></i></span><span class="bar-num">2</span></div>
+<div class="bar-line"><span class="bar-name">OSCAR ALBERTO VARGAS DAMIAN</span><span class="bar-wrap"><i style="width:10%"></i></span><span class="bar-num">3</span></div>
+<div class="bar-line"><span class="bar-name">EDGAR GARCIA VARELA</span><span class="bar-wrap"><i style="width:17%"></i></span><span class="bar-num">5</span></div>
+<div class="bar-line"><span class="bar-name">MARTIN EDUARDO LOPEZ RODRIGUEZ</span><span class="bar-wrap"><i style="width:17%"></i></span><span class="bar-num">5</span></div>
+<div class="bar-line"><span class="bar-name">ALBERTO GARCIA VARELA</span><span class="bar-wrap"><i style="width:17%"></i></span><span class="bar-num">5</span></div>
+<div class="bar-line"><span class="bar-name">ALBERTO FABIAN OLIVEROS ROBLES</span><span class="bar-wrap"><i style="width:20%"></i></span><span class="bar-num">6</span></div>
+<div class="bar-line"><span class="bar-name">ADRIANA ANGELES GONZALEZ</span><span class="bar-wrap"><i style="width:30%"></i></span><span class="bar-num">9</span></div>
+<div class="bar-line"><span class="bar-name">JULIO DANIEL PINEDA HERNANDEZ</span><span class="bar-wrap"><i style="width:33%"></i></span><span class="bar-num">10</span></div>
+<div class="bar-line"><span class="bar-name">LAURA PICHARDO ROSAS</span><span class="bar-wrap"><i style="width:33%"></i></span><span class="bar-num">10</span></div>
+<div class="bar-line"><span class="bar-name">JUAN CARLOS ZAMUDIO SANCHEZ</span><span class="bar-wrap"><i style="width:37%"></i></span><span class="bar-num">11</span></div>
+<div class="bar-line"><span class="bar-name">MARIO ARRIAGA ROBLES</span><span class="bar-wrap"><i style="width:40%"></i></span><span class="bar-num">12</span></div>
+<div class="bar-line"><span class="bar-name">JAZER FEDERICO VEGA GONZALEZ</span><span class="bar-wrap"><i style="width:40%"></i></span><span class="bar-num">12</span></div>
+<div class="bar-line"><span class="bar-name">FRANCISCO JAVIER TORRES ROSAS</span><span class="bar-wrap"><i style="width:40%"></i></span><span class="bar-num">12</span></div>
+<div class="bar-line"><span class="bar-name">JOCELYN ANGELES IBARRA</span><span class="bar-wrap"><i style="width:43%"></i></span><span class="bar-num">13</span></div>
+<div class="bar-line"><span class="bar-name">VICTOR ALEJANDRO SOTO CEBALLOS</span><span class="bar-wrap"><i style="width:73%"></i></span><span class="bar-num">22</span></div>
+<div class="bar-line"><span class="bar-name">CRISTOPHER TORIJA MORALES</span><span class="bar-wrap"><i style="width:87%"></i></span><span class="bar-num">26</span></div>
+<div class="bar-line"><span class="bar-name">JOSE DANIEL COLOMO MARTINEZ</span><span class="bar-wrap"><i style="width:100%"></i></span><span class="bar-num">30</span></div>
+</div></div>
       </div>
     </section>
+    
+<section class="section month-section">
+  <div class="blue-band month-band"><span>Junio</span></div>
+  <div class="analysis-row">
+    <div class="left-stack">
+      <table class="filter"><tr><td>Mes</td><td>JUNIO<span>▾</span></td></tr></table>
+      <table class="pivot">
+<thead><tr><th>Etiquetas de fila</th><th>Conteo de NÚMERO</th></tr></thead>
+<tbody>
+<tr><td>CDI</td><td>28</td></tr>
+<tr><td>GLOBAL</td><td>38</td></tr>
+<tr><td>LAATTER</td><td>43</td></tr>
+<tr class="total"><td>Total general</td><td>109</td></tr>
+</tbody></table>
+    </div>
+    <div class="pie-card"><div class="chart-pill">Conteo de NÚMERO</div><div class="pie" style="background:conic-gradient(#4f81bd 0.00% 25.69%,#f79646 25.69% 60.55%,#a5a5a5 60.55% 100.00%);"><span class="pie-label l1">CDI<br>26%</span><span class="pie-label l2">GLOBAL<br>35%</span><span class="pie-label l3">LAATTER<br>39%</span></div></div>
+  </div>
+  <div class="analysis-row bars-row">
+    <div class="left-stack">
+      <table class="filter"><tr><td>Mes</td><td>JUNIO<span>▾</span></td></tr></table>
+      <table class="pivot evaluator">
+<thead><tr><th>Evaluador</th><th>Evaluaciones</th></tr></thead>
+<tbody>
+<tr><td>CRISTOPHER TORIJA MORALES</td><td>26</td></tr>
+<tr><td>VICTOR ALEJANDRO SOTO CEBALLOS</td><td>22</td></tr>
+<tr><td>JOSE DANIEL COLOMO MARTINEZ</td><td>21</td></tr>
+<tr><td>MARIO ARRIAGA ROBLES</td><td>8</td></tr>
+<tr><td>JAZER FEDERICO VEGA GONZALEZ</td><td>8</td></tr>
+<tr><td>JULIO DANIEL PINEDA HERNANDEZ</td><td>7</td></tr>
+<tr><td>JUAN CARLOS ZAMUDIO SANCHEZ</td><td>6</td></tr>
+<tr><td>OSCAR ALBERTO VARGAS DAMIAN</td><td>2</td></tr>
+<tr><td>FRANCISCO JAVIER TORRES ROSAS</td><td>2</td></tr>
+<tr><td>JOCELYN ANGELES IBARRA</td><td>2</td></tr>
+<tr><td>EDGAR GARCIA VARELA</td><td>1</td></tr>
+<tr><td>ALBERTO FABIAN OLIVEROS ROBLES</td><td>1</td></tr>
+<tr><td>BRIANDA AVRIL</td><td>1</td></tr>
+<tr><td>ADRIANA ANGELES GONZALEZ</td><td>1</td></tr>
+<tr><td>MIRNA GARCIA</td><td>1</td></tr>
+<tr class="total"><td>Total general</td><td>109</td></tr>
+</tbody></table>
+    </div>
+    <div class="bar-chart"><div class="bar-plot"><div class="bar-line"><span class="bar-name">EDGAR GARCIA VARELA</span><span class="bar-wrap"><i style="width:4%"></i></span><span class="bar-num">1</span></div>
+<div class="bar-line"><span class="bar-name">ALBERTO FABIAN OLIVEROS ROBLES</span><span class="bar-wrap"><i style="width:4%"></i></span><span class="bar-num">1</span></div>
+<div class="bar-line"><span class="bar-name">BRIANDA AVRIL</span><span class="bar-wrap"><i style="width:4%"></i></span><span class="bar-num">1</span></div>
+<div class="bar-line"><span class="bar-name">ADRIANA ANGELES GONZALEZ</span><span class="bar-wrap"><i style="width:4%"></i></span><span class="bar-num">1</span></div>
+<div class="bar-line"><span class="bar-name">MIRNA GARCIA</span><span class="bar-wrap"><i style="width:4%"></i></span><span class="bar-num">1</span></div>
+<div class="bar-line"><span class="bar-name">OSCAR ALBERTO VARGAS DAMIAN</span><span class="bar-wrap"><i style="width:8%"></i></span><span class="bar-num">2</span></div>
+<div class="bar-line"><span class="bar-name">FRANCISCO JAVIER TORRES ROSAS</span><span class="bar-wrap"><i style="width:8%"></i></span><span class="bar-num">2</span></div>
+<div class="bar-line"><span class="bar-name">JOCELYN ANGELES IBARRA</span><span class="bar-wrap"><i style="width:8%"></i></span><span class="bar-num">2</span></div>
+<div class="bar-line"><span class="bar-name">JUAN CARLOS ZAMUDIO SANCHEZ</span><span class="bar-wrap"><i style="width:23%"></i></span><span class="bar-num">6</span></div>
+<div class="bar-line"><span class="bar-name">JULIO DANIEL PINEDA HERNANDEZ</span><span class="bar-wrap"><i style="width:27%"></i></span><span class="bar-num">7</span></div>
+<div class="bar-line"><span class="bar-name">MARIO ARRIAGA ROBLES</span><span class="bar-wrap"><i style="width:31%"></i></span><span class="bar-num">8</span></div>
+<div class="bar-line"><span class="bar-name">JAZER FEDERICO VEGA GONZALEZ</span><span class="bar-wrap"><i style="width:31%"></i></span><span class="bar-num">8</span></div>
+<div class="bar-line"><span class="bar-name">JOSE DANIEL COLOMO MARTINEZ</span><span class="bar-wrap"><i style="width:81%"></i></span><span class="bar-num">21</span></div>
+<div class="bar-line"><span class="bar-name">VICTOR ALEJANDRO SOTO CEBALLOS</span><span class="bar-wrap"><i style="width:85%"></i></span><span class="bar-num">22</span></div>
+<div class="bar-line"><span class="bar-name">CRISTOPHER TORIJA MORALES</span><span class="bar-wrap"><i style="width:100%"></i></span><span class="bar-num">26</span></div>
+</div></div>
+  </div>
+</section>
+    
+<section class="section month-section">
+  <div class="blue-band month-band"><span>Mayo</span></div>
+  <div class="analysis-row">
+    <div class="left-stack">
+      <table class="filter"><tr><td>Mes</td><td>MAYO<span>▾</span></td></tr></table>
+      <table class="pivot">
+<thead><tr><th>Etiquetas de fila</th><th>Conteo de NÚMERO</th></tr></thead>
+<tbody>
+<tr><td>CDI</td><td>28</td></tr>
+<tr><td>GLOBAL</td><td>29</td></tr>
+<tr><td>LAATTER</td><td>31</td></tr>
+<tr class="total"><td>Total general</td><td>88</td></tr>
+</tbody></table>
+    </div>
+    <div class="pie-card"><div class="chart-pill">Conteo de NÚMERO</div><div class="pie" style="background:conic-gradient(#4f81bd 0.00% 31.82%,#f79646 31.82% 64.77%,#a5a5a5 64.77% 100.00%);"><span class="pie-label l1">CDI<br>32%</span><span class="pie-label l2">GLOBAL<br>33%</span><span class="pie-label l3">LAATTER<br>35%</span></div></div>
+  </div>
+  <div class="analysis-row bars-row">
+    <div class="left-stack">
+      <table class="filter"><tr><td>Mes</td><td>MAYO<span>▾</span></td></tr></table>
+      <table class="pivot evaluator">
+<thead><tr><th>Evaluador</th><th>Evaluaciones</th></tr></thead>
+<tbody>
+<tr><td>JOCELYN ANGELES IBARRA</td><td>11</td></tr>
+<tr><td>FRANCISCO JAVIER TORRES ROSAS</td><td>10</td></tr>
+<tr><td>LAURA PICHARDO ROSAS</td><td>10</td></tr>
+<tr><td>JOSE DANIEL COLOMO MARTINEZ</td><td>10</td></tr>
+<tr><td>ADRIANA ANGELES GONZALEZ</td><td>8</td></tr>
+<tr><td>ALBERTO FABIAN OLIVEROS ROBLES</td><td>5</td></tr>
+<tr><td>MARTIN EDUARDO LOPEZ RODRIGUEZ</td><td>5</td></tr>
+<tr><td>ALBERTO GARCIA VARELA</td><td>5</td></tr>
+<tr><td>JUAN CARLOS ZAMUDIO SANCHEZ</td><td>5</td></tr>
+<tr><td>EDGAR GARCIA VARELA</td><td>4</td></tr>
+<tr><td>JAZER FEDERICO VEGA GONZALEZ</td><td>4</td></tr>
+<tr><td>MARIO ARRIAGA ROBLES</td><td>4</td></tr>
+<tr><td>JULIO DANIEL PINEDA HERNANDEZ</td><td>3</td></tr>
+<tr><td>ANDREA RUBÍ CARDENAS MORENO</td><td>2</td></tr>
+<tr><td>OSCAR ALBERTO VARGAS DAMIAN</td><td>1</td></tr>
+<tr><td>MARITZELENA GUADALUPE CAMPA FLORES</td><td>1</td></tr>
+<tr class="total"><td>Total general</td><td>88</td></tr>
+</tbody></table>
+    </div>
+    <div class="bar-chart"><div class="bar-plot"><div class="bar-line"><span class="bar-name">OSCAR ALBERTO VARGAS DAMIAN</span><span class="bar-wrap"><i style="width:9%"></i></span><span class="bar-num">1</span></div>
+<div class="bar-line"><span class="bar-name">MARITZELENA GUADALUPE CAMPA FLORES</span><span class="bar-wrap"><i style="width:9%"></i></span><span class="bar-num">1</span></div>
+<div class="bar-line"><span class="bar-name">ANDREA RUBÍ CARDENAS MORENO</span><span class="bar-wrap"><i style="width:18%"></i></span><span class="bar-num">2</span></div>
+<div class="bar-line"><span class="bar-name">JULIO DANIEL PINEDA HERNANDEZ</span><span class="bar-wrap"><i style="width:27%"></i></span><span class="bar-num">3</span></div>
+<div class="bar-line"><span class="bar-name">EDGAR GARCIA VARELA</span><span class="bar-wrap"><i style="width:36%"></i></span><span class="bar-num">4</span></div>
+<div class="bar-line"><span class="bar-name">JAZER FEDERICO VEGA GONZALEZ</span><span class="bar-wrap"><i style="width:36%"></i></span><span class="bar-num">4</span></div>
+<div class="bar-line"><span class="bar-name">MARIO ARRIAGA ROBLES</span><span class="bar-wrap"><i style="width:36%"></i></span><span class="bar-num">4</span></div>
+<div class="bar-line"><span class="bar-name">ALBERTO FABIAN OLIVEROS ROBLES</span><span class="bar-wrap"><i style="width:45%"></i></span><span class="bar-num">5</span></div>
+<div class="bar-line"><span class="bar-name">MARTIN EDUARDO LOPEZ RODRIGUEZ</span><span class="bar-wrap"><i style="width:45%"></i></span><span class="bar-num">5</span></div>
+<div class="bar-line"><span class="bar-name">ALBERTO GARCIA VARELA</span><span class="bar-wrap"><i style="width:45%"></i></span><span class="bar-num">5</span></div>
+<div class="bar-line"><span class="bar-name">JUAN CARLOS ZAMUDIO SANCHEZ</span><span class="bar-wrap"><i style="width:45%"></i></span><span class="bar-num">5</span></div>
+<div class="bar-line"><span class="bar-name">ADRIANA ANGELES GONZALEZ</span><span class="bar-wrap"><i style="width:73%"></i></span><span class="bar-num">8</span></div>
+<div class="bar-line"><span class="bar-name">FRANCISCO JAVIER TORRES ROSAS</span><span class="bar-wrap"><i style="width:91%"></i></span><span class="bar-num">10</span></div>
+<div class="bar-line"><span class="bar-name">LAURA PICHARDO ROSAS</span><span class="bar-wrap"><i style="width:91%"></i></span><span class="bar-num">10</span></div>
+<div class="bar-line"><span class="bar-name">JOSE DANIEL COLOMO MARTINEZ</span><span class="bar-wrap"><i style="width:91%"></i></span><span class="bar-num">10</span></div>
+<div class="bar-line"><span class="bar-name">JOCELYN ANGELES IBARRA</span><span class="bar-wrap"><i style="width:100%"></i></span><span class="bar-num">11</span></div>
+</div></div>
+  </div>
+</section>
   </main>
-
-  <script>
-    const fallbackData = {
-      actualizacion: "22/06/2026",
-      hora: "18:20",
-
-      resumenGeneral: {
-        abril: 37,
-        mayo: 88,
-        junio: 109,
-        mayoJunio: 197,
-        total: 234
-      },
-
-      candidatos: {
-        procesosLotes: 208,
-        procesosSinLote: 26,
-        procesosTotal: 234,
-        evaluacionesDia: 0,
-        evaluacionesTotales: 234
-      },
-
-      certificados: {
-        procesosLotes: 208,
-        solicitados: 199,
-        recibidos: 171,
-        proceso: 9,
-        promedioDia: 5.47
-      },
-
-      centrosTotal: [
-        ["CDI", 56],
-        ["GLOBAL", 67],
-        ["LAATTER", 74]
-      ],
-
-      centrosJunio: [
-        ["CDI", 28],
-        ["GLOBAL", 38],
-        ["LAATTER", 43]
-      ],
-
-      centrosMayo: [
-        ["CDI", 28],
-        ["GLOBAL", 29],
-        ["LAATTER", 31]
-      ],
-
-      evaluadoresTotal: [
-        ["JOSE DANIEL COLOMO MARTINEZ", 30],
-        ["CRISTOPHER TORIJA MORALES", 26],
-        ["VICTOR ALEJANDRO SOTO CEBALLOS", 22],
-        ["JOCELYN ANGELES IBARRA", 13],
-        ["MARIO ARRIAGA ROBLES", 12],
-        ["JAZER FEDERICO VEGA GONZALEZ", 12],
-        ["FRANCISCO JAVIER TORRES ROSAS", 12],
-        ["JUAN CARLOS ZAMUDIO SANCHEZ", 11],
-        ["JULIO DANIEL PINEDA HERNANDEZ", 10],
-        ["LAURA PICHARDO ROSAS", 10],
-        ["ADRIANA ANGELES GONZALEZ", 9],
-        ["ALBERTO FABIAN OLIVEROS ROBLES", 6],
-        ["EDGAR GARCIA VARELA", 5],
-        ["MARTIN EDUARDO LOPEZ RODRIGUEZ", 5],
-        ["ALBERTO GARCIA VARELA", 5],
-        ["OSCAR ALBERTO VARGAS DAMIAN", 3],
-        ["ANDREA RUBÍ CARDENAS MORENO", 2],
-        ["BRIANDA AVRIL", 1],
-        ["MIRNA GARCIA", 1],
-        ["MARITZELENA GUADALUPE CAMPA FLORES", 1]
-      ],
-
-      evaluadoresJunio: [
-        ["CRISTOPHER TORIJA MORALES", 26],
-        ["VICTOR ALEJANDRO SOTO CEBALLOS", 22],
-        ["JOSE DANIEL COLOMO MARTINEZ", 21],
-        ["MARIO ARRIAGA ROBLES", 8],
-        ["JAZER FEDERICO VEGA GONZALEZ", 8],
-        ["JULIO DANIEL PINEDA HERNANDEZ", 7],
-        ["JUAN CARLOS ZAMUDIO SANCHEZ", 6],
-        ["OSCAR ALBERTO VARGAS DAMIAN", 2],
-        ["FRANCISCO JAVIER TORRES ROSAS", 2],
-        ["JOCELYN ANGELES IBARRA", 2],
-        ["EDGAR GARCIA VARELA", 1],
-        ["ALBERTO FABIAN OLIVEROS ROBLES", 1],
-        ["BRIANDA AVRIL", 1],
-        ["ADRIANA ANGELES GONZALEZ", 1],
-        ["MIRNA GARCIA", 1]
-      ],
-
-      evaluadoresMayo: [
-        ["JOCELYN ANGELES IBARRA", 11],
-        ["FRANCISCO JAVIER TORRES ROSAS", 10],
-        ["LAURA PICHARDO ROSAS", 10],
-        ["JOSE DANIEL COLOMO MARTINEZ", 10],
-        ["ADRIANA ANGELES GONZALEZ", 8],
-        ["ALBERTO FABIAN OLIVEROS ROBLES", 5],
-        ["MARTIN EDUARDO LOPEZ RODRIGUEZ", 5],
-        ["ALBERTO GARCIA VARELA", 5],
-        ["JUAN CARLOS ZAMUDIO SANCHEZ", 5],
-        ["EDGAR GARCIA VARELA", 4],
-        ["JAZER FEDERICO VEGA GONZALEZ", 4],
-        ["MARIO ARRIAGA ROBLES", 4],
-        ["JULIO DANIEL PINEDA HERNANDEZ", 3],
-        ["ANDREA RUBÍ CARDENAS MORENO", 2],
-        ["OSCAR ALBERTO VARGAS DAMIAN", 1],
-        ["MARITZELENA GUADALUPE CAMPA FLORES", 1]
-      ]
-    };
-
-    let charts = [];
-
-    async function cargarDatos() {
-      try {
-        const response = await fetch("./data.json?v=" + Date.now());
-        if (!response.ok) throw new Error("No se pudo cargar data.json");
-
-        const json = await response.json();
-
-        if (json && typeof json === "object" && !Array.isArray(json)) {
-          return combinarDatos(fallbackData, json);
-        }
-
-        return fallbackData;
-      } catch (error) {
-        console.warn("Usando datos de respaldo:", error);
-        return fallbackData;
-      }
-    }
-
-    function combinarDatos(base, nuevo) {
-      return {
-        ...base,
-        ...nuevo,
-        resumenGeneral: {
-          ...base.resumenGeneral,
-          ...(nuevo.resumenGeneral || {})
-        },
-        candidatos: {
-          ...base.candidatos,
-          ...(nuevo.candidatos || {})
-        },
-        certificados: {
-          ...base.certificados,
-          ...(nuevo.certificados || {})
-        },
-        centrosTotal: nuevo.centrosTotal || base.centrosTotal,
-        centrosJunio: nuevo.centrosJunio || base.centrosJunio,
-        centrosMayo: nuevo.centrosMayo || base.centrosMayo,
-        evaluadoresTotal: nuevo.evaluadoresTotal || base.evaluadoresTotal,
-        evaluadoresJunio: nuevo.evaluadoresJunio || base.evaluadoresJunio,
-        evaluadoresMayo: nuevo.evaluadoresMayo || base.evaluadoresMayo
-      };
-    }
-
-    function setText(id, value) {
-      const el = document.getElementById(id);
-      if (el) el.textContent = value ?? 0;
-    }
-
-    function renderMetricas(data) {
-      setText("fechaActualizacion", data.actualizacion);
-      setText("horaActualizacion", data.hora);
-
-      setText("abril", data.resumenGeneral.abril);
-      setText("mayoTotal", data.resumenGeneral.mayo);
-      setText("junioTotal", data.resumenGeneral.junio);
-      setText("mayoJunio", data.resumenGeneral.mayoJunio);
-      setText("evaluacionesTotales", data.resumenGeneral.total);
-
-      setText("procesosLotes", data.candidatos.procesosLotes);
-      setText("procesosSinLote", data.candidatos.procesosSinLote);
-      setText("procesosTotal", data.candidatos.procesosTotal);
-      setText("evaluacionesDia", data.candidatos.evaluacionesDia);
-      setText("evaluacionesTotales2", data.candidatos.evaluacionesTotales);
-
-      setText("certProcesosLotes", data.certificados.procesosLotes);
-      setText("certSolicitados", data.certificados.solicitados);
-      setText("certRecibidos", data.certificados.recibidos);
-      setText("certProceso", data.certificados.proceso);
-      setText("promedioDia", data.certificados.promedioDia);
-    }
-
-    function renderTabla(id, rows, header1, header2) {
-      const table = document.getElementById(id);
-      if (!table) return;
-
-      const safeRows = Array.isArray(rows) ? rows : [];
-      const total = safeRows.reduce((sum, row) => sum + Number(row[1] || 0), 0);
-
-      table.innerHTML = `
-        <thead>
-          <tr>
-            <th>${header1}</th>
-            <th>${header2}</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${safeRows.map(row => `
-            <tr>
-              <td>${row[0]}</td>
-              <td>${row[1]}</td>
-            </tr>
-          `).join("")}
-          <tr class="total-row">
-            <td>Total general</td>
-            <td>${total}</td>
-          </tr>
-        </tbody>
-      `;
-    }
-
-    function crearPieChart(id, rows) {
-      const canvas = document.getElementById(id);
-      if (!canvas) return;
-
-      const chart = new Chart(canvas, {
-        type: "pie",
-        data: {
-          labels: rows.map(row => row[0]),
-          datasets: [{
-            data: rows.map(row => row[1]),
-            backgroundColor: ["#5B9BD5", "#ED7D31", "#A5A5A5"],
-            borderColor: "#ffffff",
-            borderWidth: 2
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false
-            },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                  const value = context.raw;
-                  const pct = total ? Math.round((value / total) * 100) : 0;
-                  return `${context.label}: ${value} (${pct}%)`;
-                }
-              }
-            }
-          }
-        }
-      });
-
-      charts.push(chart);
-    }
-
-    function crearBarChart(id, rows) {
-      const canvas = document.getElementById(id);
-      if (!canvas) return;
-
-      const sorted = [...rows].reverse();
-
-      const chart = new Chart(canvas, {
-        type: "bar",
-        data: {
-          labels: sorted.map(row => row[0]),
-          datasets: [{
-            data: sorted.map(row => row[1]),
-            backgroundColor: "#5B9BD5",
-            borderColor: "#5B9BD5",
-            borderWidth: 1
-          }]
-        },
-        options: {
-          indexAxis: "y",
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false
-            }
-          },
-          scales: {
-            x: {
-              beginAtZero: true,
-              grid: {
-                color: "#D9D9D9"
-              },
-              ticks: {
-                color: "#555555"
-              }
-            },
-            y: {
-              grid: {
-                display: false
-              },
-              ticks: {
-                color: "#555555",
-                font: {
-                  size: 10
-                }
-              }
-            }
-          }
-        }
-      });
-
-      charts.push(chart);
-    }
-
-    function renderDashboard(data) {
-      renderMetricas(data);
-
-      renderTabla("tablaCentrosTotal", data.centrosTotal, "Etiquetas de fila", "Conteo de NÚMERO");
-      renderTabla("tablaCentrosJunio", data.centrosJunio, "Etiquetas de fila", "Conteo de NÚMERO");
-      renderTabla("tablaCentrosMayo", data.centrosMayo, "Etiquetas de fila", "Conteo de NÚMERO");
-
-      renderTabla("tablaEvaluadoresTotal", data.evaluadoresTotal, "Evaluador", "Cuenta de NOMBRE DEL EVALUADOR");
-      renderTabla("tablaEvaluadoresJunio", data.evaluadoresJunio, "Evaluador", "Cuenta de NOMBRE DEL EVALUADOR");
-      renderTabla("tablaEvaluadoresMayo", data.evaluadoresMayo, "Evaluador", "Evaluaciones");
-
-      charts.forEach(chart => chart.destroy());
-      charts = [];
-
-      crearPieChart("chartCentrosTotal", data.centrosTotal);
-      crearPieChart("chartCentrosJunio", data.centrosJunio);
-      crearPieChart("chartCentrosMayo", data.centrosMayo);
-
-      crearBarChart("chartEvaluadoresTotal", data.evaluadoresTotal);
-      crearBarChart("chartEvaluadoresJunio", data.evaluadoresJunio);
-      crearBarChart("chartEvaluadoresMayo", data.evaluadoresMayo);
-    }
-
-    cargarDatos().then(renderDashboard);
-  </script>
 </body>
 </html>
